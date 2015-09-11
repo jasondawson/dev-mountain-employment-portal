@@ -3,7 +3,7 @@ var app = angular.module("portalsApp", ['ui.router']);
 app.config(function($stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /home
-  $urlRouterProvider.otherwise("/homeView");  ///As of writing this note, if this line is uncommented, it will cause the homeView route to crash.
+  $urlRouterProvider.otherwise("/homeView"); 
   
   $stateProvider
     
