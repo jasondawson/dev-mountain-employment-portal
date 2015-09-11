@@ -1,1 +1,0 @@
-studentProfileCtrl.js

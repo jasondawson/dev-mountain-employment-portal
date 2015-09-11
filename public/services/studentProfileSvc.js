@@ -1,1 +1,3 @@
-studentProfileSvc.js
+app.service("studentProfileSvc", function($http, $q) {
+
+});

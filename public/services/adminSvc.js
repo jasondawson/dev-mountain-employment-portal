@@ -1,1 +1,3 @@
-adminSvc.js
+app.service("adminSvc", function($http, $q) {
+
+});

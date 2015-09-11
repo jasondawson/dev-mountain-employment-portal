@@ -1,1 +1,3 @@
-publicPortfoliosSvc.js
+app.service("publicPortfoliosSvc", function($http, $q) {
+
+});

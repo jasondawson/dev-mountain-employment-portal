@@ -1,1 +1,0 @@
-adminCtrl.js
