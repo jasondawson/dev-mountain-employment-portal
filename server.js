@@ -9,6 +9,7 @@ var router = express.Router();
 //controllers
 
 var userCtrl = require('./controller/userCtrl');
+var skillsCtrl = require('./controller/skillsCtrl');
 
 //middleware
 app.use(express.static('public'));
@@ -22,6 +23,9 @@ router.route('/api/user')
   .post(userCtrl.create)
   .get(userCtrl.read);
 
+router.route('/api/skills')
+  .post(skillsCtrl.create)
+  .get(skillsCtrl.read);
 
 //connections
 var port = 3000;
