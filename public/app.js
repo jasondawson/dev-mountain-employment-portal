@@ -8,7 +8,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     
 
-	.state('admin', {
+    .state('admin', {
       url: "/admin",
       templateUrl: "html-templates/admin.html",
       controller: "adminCtrl"
