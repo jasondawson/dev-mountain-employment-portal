@@ -4,11 +4,24 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var app = express();
+var router = express.Router();
+
+//controllers
+
+var userCtrl = require('./controller/userCtrl');
 
 //middleware
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(router);
 app.use(cors());
+
+//endpoints
+
+router.route('/api/user')
+  .post(userCtrl.create)
+  .get(userCtrl.read);
+
 
 //connections
 var port = 3000;
