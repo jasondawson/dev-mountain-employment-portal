@@ -11,6 +11,7 @@ var router = express.Router();
 var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
+var projectCtrl = require('./controller/projectCtrl');
 
 
 //middleware
@@ -31,12 +32,19 @@ router.route('/api/skills')
 
 router.route('/api/devskills')
   .post(devSkillsCtrl.create)
-  .put(devSkillsCtrl.update)
   .get(devSkillsCtrl.read);
 
 router.route('/api/devskills/:id')
   .put(devSkillsCtrl.update)
   .delete(devSkillsCtrl.delete);
+
+router.route('/api/project')
+  .post(projectCtrl.create)
+  .get(projectCtrl.read);
+
+router.route('/api/project/:id')
+  .put(projectCtrl.update)
+  .delete(projectCtrl.delete);
 
 
 //connections
