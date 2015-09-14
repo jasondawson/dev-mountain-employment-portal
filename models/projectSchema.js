@@ -4,7 +4,8 @@ var Schema = Mongoose.Schema;
 var projectInfo = new Schema({
   loginInfo: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   picture: {
     type: String
