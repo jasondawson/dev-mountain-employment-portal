@@ -15,8 +15,8 @@ var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
-
-//middleware
+var fullPortfolio = require('./controller/fullportfolio')
+  //middleware
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(router);
@@ -56,6 +56,8 @@ router.route('/api/studentPorftolio/:id')
   .put(studentPortfCtrl.update)
   .delete(studentPortfCtrl.delete);
 
+router.route('/api/fullPortfolio/:id')
+  .get(fullPortfolio.getPortfolio);
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';
@@ -66,7 +68,6 @@ mongoose.connection.on('error', console.error.bind(console, 'connection error:')
 mongoose.connection.once('open', function() {
   console.log('Connected to mongodb @', mongodbUri);
 })
-
 
 
 
