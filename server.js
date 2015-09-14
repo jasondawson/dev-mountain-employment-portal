@@ -12,7 +12,7 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
-
+var studentPortfCtrl = require('./controller/studentPortfCtrl');
 
 //middleware
 app.use(express.static('public'));
@@ -45,6 +45,14 @@ router.route('/api/project')
 router.route('/api/project/:id')
   .put(projectCtrl.update)
   .delete(projectCtrl.delete);
+
+router.route('/api/studentPorftolio')
+  .post(studentPortfCtrl.create)
+  .get(studentPortfCtrl.read);
+
+router.route('/api/studentPorftolio/:id')
+  .put(studentPortfCtrl.update)
+  .delete(studentPortfCtrl.delete);
 
 
 //connections
