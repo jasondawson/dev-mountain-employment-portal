@@ -128,15 +128,15 @@ app.post('/login', function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      console.log('user is not found');
-      return res.redirect(302, '/#/login');
+      console.log('user not found');
+      return res.send('authentication failed');
     }
     req.logIn(user, function(err) {
       console.log('is logIn', user);
       if (err) {
         return next(err);
       }
-      return res.send(user);
+      return res.send(user._id);
     });
   })(req, res, next);
 });
