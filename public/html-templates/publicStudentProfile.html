@@ -1,10 +1,85 @@
-<div>
+
+  {{studentData}}
+<div class="leftInfo">
+<form ng-submit="updateStudent(studentData.studentPortf)">
+
+<br>
+<label>Name</label>: {{studentData.studentPortf.name.first}} {{studentData.studentPortf.name.last}}
+<br>
+Email: {{studentData.studentPortf.email}}
+<br>
+<a href="http://www.github.com">Github</a>
+<br>
+<a href="http://www.devmoutai.in">Personal Website</a>
+<br>
+<a href="http://www.linkedin.com">LinkedIn Profile</a>
+<br>
+<br>
+{{studentData.studentPortf.cohort.className}}
+<br>
+Cohort Name: {{studentData.studentPortf.cohort.cohortName}}
+<br>
+Cohort Location: {{studentData.studentPortf.cohort.cohortLocation}}
+</div>
+<br>
+<div class ="moreinfo">
+Student Bio: {{studentData.studentPortf.Bio}}
+<br>
+Current Location: {{studentData.studentPortf.currentLoc.city}}, {{studentData.studentPortf.currentLoc.state}}
+<br>
+<div class="devskills" ng-repeat="devskill in studentData.studentPortf.skills">
+This is ng-repeat:  {{devskill}}
+<br>
+Dev Skills: {{studentData.studentPortf.skills}}
+</div>
+<br>
+Status: {{studentData.studentPortf.status}}
+<br>
+Relocate: {{studentData.studentPortf.relocation}}
+<br>
+</form>
+</div>
+<br>
+<div class="showcase">
+  <h4>Showcase</h4>
+  <br>
+<b>This is the Projects</b>
+<br>
+<br>
+<div class="projects" ng-repeat="project in studentData.projects">
+Project Type: {{project.projectType}}
+<br>
+Project Name: {{project.name}}
+<br>
+Description: {{project.description}}
+<br>
+Tech Used: {{project.TechUsed}}
+</div>
+<br>
+<b>This is the TechSkills</b>
+<br>
+<div class="skills" ng-repeat="devskill in studentData.devSkills">
+  <br>
+TechSkill:
+<br>
+Description: {{devskill.description}}
+<br>
+Source:
+<br>
+<div ng-repeat="link in devskill.link">
+<a href="{{link.url}}">{{link.name}}</a>
+<br>
+</div>
+</div>
+
+</div>
+<!-- <div>
 	<div class="sideA">
 	<div>
 	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
 	{{s3url}}
 </div>
-		
+
 		<img src="artwork/V__F4AA.jpg">
 		<ul>
 			<li><a href="email@icloud.com">myemial.icloud.com</a></li>
@@ -74,26 +149,17 @@
 						<h4>Source</h4>
 						<u>
 							<li><a href="github.com"></a> GitHub</li>
-							
+
 						</u>
 					</li>
 				</ul>
 				</div>
 			</li>
 		</ul>
-		
+
 	</div>
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
+ -->
