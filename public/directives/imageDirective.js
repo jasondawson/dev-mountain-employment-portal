@@ -1,4 +1,4 @@
-app.directive('fileread', function (service) {
+app.directive('fileread', function (studentProfileSvc) {
   return {
     restrict: 'A',
     link: function (scope, elem, attrs) {
