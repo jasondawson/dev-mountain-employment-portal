@@ -24,6 +24,7 @@ app.controller("loginCreateAccountCtrl", function($scope, $location, loginSvc) {
     loginSvc.register(data).then(function(response) {
       console.log('this is register response', response);
       $scope.user = "";
+      $location.path("/profiles");
     })
   }
 
