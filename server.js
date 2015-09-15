@@ -24,16 +24,6 @@ var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
 var imageController = require("./controller/imageController.js");
 
-
-
-
-
-
-
-
-
-
-
 //middleware
 app.use(express.static('public'));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -48,22 +38,6 @@ app.use(router);
 app.use(cors());
 app.use('/upload/image', multipart());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //models
