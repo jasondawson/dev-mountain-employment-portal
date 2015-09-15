@@ -41,16 +41,18 @@ var User = require('./models/userSchema');
 //passport
 
 passport.use(new LocalStrategy({
-    email: "email"
+    usernameField: "email"
   },
   function(email, password, callback) {
+    console.log('this is passport use', email, password);
     User.findOne({
       email: email
     }, function(err, user) {
+      console.log("this is passport.use error", err);
       if (err) {
         return callback(err);
       }
-      // If user found with that username
+      // If user isn't found with that username
       if (!user) {
         return callback(null, false);
       }
@@ -78,11 +80,33 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
+  console.log("deserializeUser");
   done(null, user);
 });
 
 
 //endpoints
+
+app.post('/login', function(req, res, next) {
+  console.log('this is req', req.body);
+  passport.authenticate('local', function(err, user, info) {
+    console.log('this is login', user);
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      console.log('user is not found');
+      return res.redirect(302, '/#/login');
+    }
+    req.logIn(user, function(err) {
+      console.log('is logIn', user);
+      if (err) {
+        return next(err);
+      }
+      return res.send(user);
+    });
+  })(req, res, next);
+});
 
 router.route('/api/user')
   .post(userCtrl.create)

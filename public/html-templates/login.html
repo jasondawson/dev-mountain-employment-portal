@@ -1,4 +1,14 @@
 <h2>This is the Login Page</h2>
+
+<div ng-model="user">
+E-mail:
+<input class="form-control" placeholder="enter email" ng-model="user.email">
+<br>
+Password: <input class="form-control" placeholder="enter password" ng-model="user.password">
+<br>
+<button class="button" ng-click="login(user)">Log In</button>
+</div>
+<br>
 <button ui-sref="createAccount" class="button">Create your new Account</button>
 
 {{loginTest}}
