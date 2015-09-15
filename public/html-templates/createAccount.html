@@ -1,3 +1,12 @@
 <h2>This is the Create Acount html page</h2>
 
+<div ng-model="user">
+E-mail:
+<input class="form-control" placeholder="enter email" ng-model="user.email">
+<br>
+Create Password: <input class="form-control" placeholder="enter password" ng-model="user.password">
+<br>
+<button class="button" ng-click="register(user)">Create Account</button>
+</div>
+
 {{createAccountTest}}
