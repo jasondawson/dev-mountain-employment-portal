@@ -4,8 +4,7 @@ var DevSkills = require('../models/DevSkills');
 var Skills = require('../models/skill');
 var User = require('../models/userSchema');
 
-// var Portfolios = require('./models/studentPortf.js');
-// var Projects = requieradsfklads
+
 module.exports = {
 
   getPortfolio: function(req, res) {

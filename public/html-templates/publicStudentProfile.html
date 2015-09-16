@@ -1,10 +1,10 @@
 
-  {{studentData}}
+  <!-- {{studentData}} -->
 <div class="leftInfo">
 <form ng-submit="updateStudent(studentData.studentPortf)">
 
 <br>
-<label>Name</label>: {{studentData.studentPortf.name.first}} {{studentData.studentPortf.name.last}}
+Name:  {{studentData.studentPortf.name.first}} {{studentData.studentPortf.name.last}}
 <br>
 Email: {{studentData.studentPortf.email}}
 <br>
@@ -45,8 +45,8 @@ Relocate: {{studentData.studentPortf.relocation}}
   <br>
 <b>This is the Projects</b>
 <br>
-<br>
 <div class="projects" ng-repeat="project in studentData.projects">
+  <br>
 Project Type: {{project.projectType}}
 <br>
 Project Name: {{project.name}}
@@ -60,7 +60,7 @@ Tech Used: {{project.TechUsed}}
 <br>
 <div class="skills" ng-repeat="devskill in studentData.devSkills">
   <br>
-TechSkill:
+TechSkill: {{devskill.name}}
 <br>
 Description: {{devskill.description}}
 <br>
@@ -95,10 +95,9 @@ Source:
 		<div>
 			<h4>Cohort Location</h4>
 			<ul class="tags">
-				<li >Provo, UT</li>
+				<li>Provo, UT</li>
 			</ul>
 		</div>
-	
 
 	</div>
 	<div class="sideB">

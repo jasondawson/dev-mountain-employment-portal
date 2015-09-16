@@ -26,7 +26,9 @@ var imageController = require("./controller/imageController.js");
 
 //middleware
 app.use(express.static('public'));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 app.use(session({
   secret: "devmtnempportal",
   resave: true,
@@ -37,7 +39,10 @@ app.use(passport.session());
 app.use(router);
 app.use(cors());
 app.use('/upload/image', multipart());
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 
 
 //models
@@ -140,8 +145,11 @@ router.route('/api/project/:id')
   .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
 router.route('/api/studentPorftolio')
-  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
+  .get(studentPortfCtrl.read);
+
+router.route('/api/studentPorftolio')
+  .post(authCtrl.isAuthenticated, studentPortfCtrl.create);
+
 
 router.route('/api/studentPorftolio/:id')
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
