@@ -1,4 +1,4 @@
-var app = angular.module("portalsApp", ['ui.router']);
+var app = angular.module("portalsApp", ['ui.router', 'xeditable']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -30,6 +30,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	templateUrl: "html-templates/login.html",
     	controller: "loginCreateAccountCtrl"
     })
+    .state('logout',{
+      url:"/homeView",
+      templateUrl:"html-templates/homeView.html"
+    })
 
     .state("portfolios", {
     	url: "/portfolios",
@@ -43,10 +47,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	controller: "studentProfileCtrl"
     })
 
-    
-
-    
-
-
-
 });
+
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+

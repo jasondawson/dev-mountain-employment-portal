@@ -1,0 +1,257 @@
+
+
+  {{studentData.studentPortf}}
+<form editable-form name="editableForm" onaftersave="updateStudent(studentData.studentPortf)">
+	<div>
+	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
+	{{s3url}}
+	
+	</div>
+
+	<div>
+		<span editable-text="studentData.studentPortf.name.first"  e-name="name" e-required e-placeholder="Enter name">{{  (studentData.studentPortf.name.first || 'Enter Name')|uppercase }}</span>
+		<span editable-text=" studentData.studentPortf.name.last" e-name="lastname" e-required e-placeholder="Enter last name">{{ (studentData.studentPortf.name.last|| 'empty')|uppercase }}</span>
+	</div>
+	<div>
+		<span editable-text="studentData.studentPortf.email" e-name="email" e-placeholder="Enter email">{{ studentData.studentPortf.email || 'empty' }}</span>
+	</div>
+
+<!-- 	<div>
+		<span editable-text="studentData.studentPortf.github" e-name="github" e-placeholder="Enter Github Account">{{ studentData.studentPortf.github || 'GitHub Account' }}</span>
+	</div> -->
+	<div>
+	  <a href='http://{{studentData.studentPortf.github}}'  editable-text="studentData.studentPortf.github" e-placeholder="Enter Github Account">
+	    {{ studentData.studentPortf.github}}
+	  </a>
+	</div>
+	<div>
+		<span editable-text="studentData.studentPortf.personalWebsite" e-name="personalWebsite" e-placeholder="Enter Website link">{{ studentData.studentPortf.personalWebsite || 'Personal Website' }}</span>
+	</div>
+
+	<div>
+	  <a href='http://{{studentData.studentPortf.personalWebsite}}'  editable-text="studentData.studentPortf.personalWebsite" e-placeholder="Enter Website link" >
+	    http://{{ studentData.studentPortf.personalWebsite}}
+	  </a>
+	</div>
+		<div>
+		<span editable-text="studentData.studentPortf.linkdIn" e-name="linkdIn" e-placeholder="Enter LinkdIn">{{ studentData.studentPortf.linkdIn || 'LInkdIn' }}</span>
+	</div>
+	<div>
+		<a href='http://{{studentData.studentPortf.LinkdIn}}'  editable-text="studentData.studentPortf.LinkdIn" e-placeholder="Enter LinkdIn">
+	    {{ studentData.studentPortf.LinkdIn ||'Your LinkdIn Account' }}
+	  	</a>
+	</div>
+	<div>
+      <!-- editable Class Name (select-local) -->
+    
+      <span editable-select="studentData.studentPortf.className" e-name="classNames" e-ng-options="c.value as c.text for c in classNames">
+        {{ (classNames | filter:{value: studentData.studentPortf.className})[0].text || classNames[0] }}
+      </span>
+	<div>
+      <!-- editable Cohort Location (select-local) -->
+    
+      <span editable-select="studentData.studentPortf.cohortLoc" e-name="cohortLoc" e-ng-options="c.value as c.text for c in cohortLocations">
+        {{ (cohortLocations | filter:{value: user.cohortLoc})[0].text || cohortLocations[0] }}
+      </span>
+    </div>
+    	<div>
+      <!-- editable Cohort Name (select-local) -->
+    
+      <span editable-select="studentData.studentPortf.cohort.cohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortName">
+        {{ (cohortName | filter:{value: user.cohortName})[0].text || cohortName[0] }}
+      </span>
+    </div>
+
+	<div class="BioBox">
+		<span editable-text="studentData.studentPortf.Bio" e-name="Bio" e-required e-placeholder="Tell us about you">{{ studentData.studentPortf.Bio || 'About you' }}</span>
+	</div>
+	<div>
+      <!-- editable status (select-local) -->
+      
+      <span editable-select="user.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
+        {{ (statuses | filter:{value: user.status})[0].text || 'Not set' }}
+      </span>
+    </div> 
+ 
+	<div>
+		<span editable-text="user.currentLoc.city" e-name="currentLoc.city" e-required>{{ user.currentLoc.city || 'empty' }}</span>
+		<span editable-text="user.currentLoc.state" e-name="currentLoc.state" e-required>{{ user.currentLoc.state || 'empty' }}</span>
+	</div>
+	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+</form>
+
+
+
+
+
+
+<a href="http://www.github.com">Github</a>
+<br>
+<a href="http://www.devmoutai.in">Personal Website</a>
+<br>
+<a href="http://www.linkedin.com">LinkedIn Profile</a>
+<br>
+<br>
+{{studentData.studentPortf.cohort.className}}
+<br>
+Cohort Name: {{studentData.studentPortf.cohort.cohortName}}
+<br>
+Cohort Location: {{studentData.studentPortf.cohort.cohortLocation}}
+</div>
+<br>
+<div class ="moreinfo">
+Student Bio: {{studentData.studentPortf.Bio}}
+<br>
+Current Location: {{studentData.studentPortf.currentLoc.city}}, {{studentData.studentPortf.currentLoc.state}}
+<br>
+<div class="devskills" ng-repeat="devskill in studentData.studentPortf.skills">
+This is ng-repeat:  {{devskill}}
+<br>
+Dev Skills: {{studentData.studentPortf.skills}}
+</div>
+<br>
+Status: {{studentData.studentPortf.status}}
+<br>
+Relocate: {{studentData.studentPortf.relocation}}
+<br>
+</form>
+</div>
+<br>
+<div class="showcase">
+  <h4>Showcase</h4>
+  <br>
+<b>This is the Projects</b>
+<br>
+<br>
+<div class="projects" ng-repeat="project in studentData.projects">
+Project Type: {{project.projectType}}
+<br>
+Project Name: {{project.name}}
+<br>
+Description: {{project.description}}
+<br>
+Tech Used: {{project.TechUsed}}
+</div>
+<br>
+<b>This is the TechSkills</b>
+<br>
+<div class="skills" ng-repeat="devskill in studentData.devSkills">
+  <br>
+TechSkill:
+<br>
+Description: {{devskill.description}}
+<br>
+Source:
+<br>
+<div ng-repeat="link in devskill.link">
+<a href="{{link.url}}">{{link.name}}</a>
+<br>
+</div>
+</div>
+
+</div>
+<!-- <div>
+	<div class="sideA">
+	<div>
+	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
+	{{s3url}}
+</div>
+
+		<img src="artwork/V__F4AA.jpg">
+		<ul>
+			<li><a href="email@icloud.com">myemial.icloud.com</a></li>
+			<li><a href="githubaccount.com/adriana">Github Profile</a></li>
+			<li><a href="amazon.S3 PDF">Resume</a></li>
+		</ul>
+		<div>
+			<h4>Cohort</h4>
+			<ul class="tags">
+				<li>Dev5</li>
+			</ul>
+		</div>
+		<div>
+			<h4>Cohort Location</h4>
+			<ul class="tags">
+				<li >Provo, UT</li>
+			</ul>
+		</div>
+	
+
+	</div>
+	<div class="sideB">
+		<h2>Randy Williams</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<ul>
+			<li>
+				<h3>Dev Skills</h3>
+				<ul>
+					<li>Html</li>
+					<li>Css</li>
+					<li>JavaScript</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Status</h3>
+				<ul>
+					<li>Student</li>
+
+				</ul>
+			</li>
+			<li>
+				<h3>Location</h3>
+				<ul>
+					<li>St. George, UT</li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="sideC">
+		<ul>
+			<li>
+				<h3> DvMtn-Employment Portal</h3>
+				<div>
+					<img src="artwork/V__F4AA.jpg">
+				</div>
+				<div>
+				<p>Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				<ul>
+					<li>
+						<h4>Tech Used</h4>
+						<u>
+							<li>Css</li>
+							<li>Html</li>
+						</u>
+					</li>
+					<li>
+						<h4>Source</h4>
+						<u>
+							<li><a href="github.com"></a> GitHub</li>
+
+						</u>
+					</li>
+				</ul>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+</div>
+
+
+
+ -->

@@ -24,16 +24,6 @@ var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
 var imageController = require("./controller/imageController.js");
 
-
-
-
-
-
-
-
-
-
-
 //middleware
 app.use(express.static('public'));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -48,22 +38,6 @@ app.use(router);
 app.use(cors());
 app.use('/upload/image', multipart());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //models
@@ -128,15 +102,15 @@ app.post('/login', function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      console.log('user is not found');
-      return res.redirect(302, '/#/login');
+      console.log('user not found');
+      return res.send('authentication failed');
     }
     req.logIn(user, function(err) {
       console.log('is logIn', user);
       if (err) {
         return next(err);
       }
-      return res.send(user);
+      return res.send(user._id);
     });
   })(req, res, next);
 });

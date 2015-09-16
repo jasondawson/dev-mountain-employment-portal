@@ -28,6 +28,15 @@ var studentPortf = new Schema({
       index: true
     }
   },
+  github: {
+    type: String
+  },
+  personalWebsite: {
+    type: String
+  },
+  linkdIn: {
+    type: String
+  },
   Bio: {
     type: String
   },
