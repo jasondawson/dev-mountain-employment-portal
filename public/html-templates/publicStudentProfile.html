@@ -20,17 +20,26 @@
 		<span editable-text="studentData.studentPortf.github" e-name="github" e-placeholder="Enter Github Account">{{ studentData.studentPortf.github || 'GitHub Account' }}</span>
 	</div> -->
 	<div>
-	  <a href='http://{{studentData.studentPortf.github}}'  editable-select="studentData.studentPortf.github" >
+	  <a href='http://{{studentData.studentPortf.github}}'  editable-text="studentData.studentPortf.github" e-placeholder="Enter Github Account">
 	    {{ studentData.studentPortf.github}}
 	  </a>
 	</div>
 	<div>
 		<span editable-text="studentData.studentPortf.personalWebsite" e-name="personalWebsite" e-placeholder="Enter Website link">{{ studentData.studentPortf.personalWebsite || 'Personal Website' }}</span>
 	</div>
+
 	<div>
-	  <a href='http://{{studentData.studentPortf.personalWebsite}}'  editable-select="studentData.studentPortf.personalWebsite" >
+	  <a href='http://{{studentData.studentPortf.personalWebsite}}'  editable-text="studentData.studentPortf.personalWebsite" e-placeholder="Enter Website link" >
 	    http://{{ studentData.studentPortf.personalWebsite}}
 	  </a>
+	</div>
+		<div>
+		<span editable-text="studentData.studentPortf.linkdIn" e-name="linkdIn" e-placeholder="Enter LinkdIn">{{ studentData.studentPortf.linkdIn || 'LInkdIn' }}</span>
+	</div>
+	<div>
+		<a href='http://{{studentData.studentPortf.LinkdIn}}'  editable-text="studentData.studentPortf.LinkdIn" e-placeholder="Enter LinkdIn">
+	    {{ studentData.studentPortf.LinkdIn ||'Your LinkdIn Account' }}
+	  	</a>
 	</div>
 	<div>
       <!-- editable Class Name (select-local) -->
