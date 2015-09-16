@@ -8,6 +8,7 @@ var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
 var LocalStrategy = require("passport-local").Strategy;
 var session = require('express-session');
+var multipart = require('connect-multiparty')
 
 var app = express();
 var router = express.Router();
@@ -21,10 +22,11 @@ var projectCtrl = require('./controller/projectCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
+var imageController = require("./controller/imageController.js");
 
 //middleware
 app.use(express.static('public'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(session({
   secret: "devmtnempportal",
   resave: true,
@@ -34,6 +36,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
 app.use(cors());
+app.use('/upload/image', multipart());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 //models
 
@@ -87,6 +92,8 @@ passport.deserializeUser(function(user, done) {
 
 //endpoints
 
+app.post('/api/newimage', imageController.saveImage);
+
 app.post('/login', function(req, res, next) {
   console.log('this is req', req.body);
   passport.authenticate('local', function(err, user, info) {
@@ -95,15 +102,15 @@ app.post('/login', function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      console.log('user is not found');
-      return res.redirect(302, '/#/login');
+      console.log('user not found');
+      return res.send('authentication failed');
     }
     req.logIn(user, function(err) {
       console.log('is logIn', user);
       if (err) {
         return next(err);
       }
-      return res.send(user);
+      return res.send(user._id);
     });
   })(req, res, next);
 });
