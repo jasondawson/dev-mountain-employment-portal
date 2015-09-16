@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="portalsApp">
 <head>
-	<title></title>
+	<title>Employment Portal</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="resetStyle.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<h1>DevMountain Employment Portal</h1>
-<button ui-sref="homeView" class="button">Home</button>
-<button ui-sref="portfolios" class="button">Portfolio</button>
-<button ui-sref="login" class="button">Log-In</button>
-<button ui-sref="admin" class="button">Administrator</button>
-<button ui-sref="logout" class="button">Logout</button>
-
-
-	<br>
-
+	<header>
+		<div class="logoArt">
+			<a ui-sref="homeView">
+				<img src="artwork/dvmtlogo2.png" width="500px">
+			</a>
+		</div>
+		<nav>
+			<ul>
+				<li><a ui-sref="logout">Logout</a></li>
+				<li><a ui-sref="admin">Administrator</a></li>
+				<li><button class="loginButton"><a ui-sref="login">Student Login</a></button></li>
+			</ul>
+		</nav>
+	</header>
 	<div ui-view></div>
 
 

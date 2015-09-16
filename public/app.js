@@ -2,7 +2,7 @@ var app = angular.module("portalsApp", ['ui.router']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  // For any unmatched url, redirect to /home
+  // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView"); 
   
   $stateProvider

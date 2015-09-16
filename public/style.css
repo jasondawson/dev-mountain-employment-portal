@@ -1,7 +1,72 @@
-h1 {
-	color: red;
+body {
+	width: 100%;
+	max-width: 1300px;
+	margin: 0 auto;
 }
 
-h2 {
+nav {
+	width: 500px;
+	margin-bottom: 20px;
+	float: right;
+}
+
+
+
+nav ul li a {
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	color: black;
+	font-family: calibri;
+}
+
+nav ul li {
+
+	padding-left: 15px;
+	padding-right: 15px;
+	float: right; 
+}
+
+
+
+/*ul {
+	width: 100%;
+	margin: 20px 0px 0px 0px;
+	padding: 15px 10px;
+	background-color: tan;
+}*/
+
+/*ul li {
+	display: inline;
+	text-decoration: none;
+	color: black;
+	font-size: 1.25em;
+	margin: 0 10px;
+}*/
+
+/*ul li a:visited {
 	color: green;
+}*/
+
+/*ul li a:hover {
+	padding: 15px 0px;
+	background-color: #A89070;
+	text-decoration: none;
+}*/
+
+.homeViewBody {
+	width: 100%;
+	
+	/*background-image: url("artwork/devmt1.jpg");*/
+}
+
+.logoArt {
+	width: 510px;
+}
+
+.portfoliosButton {
+	position: absolute;
+	bottom: 50%;
+	left: 43%;
+	z-index: 100;
 }
