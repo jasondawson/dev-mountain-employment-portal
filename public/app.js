@@ -1,14 +1,15 @@
-var app = angular.module("portalsApp", ['ui.router']);
+var app = angular.module("portalsApp", ['ui.router', 'xeditable']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  // For any unmatched url, redirect to /home
+  // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView"); 
   
   $stateProvider
     
 
-    .state('admin', {
+  
+  .state('admin', {
       url: "/admin",
       templateUrl: "html-templates/admin.html",
       controller: "adminCtrl"
@@ -47,10 +48,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	controller: "studentProfileCtrl"
     })
 
-    
-
-    
-
-
-
 });
+
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
