@@ -1,4 +1,4 @@
-app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter, $http) {
+app.controller("studentProfileCtrl", function($scope, studentProfileSvc, cohortNameServ, $filter, $http) {
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
@@ -36,6 +36,19 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
     {value:5, text:'DM5'}, 
     {value:6, text:'DM6'}, */	
   ]; /// create a fucntion to get thsi information form a service form teh database
+  $scope.getcohortnames=function(){
+    cohortNameServ.getCohortName().then(function(response){
+      $scope.cohortNames=response;
+    })
+  };
+  getcohortnames();
+  $scope.addcohortName=function(cohortName){
+    if(cohortName){
+      cohortNameServ.addCohortName(cohortName).then(function(response){
+        $scope.newCohort=response
+      })
+    }
+  }
 
     $scope.classNames =[
   	{value:1, text:'Web Development'},
