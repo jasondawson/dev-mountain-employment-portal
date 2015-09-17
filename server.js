@@ -135,13 +135,32 @@ router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-router.route('/api/project/:id')
+
+
+
+
+
+
+
+
+//PUT IT BACKKKKKKK
+router.route('/api/studentPorftolio')
+  .post(/*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
+  
+router.route('/api/project/:id')///PUT THIS BACK UP THERE
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
 router.route('/api/studentPorftolio')
-  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
+  .get(studentPortfCtrl.read);
+
+
+
+
+
+
+
+
 
 router.route('/api/studentPorftolio/:id')
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)

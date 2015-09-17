@@ -1,4 +1,26 @@
 <h2>This is the admin page</h2>
 
-{{adminTest}}
+<table st-table="rowCollection" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Student Name</th>
+		<th>Class</th>
+		<th>Cohort Name</th>
+		<th>School Location</th>
+		<th>Percentage Complete</th>
+		<th>Hide</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="student in students">
+		<td>{{student.name.first}} {{student.name.last}}</td>
+		<td>{{student.cohort.className}}</td>
+		<td>{{student.cohort.cohortName}}</td>
+		<td>{{student.cohort.cohortLocation}}</td>
+		<td>{{student.percentCompleted}}%</td>
+	</tr>
+	</tbody>
+</table>
+
+<!-- <button ng-click="read()">Get The Data Button</button> -->
 
