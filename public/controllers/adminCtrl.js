@@ -17,6 +17,7 @@ app.controller("adminCtrl", function($scope, adminSvc) {
 // 	});
 // };
 
+
 $scope.read = function() {
 	adminSvc.read().then(function(response) {
 		console.log("response from controller", response.data);
