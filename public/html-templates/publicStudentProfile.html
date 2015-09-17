@@ -14,7 +14,7 @@
 		<span editable-text=" studentData.studentPortf.name.last" e-name="lastname" e-required e-placeholder="Enter last name">{{ (studentData.studentPortf.name.last|| 'empty')|uppercase }}</span>
 	</div>
 	<div>
-		<span editable-text="studentData.studentPortf.email" e-name="email" e-placeholder="Enter email">{{ studentData.studentPortf.email || 'empty' }}</span>
+		<span editable-text="studentData.studentPortf.email" e-name="email" e-placeholder="Enter email">{{ studentData.studentPortf.email || 'youremail@email.com' }}</span>
 	</div>
 
 
@@ -65,16 +65,26 @@
 	</div>
 	<div>
       <!-- editable status (select-local) -->
-      <span class="title">Status: </span>
+      <span class="title">Status</span>
       <br>
       <span editable-select="user.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
-        {{ (statuses | filter:{value: user.status})[0].text || statuses [0] }}
+        {{ (statuses | filter:{value: user.status})[0].text || statuses[0] }}
+      </span>
+    </div> 
+    <div>
+      <!-- editable status (select-local) -->
+      <span class="title">Relocation</span>
+      <br>
+      <span editable-select="user.relocation" e-name="relocation" e-ng-options="s.value as s.text for s in relocation">
+        {{ (relocation | filter:{value: user.relocation})[0].text || relocation[0] }}
       </span>
     </div> 
  
 	<div>
-		<span editable-text="user.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ user.currentLoc.city || 'empty' }}</span>
-		<span editable-text="user.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ user.currentLoc.state || 'empty' }}</span>
+    <span class="title">Location</span>
+    <br>
+		<span editable-text="user.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ user.currentLoc.city || 'City' }}</span>
+		<span editable-text="user.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ user.currentLoc.state || 'State' }}</span>
 	</div>
 	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
@@ -103,11 +113,13 @@
 		<span editable-text="studentData.projects.name"  e-name="projectName" e-placeholder="Enter project name">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
 
 	</div>
-		<div>
+  <div>
+      <!-- Project Type -->
 
-		<span editable-text="studentData.projects.projectType"  e-name="projectName" e-placeholder="Enter project Type">{{  (studentData.projects.projectType || 'Enter Project Type')|uppercase }}</span>
-
-	</div>
+      <span editable-select="user.projectType" e-name="projectType" e-ng-options="s.value as s.text for s in projectTypes">
+        {{ (projectTypes | filter:{value: user.projectType})[0].text || projectTypes[0] }}
+      </span>
+    </div> 
 
 <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
@@ -136,10 +148,7 @@ This is ng-repeat:  {{devskill}}
 Dev Skills: {{studentData.studentPortf.skills}}
 </div>
 <br>
-Status: {{studentData.studentPortf.status}} -->
-<br>
-Relocate: {{studentData.studentPortf.relocation}}
-<br>
+-->
 </form>
 </div>
 <br>
