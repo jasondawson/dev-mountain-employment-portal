@@ -18,6 +18,7 @@ nav ul li a {
 	width: 100%;
 	color: black;
 	font-family: calibri;
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 .title{
@@ -36,6 +37,17 @@ nav ul li {
 	float: right; 
 }
 
+=======
+}
+
+nav ul li {
+
+	padding-left: 15px;
+	padding-right: 15px;
+	float: right; 
+}
+
+>>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
 .homeViewBody {
 	width: 100%;
 	
@@ -53,4 +65,7 @@ nav ul li {
 	z-index: 100;
 }
 
+<<<<<<< HEAD
+>>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
+=======
 >>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
