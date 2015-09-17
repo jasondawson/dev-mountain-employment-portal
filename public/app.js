@@ -1,4 +1,4 @@
-var app = angular.module("portalsApp", ['ui.router', 'xeditable']);
+var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
