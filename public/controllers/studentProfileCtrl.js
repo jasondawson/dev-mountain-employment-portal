@@ -13,14 +13,14 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
 	$scope.getStudentProf();
 
   $scope.statuses =[
-  	{value:0, text:'Status'},
+  
   	{value:1, text:'Student'},
   	{value:2, text:'Unemployed'},
   	{value:3, text:'Employed'},
   	{value:4, text:'Freelance'}
   ];
   $scope.cohortLocations =[
-  	{value:0, text:'Cohort Location'},
+
   	{value:1, text:'Dallas, Tx'},
   	{value:2, text:'SLC, UT'},
   	{value:3, text:'Provo, UT'},
@@ -35,12 +35,21 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
   	
   ];
     $scope.classNames =[
-    {value:0, text:'Class Name'},
+
   	{value:1, text:'Web Development'},
   	{value:2, text:'IOS'},
 
   	
   ];
+
+$scope.porjectTypes =[
+
+    {value:1, text:'Personal'},
+    {value:2, text:'Group'},
+
+    
+  ];
+
   $scope.updateStudent= function(student){
 
   }
