@@ -18,9 +18,9 @@ nav ul li a {
 	width: 100%;
 	color: black;
 	font-family: calibri;
-<<<<<<< HEAD
+
 }
-<<<<<<< HEAD
+
 .title{
 	font-size: 24px;
 	font-style: bold;
@@ -28,7 +28,7 @@ nav ul li a {
 .editable-empty{
 	color:black!important;
 }
-=======
+
 
 nav ul li {
 
@@ -37,7 +37,7 @@ nav ul li {
 	float: right; 
 }
 
-=======
+
 }
 
 nav ul li {
@@ -47,7 +47,7 @@ nav ul li {
 	float: right; 
 }
 
->>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
+
 .homeViewBody {
 	width: 100%;
 	
@@ -65,7 +65,4 @@ nav ul li {
 	z-index: 100;
 }
 
-<<<<<<< HEAD
->>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
-=======
->>>>>>> e99bba84e6d245f69cd3082706f5e75b13453c8a
+
