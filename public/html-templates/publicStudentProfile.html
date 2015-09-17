@@ -1,5 +1,5 @@
 
-
+<div class="container">
   {{studentData}}
   	<div>
 	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
@@ -47,28 +47,31 @@
       <!-- editable Cohort Location (select-local) -->
       <span class="title">Cohort Location </span>
       <br>
-      <span editable-select="studentData.studentPortf.cohortLoc" e-name="cohortLoc" onshow='cohortLOcation[0]' e-ng-options="c.value as c.text for c in cohortLocations">
-        {{ (cohortLocations | filter:{value: user.cohortLoc})[0].text || "Cohort Location" }}
+      <span editable-select="studentData.studentPortf.cohort.cohortLoc" e-name="cohortLoc"  e-ng-options="c.value as c.text for c in cohortLocations">
+        {{ (cohortLocations | filter:{Value: studentData.studentPortf.cohort.cohortLocation})[0].text || "e.g. Provo, UT" }}
       </span>
     </div>
     	<div>
       <!-- editable Cohort Name (select-local) -->
       <span class="title">Cohort </span>
       <br>
-      <span editable-select="studentData.studentPortf.cohort.cohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortName">
-        {{ (cohortName | filter:{value: user.cohortName})[0].text || "Cohort" }}
+      <span editable-select="studentData.studentPortf.cohort.cohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
+        {{(cohortNames | filter:{value:studentData.studentPortf.cohort.cohortName})[0].text}}
       </span>
+      <br>
+      TExt:{{studentData.studentPortf.cohort.cohortName}}
     </div>
 
 	<div class="BioBox">
+    <span class="title">About you</span>
 		<span editable-text="studentData.studentPortf.Bio" e-name="Bio" e-required e-placeholder="Tell us about you">{{ studentData.studentPortf.Bio || 'About you' }}</span>
 	</div>
 	<div>
       <!-- editable status (select-local) -->
       <span class="title">Status</span>
       <br>
-      <span editable-select="user.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
-        {{ (statuses | filter:{value: user.status})[0].text || statuses[0] }}
+      <span editable-select="studentData.studentPortf.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
+        {{ (statuses | filter:{value: studentData.studentPortf.status})[0].text || "not working" }}
       </span>
     </div> 
     <div>
@@ -105,21 +108,25 @@
 
 <form editable-form name="editableProjectForm" onaftersave="updateProject()">
 <div class="showcase">
-  <h4>Showcase</h4>
+  <h2>Showcase</h2>
   <br>
 </div>
 	<div>
-
-		<span editable-text="studentData.projects.name"  e-name="projectName" e-placeholder="Enter project name">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
+  <span class= "title">Proyect name</span>
+		<span editable-text="studentData.projects.name"  e-name="projectName" e-placeholder="My Awsome Project">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
 
 	</div>
-  <div>
+    <div>
       <!-- Project Type -->
-
-      <span editable-select="user.projectType" e-name="projectType" e-ng-options="s.value as s.text for s in projectTypes">
-        {{ (projectTypes | filter:{value: user.projectType})[0].text || projectTypes[0] }}
+      <span class='title'>Proyect Type</span>
+      <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
+        {{ (projectTypes | filter:{value: studentData.projects.projectTypes})[0].text || projectTypes[0] }}
       </span>
     </div> 
+    <div>
+    <span class="title">Proyect Description </span>
+    <span editable-text="studentData.project.description" e-name="Bio" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.studentPortf.Bio || 'About you' }}</span>
+  </div>
 
 <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
@@ -140,7 +147,32 @@
 
 
 
-
+<br>
+{{studentData.studentPortf.cohort.className}}
+<br>
+Cohort Name: {{studentData.studentPortf.cohort.cohortName}}
+<br>
+Cohort Location: {{studentData.studentPortf.cohort.cohortLocation}}
+</div>
+<br>
+<div class ="moreinfo">
+Student Bio: {{studentData.studentPortf.Bio}}
+<br>
+Current Location: {{studentData.studentPortf.currentLoc.city}}, {{studentData.studentPortf.currentLoc.state}}
+<br>
+<div class="devskills" ng-repeat="devskill in studentData.studentPortf.skills">
+This is ng-repeat:  {{devskill}}
+<br>
+Dev Skills: {{studentData.studentPortf.skills}}
+</div>
+<br>
+Status: {{studentData.studentPortf.status}}
+<br>
+Relocate: {{studentData.studentPortf.relocation}}
+<br>
+</form>
+</div>
+<br>
 
 <!-- <div class="devskills" ng-repeat="devskill in studentData.studentPortf.skills">
 This is ng-repeat:  {{devskill}}
@@ -189,4 +221,4 @@ Source:
 
 
 
- -->
+</div>

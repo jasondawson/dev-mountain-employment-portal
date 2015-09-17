@@ -2,13 +2,16 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
+  $scope.studentData = {};/// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
 
-	$scope.getStudentProf = function() {
-		studentProfileSvc.getStudentProf().then(function(response) {
-			$scope.studentData = response;
-			console.log(response);
-		})
-	};
+  $scope.getStudentProf = function() {
+
+    studentProfileSvc.getStudentProf().then(function(response) {
+      $scope.studentData = response;
+      console.log(response);
+    })
+  };
+
 
 	$scope.getStudentProf();
 
@@ -25,12 +28,14 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
   	{value:3, text:'Provo, UT'},
   ];
 
-  $scope.cohortName =[
-  	{value:0, text:'DM5'},
-  	{value:1, text:'DM6'},
-  	{value:2, text:'DM7'},
-  	{value:3, text:'DM8'}, 	
-  ];
+  $scope.cohortNames =[
+/*  	{value:1, text:'DM1'},
+  	{value:2, text:'DM2'},
+  	{value:3, text:'DM3'},
+  	{value:4, text:'DM4'}, 
+    {value:5, text:'DM5'}, 
+    {value:6, text:'DM6'}, */	
+  ]; /// create a fucntion to get thsi information form a service form teh database
 
     $scope.classNames =[
   	{value:1, text:'Web Development'},
@@ -43,7 +48,8 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter
   ];
   $scope.relocation =[
     {value:1, text:'YES'},
-    {value:2, text:'NO'}, 
+    {value:2, text:'NO'},
+    {value:3, text:"Interested in working remotely"} 
   ];
   
   $scope.updateStudent= function(student){
