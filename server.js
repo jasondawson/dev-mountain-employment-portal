@@ -22,6 +22,7 @@ var projectCtrl = require('./controller/projectCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
+var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
 
 //middleware
@@ -136,13 +137,18 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
+
+
 router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
 router.route('/api/project/:id')
   .put(authCtrl.isAuthenticated, projectCtrl.update)
-  .delete(authCtrl.isAuthenticated, projectCtrl.delete);
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
+
+router.route('/api/projects')
+  .get(projectsCtrl.read);
 
 router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);

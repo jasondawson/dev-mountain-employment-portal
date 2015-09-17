@@ -13,4 +13,20 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 
 	$scope.getStudentProf();
 
+	$scope.getStudentProj = function(data) {
+		publicPortfoliosSvc.getStudentProj(data).then(function(response) {
+			$scope.StudentProject = response;
+		})
+	};
+
+	$scope.getStudentProj();
+
+	$scope.reset = function() {
+		$scope.StudentProject = "";
+	}
+
+	$scope.getStudentProj();
+
+
+
 })
