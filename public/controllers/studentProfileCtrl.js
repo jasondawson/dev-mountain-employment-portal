@@ -28,20 +28,21 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, cohortN
   	{value:3, text:'Provo, UT'},
   ];
 
-  $scope.cohortNames =[
+  $scope.cohortNames =[];
 /*  	{value:1, text:'DM1'},
   	{value:2, text:'DM2'},
   	{value:3, text:'DM3'},
   	{value:4, text:'DM4'}, 
     {value:5, text:'DM5'}, 
     {value:6, text:'DM6'}, */	
-  ]; /// create a fucntion to get thsi information form a service form teh database
+   /// create a fucntion to get thsi information form a service form teh database
   $scope.getcohortnames=function(){
     cohortNameServ.getCohortName().then(function(response){
       $scope.cohortNames=response;
     })
   };
-  getcohortnames();
+  $scope.getcohortnames();
+
   $scope.addcohortName=function(cohortName){
     if(cohortName){
       cohortNameServ.addCohortName(cohortName).then(function(response){

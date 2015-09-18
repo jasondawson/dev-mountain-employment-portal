@@ -38,14 +38,16 @@
 	</div>
 	<div>
       <!-- editable Class Name (select-local) -->
-      <span class="title">Class </span>
+      <span class="title">Class : NOT FIXED </span>
       <br>
+
       <span editable-select="studentData.studentPortf.className" e-name="classNames" e-ng-options="c.value as c.text for c in classNames">
         {{ (classNames | filter:{value: studentData.studentPortf.className})[0].text || " Your Class Name/Type Here" }}
       </span>
+  </div>
 	<div>
       <!-- editable Cohort Location (select-local) -->
-      <span class="title">Cohort Location </span>
+      <span class="title">Cohort Location: NOT FIXED </span>
       <br>
       <span editable-select="studentData.studentPortf.cohort.cohortLoc" e-name="cohortLoc"  e-ng-options="c.value as c.text for c in cohortLocations">
         {{ (cohortLocations | filter:{Value: studentData.studentPortf.cohort.cohortLocation})[0].text || "e.g. Provo, UT" }}
@@ -53,7 +55,7 @@
     </div>
     	<div>
       <!-- editable Cohort Name (select-local) -->
-      <span class="title">Cohort </span>
+      <span class="title">Cohort: NAME NOT FIXED YET</span>
       <br>
       <span editable-select="studentData.studentPortf.cohort.cohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
         {{(cohortNames | filter:{value:studentData.studentPortf.cohort.cohortName})[0].text}}
@@ -150,7 +152,7 @@
 <br>
 {{studentData.studentPortf.cohort.className}}
 <br>
-Cohort Name: {{studentData.studentPortf.cohort.cohortName}}
+Cohort Name: {{studentData.studentPortf.cohort.cohortName[1]}}
 <br>
 Cohort Location: {{studentData.studentPortf.cohort.cohortLocation}}
 </div>

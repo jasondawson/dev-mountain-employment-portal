@@ -19,8 +19,9 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
+var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
-var fullPortfolio = require('./controller/fullportfolio');
+/*var fullPortfolio = require('./controller/fullportfolio');*/
 var authCtrl = require('./controller/authCtrl');
 var imageController = require("./controller/imageController.js");
 
@@ -139,18 +140,27 @@ router.route('/api/project/:id')
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
-router.route('/api/studentPorftolio')
+router.route('/api/studentPorftolio')//
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
 
 router.route('/api/studentPorftolio/:id')
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+  /////
 
-//the fullportfolio end point is for the publicStudentProfile.html view
+router.route('/api/cohortName')
+  .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
+  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
 
-router.route('/api/fullPortfolio/:id')
-  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);
+router.route('/api/cohortName/:id')
+  .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
+
+
+/*router.route('/api/fullPortfolio/:id')
+  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);*/
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';

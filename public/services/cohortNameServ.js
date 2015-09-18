@@ -2,14 +2,14 @@ app.service("cohortNameServ", function($http, $q) {
 
 
   
-  this.getcohortName=function(){
+  this.getCohortName=function(){
     var deferred=$q.defer();
     $http({
       url: 'http://localhost:3000/api/cohortName',
       method: 'GET',
       // data: data
     }).then(function(response) {
-      console.log('this is response.data in service', response.data);
+      console.log("cohort collection", response.data)
       deferred.resolve(response.data);
     })
     return deferred.promise;
@@ -18,7 +18,7 @@ app.service("cohortNameServ", function($http, $q) {
     var deferred = $q.defer();
     $http({
       method: 'POST',
-      url: 'http://localhost:1337/api/cohortName',
+      url: 'http://localhost:3000/api/cohortName',
       data: {
         value: cohortName.value,
         text: cohortName.text
@@ -32,7 +32,7 @@ app.service("cohortNameServ", function($http, $q) {
     var deferred = $q.defer();
     $http({
       method: 'DELETE',
-      url: 'http://localhost:1337/api/cohortName/' + cohortName._id
+      url: 'http://localhost:3000/api/cohortName/' + cohortName._id
     }).then(function (response) {
       deferred.resolve(response);
     });

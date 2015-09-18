@@ -69,8 +69,9 @@ var studentPortf = new Schema({
       type: Number
     },
     cohortName: {
-      type: Number
-    },
+    type: Schema.Types.ObjectId,
+    ref: 'CohortName'
+  },
     cohortLocation: {
       type: Number
     } /*see how Randy did his project*/
