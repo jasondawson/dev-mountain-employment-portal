@@ -57,11 +57,11 @@
       <!-- editable Cohort Name (select-local) -->
       <span class="title">Cohort: NAME NOT FIXED YET</span>
       <br>
-      <span editable-select="cohotnameId" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
-        {{(cohortNames | filter:{value:cohotnameId})[0].text}}
+      <span editable-select="studentCohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
+        {{(cohortNames | filter:{value:studentCohortName})[0].text || cohortNames[0].text}}
       </span>
       <br>
-      TExt:{{studentData.studentPortf.cohort.cohortName}}
+     
     </div>
 
 	<div class="BioBox">
@@ -124,15 +124,15 @@
       <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
         {{ (projectTypes | filter:{value: studentData.projects.projectTypes})[0].text || projectTypes[0] }}
       </span>
-<<<<<<< HEAD
+
     </div> 
     <div>
     <span class="title">Proyect Description </span>
     <span editable-text="studentData.project.description" e-name="Bio" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.studentPortf.Bio || 'About you' }}</span>
   </div>
-=======
+
     </div>
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
+
 
 <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
@@ -156,7 +156,7 @@
 <br>
 {{studentData.studentPortf.cohort.className}}
 <br>
-Cohort Name: {{studentData.studentPortf.cohort.cohortName[1]}}
+Cohort Name: {{studentData.studentPortf.cohort.cohortName[0].text}}
 <br>
 Cohort Location: {{studentData.studentPortf.cohort.cohortLocation}}
 </div>
@@ -223,11 +223,10 @@ Source:
 </div>
 
 </div>
-<<<<<<< HEAD
 
 
 
 
-</div>
-=======
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
+
+
+
