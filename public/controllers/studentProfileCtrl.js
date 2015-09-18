@@ -1,4 +1,4 @@
-app.controller("studentProfileCtrl", function($scope, studentProfileSvc, cohortNameServ, $filter, $http) {
+app.controller("studentProfileCtrl", function($scope, studentProfileSvc, $filter, $http) {
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
@@ -8,11 +8,17 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, cohortN
 
     studentProfileSvc.getStudentProf().then(function(response) {
       $scope.studentData = response;
-      console.log(response);
+     // console.log("current COnsole",response);
     })
   };
-
-
+  $scope.cohotnameId='';
+$scope.getCNameById=function(){
+  studentProfileSvc.getStudentProf().then(function(response){
+    $scope.cohotnameId=response.studentPortf.cohort.cohortName;
+    //console.log('funciton', $scope.cohotnameId)
+  })
+}
+  $scope.getCNameById();
 	$scope.getStudentProf();
 
   $scope.statuses =[
@@ -37,15 +43,16 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc, cohortN
     {value:6, text:'DM6'}, */	
    /// create a fucntion to get thsi information form a service form teh database
   $scope.getcohortnames=function(){
-    cohortNameServ.getCohortName().then(function(response){
+    studentProfileSvc.getCohortName().then(function(response){
       $scope.cohortNames=response;
+ //  console.log("cohortnamesCtrl",$scope.cohortNames); this is working
     })
   };
   $scope.getcohortnames();
 
   $scope.addcohortName=function(cohortName){
     if(cohortName){
-      cohortNameServ.addCohortName(cohortName).then(function(response){
+      studentProfileSvc.addCohortName(cohortName).then(function(response){
         $scope.newCohort=response
       })
     }

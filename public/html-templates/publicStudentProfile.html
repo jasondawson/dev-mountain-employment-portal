@@ -57,8 +57,8 @@
       <!-- editable Cohort Name (select-local) -->
       <span class="title">Cohort: NAME NOT FIXED YET</span>
       <br>
-      <span editable-select="studentData.studentPortf.cohort.cohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
-        {{(cohortNames | filter:{value:studentData.studentPortf.cohort.cohortName})[0].text}}
+      <span editable-select="cohotnameId" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
+        {{(cohortNames | filter:{value:cohotnameId})[0].text}}
       </span>
       <br>
       TExt:{{studentData.studentPortf.cohort.cohortName}}

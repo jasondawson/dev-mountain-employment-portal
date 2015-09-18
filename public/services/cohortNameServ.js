@@ -1,4 +1,4 @@
-app.service("cohortNameServ", function($http, $q) {
+/*app.service("cohortNameServ", function($http, $q) {
 
 
   
@@ -42,4 +42,4 @@ app.service("cohortNameServ", function($http, $q) {
 
 
 
-});
+});*/
