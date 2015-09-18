@@ -19,14 +19,18 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
+var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
-var fullPortfolio = require('./controller/fullportfolio');
+/*var fullPortfolio = require('./controller/fullportfolio');*/
 var authCtrl = require('./controller/authCtrl');
+var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
 
 //middleware
 app.use(express.static('public'));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 app.use(session({
   secret: "devmtnempportal",
   resave: true,
@@ -37,7 +41,10 @@ app.use(passport.session());
 app.use(router);
 app.use(cors());
 app.use('/upload/image', multipart());
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 
 
 //models
@@ -131,26 +138,59 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
+
+
 router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-router.route('/api/project/:id')
+
+
+
+
+//PUT IT BACKKKKKKK
+router.route('/api/studentPorftolio')
+  .post(/*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
+  
+router.route('/api/project/:id')///PUT THIS BACK UP THERE
   .put(authCtrl.isAuthenticated, projectCtrl.update)
-  .delete(authCtrl.isAuthenticated, projectCtrl.delete);
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
+
+router.route('/api/projects')
+  .get(projectsCtrl.read);
 
 router.route('/api/studentPorftolio')
+  .get(studentPortfCtrl.read);
+
+<<<<<<< HEAD
+router.route('/api/studentPorftolio')//
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
+=======
+router.route('/api/studentPorftolio')
+  .get(studentPortfCtrl.read);
+
+
+
+>>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 
 router.route('/api/studentPorftolio/:id')
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+  /////
 
-//the fullportfolio end point is for the publicStudentProfile.html view
+router.route('/api/cohortName')
+  .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
+  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
 
-router.route('/api/fullPortfolio/:id')
-  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);
+router.route('/api/cohortName/:id')
+  .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
+
+
+/*router.route('/api/fullPortfolio/:id')
+  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);*/
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';
