@@ -65,4 +65,16 @@ nav ul li {
 	z-index: 100;
 }
 
+#adminSearch {
+	width: 50%;
+}
+
+#percentCompleted {
+	width: 45px;
+}
+
+h2 {
+	color: brown;
+}
+
 
