@@ -3,3 +3,27 @@
 <button ui-sref="profiles" class="button">Student profiles</button>
 
 {{portfoliosTest}}
+<br>
+<br>
+This is the Students:
+<br>
+<div ng-repeat="student in studentPorftolio" ng-mouseover="getStudentProj(student.loginInfo)" ng-mouseout="reset()">
+
+<br>
+Name: {{student.name.first}} {{student.name.last}}
+<br>
+Bio: {{student.Bio}}
+<br>
+</div>
+<br>
+  This is the project
+<div ng-repeat="project in StudentProject">
+<br>
+
+{{project.projectType}}
+<br>
+Description: {{project.description}}
+<br>
+Tech Used: {{project.TechUsed}}
+<br>
+</div>

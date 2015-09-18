@@ -4,7 +4,7 @@
   	<div>
 	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
 	{{s3url}}
-	
+
 	</div>
 <form editable-form name="editableProfileForm" onaftersave="updateStudent()">
 
@@ -75,7 +75,7 @@
       <span editable-select="studentData.studentPortf.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
         {{ (statuses | filter:{value: studentData.studentPortf.status})[0].text || "not working" }}
       </span>
-    </div> 
+    </div>
     <div>
       <!-- editable status (select-local) -->
       <span class="title">Relocation</span>
@@ -83,8 +83,8 @@
       <span editable-select="user.relocation" e-name="relocation" e-ng-options="s.value as s.text for s in relocation">
         {{ (relocation | filter:{value: user.relocation})[0].text || relocation[0] }}
       </span>
-    </div> 
- 
+    </div>
+
 	<div>
     <span class="title">Location</span>
     <br>
@@ -124,11 +124,15 @@
       <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
         {{ (projectTypes | filter:{value: studentData.projects.projectTypes})[0].text || projectTypes[0] }}
       </span>
+<<<<<<< HEAD
     </div> 
     <div>
     <span class="title">Proyect Description </span>
     <span editable-text="studentData.project.description" e-name="Bio" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.studentPortf.Bio || 'About you' }}</span>
   </div>
+=======
+    </div>
+>>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 
 <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
@@ -219,8 +223,11 @@ Source:
 </div>
 
 </div>
+<<<<<<< HEAD
 
 
 
 
 </div>
+=======
+>>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1

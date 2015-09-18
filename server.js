@@ -23,11 +23,14 @@ var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 /*var fullPortfolio = require('./controller/fullportfolio');*/
 var authCtrl = require('./controller/authCtrl');
+var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
 
 //middleware
 app.use(express.static('public'));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
 app.use(session({
   secret: "devmtnempportal",
   resave: true,
@@ -38,7 +41,10 @@ app.use(passport.session());
 app.use(router);
 app.use(cors());
 app.use('/upload/image', multipart());
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 
 
 //models
@@ -132,17 +138,41 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
+
+
 router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-router.route('/api/project/:id')
-  .put(authCtrl.isAuthenticated, projectCtrl.update)
-  .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
+
+
+
+//PUT IT BACKKKKKKK
+router.route('/api/studentPorftolio')
+  .post(/*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
+  
+router.route('/api/project/:id')///PUT THIS BACK UP THERE
+  .put(authCtrl.isAuthenticated, projectCtrl.update)
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
+
+router.route('/api/projects')
+  .get(projectsCtrl.read);
+
+router.route('/api/studentPorftolio')
+  .get(studentPortfCtrl.read);
+
+<<<<<<< HEAD
 router.route('/api/studentPorftolio')//
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
+=======
+router.route('/api/studentPorftolio')
+  .get(studentPortfCtrl.read);
+
+
+
+>>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 
 router.route('/api/studentPorftolio/:id')
   .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)

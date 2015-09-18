@@ -3,11 +3,17 @@ var Project = require('../models/projectSchema');
 var DevSkills = require('../models/DevSkills');
 var Skills = require('../models/skill');
 var User = require('../models/userSchema');
+<<<<<<< HEAD
 var CohortName = require('../models/cohortNameSchema');
 */
 // var Portfolios = require('./models/studentPortf.js');
 // var Projects = requieradsfklads
 /*module.exports = {
+=======
+
+
+module.exports = {
+>>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 
   getPortfolio: function(req, res){
 
