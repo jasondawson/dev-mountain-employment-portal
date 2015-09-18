@@ -162,17 +162,16 @@ router.route('/api/projects')
 router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);
 
-<<<<<<< HEAD
+
 router.route('/api/studentPorftolio')//
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
-=======
-router.route('/api/studentPorftolio')
-  .get(studentPortfCtrl.read);
+ // .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
+
+/*router.route('/api/studentPorftolio')
+  .get(studentPortfCtrl.read);*/
 
 
 
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 
 router.route('/api/studentPorftolio/:id')
   .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)

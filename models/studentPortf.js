@@ -65,16 +65,16 @@ var studentPortf = new Schema({
   },
   //ASK RANDY HOW HE DID HIS PROJECT !!
   cohort: {
-    className: {
-      type: Number
-    },
-    cohortName: {
-    type: Schema.Types.ObjectId,
-    ref: 'CohortName'
-  },
-    cohortLocation: {
-      type: Number
-    } /*see how Randy did his project*/
+      className: {
+        type: Number
+      },
+      cohortName: [{
+          type: Schema.Types.ObjectId,
+          ref: 'CohortName'
+          }],
+      cohortLocation: {
+        type: Number
+      } /*see how Randy did his project*/
   },
   status: {
     type: Number

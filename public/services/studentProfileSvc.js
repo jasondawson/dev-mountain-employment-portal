@@ -30,19 +30,7 @@ app.service("studentProfileSvc", function($http, $q) {
     return deferred.promise;
   }
 
-/*  this.getcohortNameCollection=function(){
-    var deferred=$q.defer();
-    $http({
-      url: 'http://localhost:3000/api/cohortName',
-      method: 'GET',
-      // data: data
-    }).then(function(response) {
-console.log("cohort collection", response.data)
-      deferred.resolve(response.data);
-    })
-    return deferred.promise;
-  }*/
-
+  
 
 
 });
