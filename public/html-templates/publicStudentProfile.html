@@ -55,7 +55,7 @@
     </div>
     	<div>
       <!-- editable Cohort Name (select-local) -->
-      <span class="title">Cohort: NAME NOT FIXED YET</span>
+      <span class="title">Cohort:</span>
       <br>
       <span editable-select="studentCohortName" e-name="cohortName" e-ng-options="c.value as c.text for c in cohortNames">
         {{(cohortNames | filter:{value:studentCohortName})[0].text || cohortNames[0].text}}

@@ -20,6 +20,7 @@ var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
 var cohortNameCtrl = require('./controller/cohortNameCtrl');
+var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 /*var fullPortfolio = require('./controller/fullportfolio');*/
 var authCtrl = require('./controller/authCtrl');
@@ -186,6 +187,13 @@ router.route('/api/cohortName')
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
+  router.route('/api/cohortLocation')
+  .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
+  .get(authCtrl.isAuthenticated, cohortLocationCtrl.read);
+
+router.route('/api/cohortLocation/:id')
+  .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortLocationCtrl.delete);
 
 
 /*router.route('/api/fullPortfolio/:id')
