@@ -167,7 +167,8 @@ router.route('/api/studentPorftolio')
 
 
 
-router.route('/api/studentPorftolio/:id')
+router.route('/api/studentPorftolio/:id', function() {
+})
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 

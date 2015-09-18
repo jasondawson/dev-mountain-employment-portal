@@ -84,8 +84,11 @@ var studentPortf = new Schema({
     enum: ['Yes', 'No']
   },
   percentCompleted: {
-    type: String
+    type: Number
   },
+showProfile: {
+  type: Boolean, default: false
+}
 
 
 
