@@ -1,6 +1,12 @@
 var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
+/*var cohortName = new Schema({
+  value: {type:Number},
+  text: {type:String}
+});*/
+///CREATE A Chemas for ea of my list on student Controller so taht i can have those collections saved on my database and be able to create new lists!!!
+
 var studentPortf = new Schema({
   loginInfo: {
     type: Schema.Types.ObjectId,
@@ -59,29 +65,22 @@ var studentPortf = new Schema({
   },
   //ASK RANDY HOW HE DID HIS PROJECT !!
   cohort: {
-    className: {
-      type: String,
-      enum: ['Web Development',
-        'IOS'
-      ]
-    },
-    cohortName: {
-      type: String
-    },
-    cohortLocation: {
-      type: String,
-      enum: ['Salt City, UT', 'Provo, UT', 'Dallas, TX']
-        /*city: {type: String, required: true},
-        state: {type: String, required: true},*/
-    } /*see how Randy did his project*/
+      className: {
+        type: Number
+      },
+      cohortName: [{
+          type: Schema.Types.ObjectId,
+          ref: 'CohortName'
+          }],
+      cohortLocation: {
+        type: Number
+      } /*see how Randy did his project*/
   },
   status: {
-    type: String,
-    enum: ['Employed', 'Unemployed', 'Current Student', 'Freelance']
+    type: Number
   },
   relocation: {
-    type: String,
-    enum: ['Yes', 'No']
+    type: Number
   },
   percentCompleted: {
     type: Number

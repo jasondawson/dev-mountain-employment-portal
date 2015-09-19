@@ -19,8 +19,8 @@ app.service("studentProfileSvc", function($http, $q) {
   this.getStudentProf = function() {
     var deferred = $q.defer();
     $http({
-      url: 'http://localhost:3000/api/fullPortfolio/' +
-        '55f723dd5c39cb631af86f1a',
+      url: 'http://localhost:3000/api/studentPorftolio/' +
+        '55fb28b28e2750f176378182',//
       method: 'GET',
       // data: data
     }).then(function(response) {
@@ -30,6 +30,7 @@ app.service("studentProfileSvc", function($http, $q) {
     return deferred.promise;
   }
 
+  
 
 
 });
