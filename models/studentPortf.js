@@ -83,8 +83,11 @@ var studentPortf = new Schema({
     type: Number
   },
   percentCompleted: {
-    type: String
+    type: Number
   },
+showProfile: {
+  type: Boolean, default: false
+}
 
 
 
