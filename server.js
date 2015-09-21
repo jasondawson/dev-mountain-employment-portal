@@ -145,13 +145,11 @@ router.route('/api/project')
 
 
 
-
-
 //PUT IT BACKKKKKKK
 router.route('/api/studentPorftolio')
-  .post(/*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
-  
-router.route('/api/project/:id')///PUT THIS BACK UP THERE
+  .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
+
+router.route('/api/project/:id') ///PUT THIS BACK UP THERE
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
@@ -164,11 +162,7 @@ router.route('/api/studentPorftolio')
 router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);
 
-
-
-
-router.route('/api/studentPorftolio/:id', function() {
-})
+router.route('/api/studentPorftolio/:id', function() {})
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
