@@ -34,24 +34,12 @@ nav ul li {
 
 	padding-left: 15px;
 	padding-right: 15px;
-	float: right; 
+	float: right;
 }
 
-<<<<<<< HEAD
-=======
-
-}
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
 .homeViewBody {
 	width: 100%;
-	
+
 	/*background-image: url("artwork/devmt1.jpg");*/
 }
 
@@ -78,4 +66,9 @@ h2 {
 	color: brown;
 }
 
-
+.outer-box {
+	border: 2px solid gray;
+	width: 960px;
+	padding: 3px;
+	margin: 3px;
+}
