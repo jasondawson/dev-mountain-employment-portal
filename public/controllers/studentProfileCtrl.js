@@ -39,21 +39,21 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   };
   $scope.getStudentCohortName();
 
-  $scope.statuses =[
-  	{value:1, text:'Student'},
-  	{value:2, text:'Unemployed'},
-  	{value:3, text:'Employed'},
-  	{value:4, text:'Freelance'}
-  ];
+
 
   $scope.cohortLocations =[
-  	{value:1, text:'Dallas, Tx'},
+/*  	{value:1, text:'Dallas, Tx'},
   	{value:2, text:'SLC, UT'},
-  	{value:3, text:'Provo, UT'},
+  	{value:3, text:'Provo, UT'},*/
   ];
 
 
-
+  $scope.statuses =[
+    {value:1, text:'Student'},
+    {value:2, text:'Unemployed'},
+    {value:3, text:'Employed'},
+    {value:4, text:'Freelance'}
+  ];
 
     $scope.classNames =[
   	{value:1, text:'Web Development'},
