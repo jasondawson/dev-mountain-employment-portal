@@ -9,7 +9,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   $scope.getStudentProf = function() {
     studentProfileSvc.getStudentProf().then(function(response) {
       $scope.studentData = response;
-      $scope.studentCohortLocation = response.studentPortf.cohort.className[0].value;
+      $scope.studentClassName = response.studentPortf.cohort.className[0].value;
       $scope.studentCohortLocation = response.studentPortf.cohort.cohortLocation[0].value;
       $scope.studentCohortName = response.studentPortf.cohort.cohortName[0].value;
       console.log($scope.studentData);
@@ -65,9 +65,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
     }
   }
 
-    
-
-
   $scope.statuses =[
     {value:1, text:'Student'},
     {value:2, text:'Unemployed'},
@@ -75,11 +72,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
     {value:4, text:'Freelance'}
   ];
 
-
-  $scope.projectTypes =[
-    {value:1, text:'Personal'},
-    {value:2, text:'Group'}, 
-  ];
   $scope.relocation =[
     {value:1, text:'YES'},
     {value:2, text:'NO'},
@@ -90,6 +82,11 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
   }
 
+
+    $scope.projectTypes =[
+    {value:1, text:'Personal'},
+    {value:2, text:'Group'}, 
+  ];
   
 
 });

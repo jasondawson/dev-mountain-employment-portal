@@ -79,11 +79,13 @@ var studentPortf = new Schema({
           }] /*see how Randy did his project*/
   },
   status: {
-    type: Number
-  },
-  relocation: {
-    type: Number
-  },
+  value: {type:Number},
+  text: {type:String}
+},
+  relocation:  {
+  value: {type:Number},
+  text: {type:String}
+},
   percentCompleted: {
     type: Number
   },

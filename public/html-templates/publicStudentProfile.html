@@ -38,11 +38,11 @@
 	</div>
 	<div>
       <!-- editable Class Name (select-local) -->
-      <span class="title">Class : NOT FIXED </span>
+      <span class="title">Class:</span>
       <br>
 
-      <span editable-select="studentData.studentPortf.className" e-name="classNames" e-ng-options="c.value as c.text for c in classNames">
-        {{ (classNames | filter:{value: studentData.studentPortf.className})[0].text || " Your Class Name/Type Here" }}
+      <span editable-select="studentClassName" e-name="classNames" e-ng-options="c.value as c.text for c in classNames">
+        {{ (classNames | filter:{value: studentClassName})[0].text || " Your Class Name/Type Here" }}
       </span>
   </div>
 	<div>
@@ -72,24 +72,24 @@
       <!-- editable status (select-local) -->
       <span class="title">Status</span>
       <br>
-      <span editable-select="studentData.studentPortf.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
-        {{ (statuses | filter:{value: studentData.studentPortf.status})[0].text || "not working" }}
+      <span editable-select="studentData.studentPortf.status.value" e-name="status" e-ng-options="s.value as s.text for s in statuses">
+        {{ (statuses | filter:{value: studentData.studentPortf.status.value})[0].text || "Your Status" }}
       </span>
     </div>
     <div>
       <!-- editable status (select-local) -->
       <span class="title">Relocation</span>
       <br>
-      <span editable-select="user.relocation" e-name="relocation" e-ng-options="s.value as s.text for s in relocation">
-        {{ (relocation | filter:{value: user.relocation})[0].text || relocation[0] }}
+      <span editable-select="studentData.studentPortf.status.value" e-name="relocation" e-ng-options="s.value as s.text for s in relocation">
+        {{ (relocation | filter:{value: tudentData.studentPortf.status.value})[0].text || "Relocation Options" }}
       </span>
     </div>
 
 	<div>
     <span class="title">Location</span>
     <br>
-		<span editable-text="user.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ user.currentLoc.city || 'City' }}</span>
-		<span editable-text="user.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ user.currentLoc.state || 'State' }}</span>
+		<span editable-text="studentData.studentPortf.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.studentPortf.currentLoc.city || 'City' }}</span>
+		<span editable-text="studentData.studentPortf.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.studentPortf.currentLoc.state || 'State' }}</span>
 	</div>
 	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->

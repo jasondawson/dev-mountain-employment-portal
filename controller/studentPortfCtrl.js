@@ -34,7 +34,7 @@ module.exports = {
       StudentPortf.findOne({
           loginInfo: userId
         })
-        .populate('cohort.cohortName cohort.cohortLocation cohort.className')
+        .populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
         //.populate('cohort.cohortLocation')
         .exec(function(err, result) {
           console.log('this is StudentPortf result', result);
