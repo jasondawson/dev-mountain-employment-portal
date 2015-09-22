@@ -16,8 +16,8 @@
     "url": "https://github.com/DM5PortfolioProj/dev-mountain-emplyement-portal/issues"
   },
   "homepage": "https://github.com/DM5PortfolioProj/dev-mountain-emplyement-portal#readme",
-  "description": "",
   "dependencies": {
+    "angular-smart-table": "^2.1.3",
     "aws-sdk": "^2.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
@@ -33,5 +33,6 @@
   },
   "devDependencies": {
     "less": "^2.5.1"
-  }
+  },
+  "description": ""
 }

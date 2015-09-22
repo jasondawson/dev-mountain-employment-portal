@@ -1,26 +1,34 @@
-<h2>This is the admin page</h2>
+<h2>This is the Admin Page</h2>
 
-<table st-table="rowCollection" class="table table-striped">
+<table st-table="students" class="table table-striped">
 	<thead>
-	<tr>
-		<th>Student Name</th>
-		<th>Class</th>
-		<th>Cohort Name</th>
-		<th>School Location</th>
-		<th>Percentage Complete</th>
-		<th>Hide</th>
-	</tr>
+		<tr>
+			<th>Student Name</th>
+			<th>Class Name</th>
+			<th>Cohort Name</th>
+			<th>Cohort Location</th>
+			<th>Percentage Complete</th>
+			<th>Show</th>
+		</tr>
+		<br/>
+		<button><a ui-sref="adminAddSchool">Add New Cohort or School</a></button>
+		<br/>
+		<br/>
+		<input id="adminSearch"ng-model="searchTerm" placeholder="Filter Your Search">
+		<br/>
+		<br/>
 	</thead>
 	<tbody>
-	<tr ng-repeat="student in students">
-		<td>{{student.name.first}} {{student.name.last}}</td>
-		<td>{{student.cohort.className}}</td>
-		<td>{{student.cohort.cohortName}}</td>
-		<td>{{student.cohort.cohortLocation}}</td>
-		<td>{{student.percentCompleted}}%</td>
-	</tr>
+		<tr ng-repeat="student in students | filter: searchTerm">
+			<td>{{student.name.first}} {{student.name.last}}</td>
+			<td>{{student.cohort.className}}</td>
+			<td>{{student.cohort.cohortName}}</td>
+			<td>{{student.cohort.cohortLocation}}</td>
+			<td><input type="number" id="percentCompleted" ng-model="percent" ng-keydown="$event.which === 13 && adminUpdatePercent(percent, $index, student._id)"> {{student.percentCompleted}}%</td>
+			<td><input type="checkbox" ng-change="showProfile(student)" ng-model="student.showProfile">
+		</tr>
 	</tbody>
 </table>
+{{students[0].showProfile}}
 
-<!-- <button ng-click="read()">Get The Data Button</button> -->
 

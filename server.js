@@ -19,9 +19,14 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
+
 var cohortNameCtrl = require('./controller/cohortNameCtrl');
+var classNameCtrl = require('./controller/classNameCtrl');
+var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
+var studentSkillsCtrl = require('./controller/studentSkillsCtrl');
+
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
-/*var fullPortfolio = require('./controller/fullportfolio');*/
+var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
 var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
@@ -146,13 +151,11 @@ router.route('/api/project')
 
 
 
-
-
 //PUT IT BACKKKKKKK
 router.route('/api/studentPorftolio')
-  .post(/*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
-  
-router.route('/api/project/:id')///PUT THIS BACK UP THERE
+  .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
+
+router.route('/api/project/:id') ///PUT THIS BACK UP THERE
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
@@ -162,23 +165,11 @@ router.route('/api/projects')
 router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);
 
-<<<<<<< HEAD
-router.route('/api/studentPorftolio')//
-  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.read);
-=======
-router.route('/api/studentPorftolio')
-  .get(studentPortfCtrl.read);
-
-
-
->>>>>>> d141a93c48ace48e9d73be531a2def1905bbc6a1
-
 router.route('/api/studentPorftolio/:id')
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
-  /////
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
@@ -187,10 +178,33 @@ router.route('/api/cohortName')
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
+  router.route('/api/cohortLocation')
+  .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
+  .get(/*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
 
+router.route('/api/cohortLocation/:id')
+  .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortLocationCtrl.delete);
 
-/*router.route('/api/fullPortfolio/:id')
-  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);*/
+router.route('/api/className')
+  .post(authCtrl.isAuthenticated, classNameCtrl.create)
+  .get(authCtrl.isAuthenticated, classNameCtrl.read);
+
+router.route('/api/className/:id')
+  .put(authCtrl.isAuthenticated, classNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, classNameCtrl.delete);
+
+router.route('/api/studentSkills')
+  .post(authCtrl.isAuthenticated, studentSkillsCtrl.create)
+  .get(authCtrl.isAuthenticated, studentSkillsCtrl.read);
+
+router.route('/api/studentSkills/:id')
+  .put(authCtrl.isAuthenticated, studentSkillsCtrl.update)
+  .delete(authCtrl.isAuthenticated, studentSkillsCtrl.delete);
+//the fullportfolio end point is for the publicStudentProfile.html view
+
+router.route('/api/fullPortfolio/:id')
+  .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';

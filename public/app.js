@@ -1,4 +1,4 @@
-var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table']);
+var app = angular.module("portalsApp", ['ui.router', 'xeditable',"checklist-model", 'smart-table']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -46,6 +46,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	url: "/profiles",
     	templateUrl: "html-templates/publicStudentProfile.html",
     	controller: "studentProfileCtrl"
+    })
+
+    .state("adminAddSchool", {
+      url: "/adminAddSchool",
+      templateUrl: "html-templates/adminAddSchool.html"
     })
 
 });
