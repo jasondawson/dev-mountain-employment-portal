@@ -20,13 +20,19 @@ function buildToggler(navID) {
           $log.debug("close LEFT is done");
         });
     };
+<<<<<<< HEAD
 
 /////CRUD FUNCTIONS//////
 
 $scope.adminReadStudents = function() { //this functions gets the student profiles
+=======
+$scope.students=[];
+$scope.adminReadStudents = function() {
+>>>>>>> 630134f6dfa8dc6eea1f2030617edf21181ebe96
 	adminSvc.adminReadStudents().then(function(response) {
 		console.log("response from controller", response.data);
 		$scope.students = response.data;
+		console.log($scope.students);
 	});
 };
 $scope.adminReadStudents();

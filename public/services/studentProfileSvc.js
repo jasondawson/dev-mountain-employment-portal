@@ -21,7 +21,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
    var me = loginSvc.getCurrentUser();
 
     $http({
-      url: 'http://localhost:3000/api/studentPorftolio/'+ me.Id,//
+      url: 'http://localhost:3000/api/studentPortfolio/'+ me.Id,//
       method: 'GET',
       // data: data
     }).then(function(response) {

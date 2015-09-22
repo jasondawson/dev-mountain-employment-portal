@@ -12,7 +12,9 @@ module.exports = {
     });
   },
   read: function(req, res) {
-    StudentPortf.find(req.query).exec(function(err, result) {
+    StudentPortf.find(req.query)
+    .populate('cohort.cohortName cohort.cohortLocation cohort.className')
+    .exec(function(err, result) {
       console.log('this is studentPortf read result STCRtl', result);
       if (err) return res.status(500).send(err);
       res.send(result);
