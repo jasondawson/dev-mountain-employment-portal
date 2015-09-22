@@ -22,11 +22,12 @@ function buildToggler(navID) {
           $log.debug("close LEFT is done");
         });
     };
-
+$scope.students=[];
 $scope.adminReadStudents = function() {
 	adminSvc.adminReadStudents().then(function(response) {
 		console.log("response from controller", response.data);
 		$scope.students = response.data;
+		console.log($scope.students);
 	});
 };
 $scope.adminReadStudents();

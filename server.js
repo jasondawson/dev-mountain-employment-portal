@@ -152,7 +152,7 @@ router.route('/api/project')
 
 
 //PUT IT BACKKKKKKK
-router.route('/api/studentPorftolio')
+router.route('/api/studentPortfolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
 router.route('/api/project/:id') ///PUT THIS BACK UP THERE
@@ -162,10 +162,10 @@ router.route('/api/project/:id') ///PUT THIS BACK UP THERE
 router.route('/api/projects')
   .get(projectsCtrl.read);
 
-router.route('/api/studentPorftolio')
+router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
-router.route('/api/studentPorftolio/:id')
+router.route('/api/studentPortfolio/:id')
   .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
 
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
