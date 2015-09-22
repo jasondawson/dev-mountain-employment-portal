@@ -1,18 +1,20 @@
 app.service("classNameServ", function($http, $q) {
 
-  this.getClassName=function(){
+this.getClassName=function(){
     var deferred=$q.defer();
     $http({
       url: 'http://localhost:3000/api/className',
       method: 'GET',
       // data: data
     }).then(function(response) {
-      //console.log("class Name collection", response.data)
-      deferred.resolve(response.data);
+      // console.log("class Name collection from service", response)
+      deferred.resolve(response);
     })
     return deferred.promise;
   }
-      this.UpdateClassName = function (className) {
+     
+
+this.UpdateClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'PUT',
@@ -26,7 +28,9 @@ app.service("classNameServ", function($http, $q) {
     });
     return deferred.promise;
   };
-    this.addClassName = function (className) {
+    
+
+this.addClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'POST',
@@ -40,7 +44,9 @@ app.service("classNameServ", function($http, $q) {
     });
     return deferred.promise;
   };
-    this.deleteClassName = function (className) {
+    
+
+this.deleteClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'DELETE',

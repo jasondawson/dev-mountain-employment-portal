@@ -147,14 +147,8 @@ router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-<<<<<<< HEAD
+
 router.route('/api/studentPorftolio')
-=======
-
-
-//PUT IT BACKKKKKKK
-router.route('/api/studentPortfolio')
->>>>>>> 630134f6dfa8dc6eea1f2030617edf21181ebe96
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
 router.route('/api/project/:id')
@@ -175,14 +169,20 @@ router.route('/api/studentPortfolio/:id')
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
-  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
+  .get(/*authCtrl.isAuthenticated, */cohortNameCtrl.read);
 
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
 
+////temporary substitute api's because the real ones didn't work
+
+
 router.route('/cohortLocation')
 .get(cohortLocationCtrl.read);
+
+////////////////
+
 
 router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
