@@ -5,6 +5,7 @@ module.exports = {
   create: function(req, res) {
  
     var newCohortName = new cohortName(req.body);
+    console.log(req.body);
     newCohortName.save(function(err, result) {
       if (err) return res.status(500).send(err);
       res.send(result)

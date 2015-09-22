@@ -169,14 +169,20 @@ router.route('/api/studentPortfolio/:id')
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
-  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
+  .get(/*authCtrl.isAuthenticated, */cohortNameCtrl.read);
 
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
 
+////temporary substitute api's because the real ones didn't work
+
+
 router.route('/cohortLocation')
   .get(cohortLocationCtrl.read);
+
+////////////////
+
 
 router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)

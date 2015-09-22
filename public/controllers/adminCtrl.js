@@ -1,4 +1,4 @@
-app.controller("adminCtrl", function($scope, adminSvc, cohortLocServ, $timeout, $mdUtil, $mdSidenav, $log) {
+app.controller("adminCtrl", function($scope, adminSvc, cohortLocServ, classNameServ, cohortNameServ, $timeout, $mdUtil, $mdSidenav, $log) {
 
 
 //////SLIDER NAV BAR FUNCTION////////
@@ -20,19 +20,16 @@ function buildToggler(navID) {
           $log.debug("close LEFT is done");
         });
     };
-<<<<<<< HEAD
 
 /////CRUD FUNCTIONS//////
 
-$scope.adminReadStudents = function() { //this functions gets the student profiles
-=======
 $scope.students=[];
-$scope.adminReadStudents = function() {
->>>>>>> 630134f6dfa8dc6eea1f2030617edf21181ebe96
+$scope.adminReadStudents = function() { //this functions gets the student profiles
+
 	adminSvc.adminReadStudents().then(function(response) {
-		console.log("response from controller", response.data);
+		// console.log("response from controller", response.data);
 		$scope.students = response.data;
-		console.log($scope.students);
+		// console.log("students from DB", $scope.students);
 	});
 };
 $scope.adminReadStudents();
@@ -62,7 +59,9 @@ $scope.adminUpdatePercent = function(percent, index, _id) {  ////this function c
 	}
 };
 
-var getCohortLocations = function() { ///tis function gets cohort locations from DB
+/////GET AND POST FOR SIDE NAV//////
+
+var getCohortLocations = function() { ///this function gets cohort locations from DB
 	cohortLocServ.getCohortLoc().then(function(response) {
 		if (response.status === 200) {
 			$scope.cohortLocations = response.data;
@@ -73,16 +72,51 @@ var getCohortLocations = function() { ///tis function gets cohort locations from
 getCohortLocations();
 
 $scope.addNewLocation = function(newLoc) {
-	console.log("this is the newLoc before it goes to service", newLoc);
+	// console.log("this is the newLoc before it goes to service", newLoc);
 	cohortLocServ.addCohortLoc(newLoc).then(function(response) {
-		console.log("new location response", response)
-		if (response === 200) {
-			$scope.newLoc = "";
-			console.log("new location added");
+		// console.log("new location response", response)
+		getCohortLocations();
+		$scope.newLoc = "";
+	})
+}
+
+var getCourseNames = function() {
+	classNameServ.getClassName().then(function(response) {
+		if (response.status === 200) {
+			$scope.courseNames = response.data;
+			// console.log("courseName response from controller", $scope.courseNames);
 		}
 	})
-	getCohortLocations();
 }
+getCourseNames();
+
+$scope.addNewCourseName = function(newCourse) {
+	classNameServ.addClassName(newCourse).then(function(response) {
+		// console.log("addNewCourseName response on controller", response.data);
+		getCourseName();
+		$scope.newCourse = "";
+	})
+}
+
+var getCohortNames = function() {
+	console.log("get the cohort names in controller")
+	cohortNameServ.getCohortNames().then(function(response) {
+			$scope.cohortNames = response.data;
+			console.log("getCohortNames response from DB", $scope.cohortNames);
+			
+		
+	})
+}
+getCohortNames();
+
+$scope.addNewCohortName = function(newCohort) {
+	cohortNameServ.addCohortName(newCohort).then(function(response) {
+		console.log("new cohort name added", response);
+		getCohortNames();
+		$scope.newCohort = "";
+	})
+}
+
 
 // $scope.delete = function(var, _id) {
 // 	adminSvc.delete(var, _id).then(function(response) {
