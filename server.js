@@ -143,19 +143,14 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-
-
 router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-
-
-//PUT IT BACKKKKKKK
 router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('/api/project/:id') ///PUT THIS BACK UP THERE
+router.route('/api/project/:id')
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
@@ -178,7 +173,11 @@ router.route('/api/cohortName')
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
-  router.route('/api/cohortLocation')
+
+router.route('/cohortLocation')
+.get(cohortLocationCtrl.read);
+
+router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
   .get(/*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
 
