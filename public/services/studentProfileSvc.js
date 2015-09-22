@@ -24,7 +24,7 @@ app.service("studentProfileSvc", function($http, $q) {
       method: 'GET',
       // data: data
     }).then(function(response) {
-      console.log('this is response.data in service', response.data);
+      //console.log('this is response.data in service', response.data);
       deferred.resolve(response.data);
     })
     return deferred.promise;

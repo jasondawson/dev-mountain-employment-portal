@@ -21,6 +21,7 @@ var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
 
 var cohortNameCtrl = require('./controller/cohortNameCtrl');
+var classNameCtrl = require('./controller/classNameCtrl');
 var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
 
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
@@ -164,7 +165,7 @@ router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);
 
 router.route('/api/studentPorftolio/:id')
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
 
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
@@ -184,6 +185,13 @@ router.route('/api/cohortLocation/:id')
   .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortLocationCtrl.delete);
 
+router.route('/api/className')
+  .post(authCtrl.isAuthenticated, classNameCtrl.create)
+  .get(authCtrl.isAuthenticated, classNameCtrl.read);
+
+router.route('/api/className/:id')
+  .put(authCtrl.isAuthenticated, classNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, classNameCtrl.delete);
 
 //the fullportfolio end point is for the publicStudentProfile.html view
 

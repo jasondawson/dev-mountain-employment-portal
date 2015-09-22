@@ -1,50 +1,50 @@
-app.service("cohortLocServ", function($http, $q) {
+app.service("classNameServ", function($http, $q) {
 
-  this.getCohortLoc=function(){
+  this.getClassName=function(){
     var deferred=$q.defer();
     $http({
-      url: 'http://localhost:3000/api/cohortLocation',
+      url: 'http://localhost:3000/api/className',
       method: 'GET',
       // data: data
     }).then(function(response) {
-      //console.log("cohort LOcation collection", response.data)
+      //console.log("class Name collection", response.data)
       deferred.resolve(response.data);
     })
     return deferred.promise;
   }
-      this.UpdateCohortLoc = function (cohortLoc) {
+      this.UpdateClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'PUT',
-      url: 'http://localhost:3000/api/cohortLocation',
+      url: 'http://localhost:3000/api/className',
       data: {
-        value: cohortLoc.value,
-        text: cohortLoc.text
+        value: className.value,
+        text: className.text
       }
     }).then(function (response) {
       deferred.resolve(response);
     });
     return deferred.promise;
   };
-    this.addCohortLoc = function (cohortLoc) {
+    this.addClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/cohortLocation',
+      url: 'http://localhost:3000/api/className',
       data: {
-        value: cohortLoc.value,
-        text: cohortLoc.text
+        value: className.value,
+        text: className.text
       }
     }).then(function (response) {
       deferred.resolve(response);
     });
     return deferred.promise;
   };
-    this.deleteCohortLoc = function (cohortLoc) {
+    this.deleteClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'DELETE',
-      url: 'http://localhost:3000/api/cohortLocation/' + cohortLoc._id
+      url: 'http://localhost:3000/api/className/' + className._id
     }).then(function (response) {
       deferred.resolve(response);
     });
