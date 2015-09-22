@@ -147,14 +147,8 @@ router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
-<<<<<<< HEAD
+
 router.route('/api/studentPorftolio')
-=======
-
-
-//PUT IT BACKKKKKKK
-router.route('/api/studentPortfolio')
->>>>>>> 630134f6dfa8dc6eea1f2030617edf21181ebe96
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
 router.route('/api/project/:id')
@@ -168,9 +162,9 @@ router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
 router.route('/api/studentPortfolio/:id')
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
 
-  .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
+.put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
@@ -182,11 +176,11 @@ router.route('/api/cohortName/:id')
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
 
 router.route('/cohortLocation')
-.get(cohortLocationCtrl.read);
+  .get(cohortLocationCtrl.read);
 
 router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
-  .get(/*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
+  .get( /*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
 
 router.route('/api/cohortLocation/:id')
   .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)

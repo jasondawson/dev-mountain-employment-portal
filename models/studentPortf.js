@@ -53,8 +53,8 @@ var studentPortf = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Skill'
   }],
-  OrSkillString:{
-    type:String
+  OrSkillString: {
+    type: String
   },
   currentLoc: {
     city: {
@@ -68,35 +68,42 @@ var studentPortf = new Schema({
   },
   //ASK RANDY HOW HE DID HIS PROJECT !!
   cohort: {
-      className: [{
-          type: Schema.Types.ObjectId,
-          ref: 'CohortClassName'
-          }],
-      cohortName: [{
-          type: Schema.Types.ObjectId,
-          ref: 'CohortName'
-          }],
-      cohortLocation: [{
-          type: Schema.Types.ObjectId,
-          ref: 'CohortLoc'
-          }] /*see how Randy did his project*/
+    className: [{
+      type: Schema.Types.ObjectId,
+      ref: 'CohortClassName'
+    }],
+    cohortName: [{
+      type: Schema.Types.ObjectId,
+      ref: 'CohortName'
+    }],
+    cohortLocation: [{
+      type: Schema.Types.ObjectId,
+      ref: 'CohortLoc'
+    }] /*see how Randy did his project*/
   },
   status: {
-  
-  text: {type:String}
-},
-  relocation:  {
-  
-  text: {type:String}
-},
+
+    text: {
+      type: String
+    }
+  },
+  relocation: {
+
+    text: {
+      type: String
+    }
+  },
   percentCompleted: {
     type: Number
   },
-showProfile: {
-  type: Boolean, default: false
-}
-
-
+  showProfile: {
+    type: Boolean,
+    default: false
+  },
+  projects: [{
+    type: Schema.Types.ObjectId,
+    ref: 'ProjectInfo'
+  }]
 
 });
 
