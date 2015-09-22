@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var app = angular.module("portalsApp", ['ui.router', 'xeditable',"checklist-model", 'smart-table']);
+=======
+var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table', 'ngMaterial', 'ngAnimate']);
+>>>>>>> 53143f70681375a45327ba3fe329d390e38a46af
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -48,10 +52,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	controller: "studentProfileCtrl"
     })
 
-    .state("adminAddSchool", {
-      url: "/adminAddSchool",
-      templateUrl: "html-templates/adminAddSchool.html"
-    })
+    // .state("adminAddSchool", {
+    //   url: "/adminAddSchool",
+    //   templateUrl: "html-templates/adminAddSchool.html"
+    // })
 
 });
 
