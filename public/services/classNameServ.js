@@ -1,50 +1,50 @@
-app.service("cohortNameServ", function($http, $q) {
+app.service("classNameServ", function($http, $q) {
 
-  this.getCohortName=function(){
+  this.getClassName=function(){
     var deferred=$q.defer();
     $http({
-      url: 'http://localhost:3000/api/cohortName',
+      url: 'http://localhost:3000/api/className',
       method: 'GET',
-     
+      // data: data
     }).then(function(response) {
-      //console.log("cohort collection", response.data)
+      //console.log("class Name collection", response.data)
       deferred.resolve(response.data);
     })
     return deferred.promise;
   }
-      this.UpdateCohortName = function (cohortName) {
+      this.UpdateClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'PUT',
-      url: 'http://localhost:3000/api/cohortName',
+      url: 'http://localhost:3000/api/className',
       data: {
        
-        text: cohortName.text
+        text: className.text
       }
     }).then(function (response) {
       deferred.resolve(response);
     });
     return deferred.promise;
   };
-    this.addCohortName = function (cohortName) {
+    this.addClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/api/cohortName',
+      url: 'http://localhost:3000/api/className',
       data: {
         
-        text: cohortName.text
+        text: className.text
       }
     }).then(function (response) {
       deferred.resolve(response);
     });
     return deferred.promise;
   };
-    this.deleteCohortName = function (cohortName) {
+    this.deleteClassName = function (className) {
     var deferred = $q.defer();
     $http({
       method: 'DELETE',
-      url: 'http://localhost:3000/api/cohortName/' + cohortName._id
+      url: 'http://localhost:3000/api/className/' + className._id
     }).then(function (response) {
       deferred.resolve(response);
     });

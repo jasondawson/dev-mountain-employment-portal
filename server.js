@@ -19,6 +19,12 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
+
+var cohortNameCtrl = require('./controller/cohortNameCtrl');
+var classNameCtrl = require('./controller/classNameCtrl');
+var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
+var studentSkillsCtrl = require('./controller/studentSkillsCtrl');
+
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 var fullPortfolio = require('./controller/fullportfolio');
 var authCtrl = require('./controller/authCtrl');
@@ -159,13 +165,42 @@ router.route('/api/projects')
 router.route('/api/studentPorftolio')
   .get(studentPortfCtrl.read);
 
-router.route('/api/studentPorftolio')
-  .get(studentPortfCtrl.read);
+router.route('/api/studentPorftolio/:id')
+  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
 
-router.route('/api/studentPorftolio/:id', function() {})
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
+router.route('/api/cohortName')
+  .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
+  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
+
+router.route('/api/cohortName/:id')
+  .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
+  router.route('/api/cohortLocation')
+  .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
+  .get(/*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
+
+router.route('/api/cohortLocation/:id')
+  .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)
+  .delete(authCtrl.isAuthenticated, cohortLocationCtrl.delete);
+
+router.route('/api/className')
+  .post(authCtrl.isAuthenticated, classNameCtrl.create)
+  .get(authCtrl.isAuthenticated, classNameCtrl.read);
+
+router.route('/api/className/:id')
+  .put(authCtrl.isAuthenticated, classNameCtrl.update)
+  .delete(authCtrl.isAuthenticated, classNameCtrl.delete);
+
+router.route('/api/studentSkills')
+  .post(authCtrl.isAuthenticated, studentSkillsCtrl.create)
+  .get(authCtrl.isAuthenticated, studentSkillsCtrl.read);
+
+router.route('/api/studentSkills/:id')
+  .put(authCtrl.isAuthenticated, studentSkillsCtrl.update)
+  .delete(authCtrl.isAuthenticated, studentSkillsCtrl.delete);
 //the fullportfolio end point is for the publicStudentProfile.html view
 
 router.route('/api/fullPortfolio/:id')
