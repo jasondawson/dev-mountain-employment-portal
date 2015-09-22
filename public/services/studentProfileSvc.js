@@ -1,4 +1,4 @@
-app.service("studentProfileSvc", function($http, $q) {
+app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 
   this.storeImage = function(imageData, filename) {
@@ -18,9 +18,10 @@ app.service("studentProfileSvc", function($http, $q) {
 
   this.getStudentProf = function() {
     var deferred = $q.defer();
+   var me = loginSvc.getCurrentUser();
+
     $http({
-      url: 'http://localhost:3000/api/studentPorftolio/' +
-        '55fb28b28e2750f176378182',//
+      url: 'http://localhost:3000/api/studentPorftolio/'+ me.Id,//
       method: 'GET',
       // data: data
     }).then(function(response) {

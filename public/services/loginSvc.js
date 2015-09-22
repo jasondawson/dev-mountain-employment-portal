@@ -1,5 +1,9 @@
 app.service("loginSvc", function($http, $q) {
 
+var user = {};
+this.getCurrentUser=function(){
+  return user;
+}
   this.logInUser = function(data) {
     var deferred = $q.defer();
     console.log('this is login', data);
@@ -10,6 +14,7 @@ app.service("loginSvc", function($http, $q) {
       })
       .then(function(data) {
         console.log('this is loginSvc', data);
+        user.Id = data.data;
         deferred.resolve(data.data);
       })
     return deferred.promise;

@@ -107,12 +107,13 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
         selected.push(obj.title);
       }
     });
-    return selected.length ? selected: "Not Set";
+    return selected.length ? selected: "";
   };
 
   $scope.showSkills();
 
   $scope.updateStudent= function(student){
+    
 
   }
 
