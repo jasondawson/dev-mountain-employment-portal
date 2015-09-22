@@ -1,4 +1,4 @@
-var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table']);
+var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table', 'ngMaterial', 'ngAnimate']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -48,10 +48,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	controller: "studentProfileCtrl"
     })
 
-    .state("adminAddSchool", {
-      url: "/adminAddSchool",
-      templateUrl: "html-templates/adminAddSchool.html"
-    })
+    // .state("adminAddSchool", {
+    //   url: "/adminAddSchool",
+    //   templateUrl: "html-templates/adminAddSchool.html"
+    // })
 
 });
 
