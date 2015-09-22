@@ -6,8 +6,8 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 
 	$scope.getStudentProf = function() {
 		publicPortfoliosSvc.getStudentProf().then(function(response) {
-			$scope.studentPorftolio = response;
-			console.log(response);
+			$scope.studentPortfolio = response;
+			console.log('this is $scope.studentPortfolio', $scope.studentPortfolio);
 		})
 	};
 
@@ -19,7 +19,6 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 		})
 	};
 
-	$scope.getStudentProj();
 
 	$scope.reset = function() {
 		$scope.StudentProject = "";

@@ -1,4 +1,4 @@
-app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNameServ, $filter, $http) {
+app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNameServ, cohortLocServ, $filter, $http) {
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
@@ -22,9 +22,8 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
   $scope.addcohortName=function(cohortName){
     if(cohortName){
-
       cohortNameServ.addCohortName(cohortName).then(function(response){
-        $scope.newCohort=response
+        $scope.newCohortName=response
       })
     }
   }
@@ -34,7 +33,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
     studentProfileSvc.getStudentProf().then(function(response) {
       $scope.studentCohortName = response.studentPortf.cohort.cohortName[0].value;
-      console.log($scope.studentCohortName);
+//I need the Value so my view in public STudent profile can loop trhou thsi value and assign it to the student's cohort
     })
   };
   $scope.getStudentCohortName();
@@ -42,11 +41,37 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
 
   $scope.cohortLocations =[
-/*  	{value:1, text:'Dallas, Tx'},
-  	{value:2, text:'SLC, UT'},
-  	{value:3, text:'Provo, UT'},*/
   ];
+  $scope.getcohortLocations=function(){
+    cohortLocServ.getCohortLoc().then(function(response){
+      $scope.cohortLocations=response;
+    })
+  };
+  $scope.getcohortLocations();
 
+    $scope.addcohortLocation=function(cohortName){
+    if(cohortName){
+      cohortLocServ.addCohortLoc(cohortName).then(function(response){
+        $scope.newCohortLoc=response
+      })
+    }
+  }
+
+    $scope.studentCohortLocation={};
+    $scope.getStudentCohortLocation = function() {
+
+    studentProfileSvc.getStudentProf().then(function(response) {
+      $scope.studentCohortLocation = response.studentPortf.cohort.cohortLocation[0].value;
+
+    })
+  };
+  $scope.getStudentCohortLocation();
+  
+
+  $scope.classNames =[
+    {value:1, text:'Web Development'},
+    {value:2, text:'IOS'},  
+  ];
 
   $scope.statuses =[
     {value:1, text:'Student'},
@@ -55,10 +80,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
     {value:4, text:'Freelance'}
   ];
 
-    $scope.classNames =[
-  	{value:1, text:'Web Development'},
-  	{value:2, text:'IOS'}, 	
-  ];
 
   $scope.projectTypes =[
     {value:1, text:'Personal'},

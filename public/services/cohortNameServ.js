@@ -1,7 +1,5 @@
 app.service("cohortNameServ", function($http, $q) {
 
-
-  
   this.getCohortName=function(){
     var deferred=$q.defer();
     $http({

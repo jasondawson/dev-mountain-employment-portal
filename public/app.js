@@ -48,6 +48,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     	controller: "studentProfileCtrl"
     })
 
+    .state("adminAddSchool", {
+      url: "/adminAddSchool",
+      templateUrl: "html-templates/adminAddSchool.html"
+    })
+
 });
 
 app.run(function(editableOptions) {

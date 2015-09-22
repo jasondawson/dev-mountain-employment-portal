@@ -1,7 +1,5 @@
 app.service("cohortLocServ", function($http, $q) {
 
-
-  
   this.getCohortLoc=function(){
     var deferred=$q.defer();
     $http({
@@ -9,7 +7,7 @@ app.service("cohortLocServ", function($http, $q) {
       method: 'GET',
       // data: data
     }).then(function(response) {
-      console.log("cohort Locations collection", response.data)
+      console.log("cohort LOcation collection", response.data)
       deferred.resolve(response.data);
     })
     return deferred.promise;

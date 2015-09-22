@@ -72,9 +72,10 @@ var studentPortf = new Schema({
           type: Schema.Types.ObjectId,
           ref: 'CohortName'
           }],
-      cohortLocation: {
-        type: Number
-      } /*see how Randy did his project*/
+      cohortLocation: [{
+          type: Schema.Types.ObjectId,
+          ref: 'CohortLoc'
+          }] /*see how Randy did his project*/
   },
   status: {
     type: Number
@@ -83,8 +84,11 @@ var studentPortf = new Schema({
     type: Number
   },
   percentCompleted: {
-    type: String
+    type: Number
   },
+showProfile: {
+  type: Boolean, default: false
+}
 
 
 
