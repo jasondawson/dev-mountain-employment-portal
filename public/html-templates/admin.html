@@ -52,9 +52,9 @@
 	<tbody>
 		<tr ng-repeat="student in students | filter: searchTerm">
 			<td>{{student.name.first}} {{student.name.last}}</td>
-			<td>{{student.cohort.className}}</td>
-			<td>{{student.cohort.cohortName}}</td>
-			<td>{{student.cohort.cohortLocation}}</td>
+			<td>{{student.cohort.className[0].text}}</td>
+			<td>{{student.cohort.cohortName[0].text}}</td>
+			<td>{{student.cohort.cohortLocation[0].text}}</td>
 			<td><input type="number" id="percentCompleted" ng-model="percent" ng-keydown="$event.which === 13 && adminUpdatePercent(percent, $index, student._id)"> {{student.percentCompleted}}%</td>
 			<td><input type="checkbox" ng-change="showProfile(student)" ng-model="student.showProfile">
 		</tr>

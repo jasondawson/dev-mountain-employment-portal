@@ -18,12 +18,14 @@ this.adminReadStudents = function() {
 	var deferred = $q.defer();
 	$http({
 		method: "GET",
-		url: '/api/studentPortfolio'
+		url: 'http://localhost:3000/api/studentPortfolio'
 	}).then(function(response) {
 		deferred.resolve(response);
 	})
 	return deferred.promise;
 };
+
+
 
 
 this.adminUpdatePercent = function(newPercent, id) {
@@ -33,7 +35,7 @@ this.adminUpdatePercent = function(newPercent, id) {
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
-		url: '/api/studentPortfolio/' + id,
+		url: 'http://localhost:3000/api/studentPortfolio/' + id,
 		data: newPercentObject
 	}).then(function(response) {
 		// console.log('admin service', response);
@@ -46,7 +48,7 @@ this.adminUpdateShowStudent = function(student) {
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
-		url: '/api/studentPortfolio/' + student._id,
+		url: 'http://localhost:3000/api/studentPortfolio/' + student._id,
 		data: student
 	}).then(function(response) {
 		deferred.resolve(response);
