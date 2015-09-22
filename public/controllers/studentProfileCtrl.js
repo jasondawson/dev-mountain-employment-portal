@@ -1,4 +1,4 @@
-app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNameServ, cohortLocServ, classNameServ, $filter, $http) {
+app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter, $http) {
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
@@ -6,13 +6,16 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   $scope.studentClassName={};
   $scope.studentCohortLocation={};
   $scope.studentCohortName={};
+  $scope.studentSkills={};
   $scope.getStudentProf = function() {
     studentProfileSvc.getStudentProf().then(function(response) {
       $scope.studentData = response;
-      $scope.studentClassName = response.studentPortf.cohort.className[0].value;
-      $scope.studentCohortLocation = response.studentPortf.cohort.cohortLocation[0].value;
-      $scope.studentCohortName = response.studentPortf.cohort.cohortName[0].value;
+      $scope.studentClassName = response.studentPortf.cohort.className[0]._id;
+      $scope.studentCohortLocation = response.studentPortf.cohort.cohortLocation[0]._id;
+      $scope.studentCohortName = response.studentPortf.cohort.cohortName[0]._id;
+       $scope.studentSkills=response.studentPortf.skills;
       console.log($scope.studentData);
+      console.log($scope.studentSkills);
     })
   };
 	$scope.getStudentProf();
@@ -66,26 +69,57 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   }
 
   $scope.statuses =[
-    {value:1, text:'Student'},
-    {value:2, text:'Unemployed'},
-    {value:3, text:'Employed'},
-    {value:4, text:'Freelance'}
+    {text:'Student'},
+    {text:'Unemployed'},
+    {text:'Employed'},
+    {text:'Freelance'}
   ];
 
-  $scope.relocation =[
-    {value:1, text:'YES'},
-    {value:2, text:'NO'},
-    {value:3, text:"Interested in working remotely"} 
+  $scope.relocationOptns =[
+    {text:'YES'},
+    {text:"NO"},
+    {text:"Interested in working remotely"} 
   ];
   
+  $scope.skillsArray=[];
+    $scope.getstudentSkills=function(){
+    studentSkillsService.getStudentSkills().then(function(response){
+      $scope.skillsArray=response;
+      console.log(response);
+    })
+  };
+  $scope.getstudentSkills();
+
+  $scope.showSkills= function(){
+    var selected =[];
+/*    angular.forEach($scope.skillsArray, function(obj){
+    
+      if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
+        selected.push(obj.title);
+        console.log($scope.studentSkills[obj._id])
+      }
+    });
+    return selected.length ? selected.join(', ') : "Not Set";
+  };*/
+    angular.forEach($scope.studentSkills, function(obj){
+    //console.log($scope.studentSkills[obj._id]);
+      if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
+        selected.push(obj.title);
+      }
+    });
+    return selected.length ? selected: "Not Set";
+  };
+
+  $scope.showSkills();
+
   $scope.updateStudent= function(student){
 
   }
 
 
     $scope.projectTypes =[
-    {value:1, text:'Personal'},
-    {value:2, text:'Group'}, 
+    {text:'Personal'},
+    {text:'Group'}, 
   ];
   
 

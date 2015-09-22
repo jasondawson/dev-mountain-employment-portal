@@ -23,6 +23,7 @@ var projectCtrl = require('./controller/projectCtrl');
 var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var classNameCtrl = require('./controller/classNameCtrl');
 var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
+var studentSkillsCtrl = require('./controller/studentSkillsCtrl');
 
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 var fullPortfolio = require('./controller/fullportfolio');
@@ -193,6 +194,13 @@ router.route('/api/className/:id')
   .put(authCtrl.isAuthenticated, classNameCtrl.update)
   .delete(authCtrl.isAuthenticated, classNameCtrl.delete);
 
+router.route('/api/studentSkills')
+  .post(authCtrl.isAuthenticated, studentSkillsCtrl.create)
+  .get(authCtrl.isAuthenticated, studentSkillsCtrl.read);
+
+router.route('/api/studentSkills/:id')
+  .put(authCtrl.isAuthenticated, studentSkillsCtrl.update)
+  .delete(authCtrl.isAuthenticated, studentSkillsCtrl.delete);
 //the fullportfolio end point is for the publicStudentProfile.html view
 
 router.route('/api/fullPortfolio/:id')

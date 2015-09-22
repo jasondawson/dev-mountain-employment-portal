@@ -53,6 +53,9 @@ var studentPortf = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Skill'
   }],
+  OrSkillString:{
+    type:String
+  },
   currentLoc: {
     city: {
       type: String,
@@ -79,11 +82,11 @@ var studentPortf = new Schema({
           }] /*see how Randy did his project*/
   },
   status: {
-  value: {type:Number},
+  
   text: {type:String}
 },
   relocation:  {
-  value: {type:Number},
+  
   text: {type:String}
 },
   percentCompleted: {

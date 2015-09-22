@@ -18,7 +18,7 @@ app.service("cohortLocServ", function($http, $q) {
       method: 'PUT',
       url: 'http://localhost:3000/api/cohortLocation',
       data: {
-        value: cohortLoc.value,
+        
         text: cohortLoc.text
       }
     }).then(function (response) {
@@ -32,7 +32,7 @@ app.service("cohortLocServ", function($http, $q) {
       method: 'POST',
       url: 'http://localhost:3000/api/cohortLocation',
       data: {
-        value: cohortLoc.value,
+        
         text: cohortLoc.text
       }
     }).then(function (response) {
