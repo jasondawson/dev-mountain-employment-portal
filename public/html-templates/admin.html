@@ -1,4 +1,33 @@
-<h2>This is the Admin Page</h2>
+<div>
+<h2>Administrator Page</h2>
+
+
+
+
+   
+   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Add Cohorts, Classes, and Locations</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+       <input class="form-control" type="text" placeholder="Add Stuff Here" >
+       <br/>
+       <input class="form-control" type="text" placeholder="Add Stuff Here" >
+       <br/>
+       <input class="form-control" type="text" placeholder="Add Stuff Here" >
+       <br/>
+       <input class="form-control" type="text" placeholder="Add Stuff Here" >
+        <p hide-md show-gt-md></p>
+      </md-content>
+    </md-sidenav>
+
+    <md-button ng-click="toggleLeft()"
+            class="md-primary">
+            Add Classes
+          </md-button>
+
+
+
 
 <table st-table="students" class="table table-striped">
 	<thead>
@@ -11,10 +40,12 @@
 			<th>Show</th>
 		</tr>
 		<br/>
-		<button><a ui-sref="adminAddSchool">Add New Cohort or School</a></button>
+   
+   
+		<!-- <button><a ui-sref="adminAddSchool">Add New Cohort or School</a></button> -->
 		<br/>
 		<br/>
-		<input id="adminSearch"ng-model="searchTerm" placeholder="Filter Your Search">
+		<input class="form-control" id="adminSearch"ng-model="searchTerm" placeholder="Filter Your Search">
 		<br/>
 		<br/>
 	</thead>
@@ -29,6 +60,12 @@
 		</tr>
 	</tbody>
 </table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 {{students[0].showProfile}}
 
 
