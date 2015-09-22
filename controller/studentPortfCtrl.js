@@ -14,7 +14,7 @@ module.exports = {
   read: function(req, res) {
     StudentPortf.find(req.query)
       .populate(
-        'cohort.cohortName cohort.cohortLocation cohort.className ProjectInfo'
+        'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
       )
       .exec(function(err, result) {
         console.log('this is studentPortf read result STCRtl', result);
