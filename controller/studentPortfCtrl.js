@@ -13,12 +13,14 @@ module.exports = {
   },
   read: function(req, res) {
     StudentPortf.find(req.query)
-    .populate('cohort.cohortName cohort.cohortLocation cohort.className')
-    .exec(function(err, result) {
-      console.log('this is studentPortf read result STCRtl', result);
-      if (err) return res.status(500).send(err);
-      res.send(result);
-    });
+      .populate(
+        'cohort.cohortName cohort.cohortLocation cohort.className ProjectInfo'
+      )
+      .exec(function(err, result) {
+        console.log('this is studentPortf read result STCRtl', result);
+        if (err) return res.status(500).send(err);
+        res.send(result);
+      });
   },
   getStudentById: function(req, res) {
     //console.log("$$$$$$$$$$$$$", req.params);
@@ -36,7 +38,9 @@ module.exports = {
       StudentPortf.findOne({
           loginInfo: userId
         })
-        .populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
+        .populate(
+          'cohort.cohortName cohort.cohortLocation cohort.className skills'
+        )
         //.populate('cohort.cohortLocation')
         .exec(function(err, result) {
           console.log('this is StudentPortf result', result);
