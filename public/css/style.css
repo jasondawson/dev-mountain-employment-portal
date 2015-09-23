@@ -29,10 +29,10 @@ a {
 }
 
 
-.homeViewBody {
+.homeImage img{
   width: 100%;
-	-webkit-filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);
-	    filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);
+	/*-webkit-filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);
+	    filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);*/
 }
 .logoArt {
   width: 510px;
@@ -60,7 +60,41 @@ h2 {
   width: 161px;
   height: 30px
 }
+.classes {
+	padding-top: 10px;
+	margin: auto;
+	width: 400px;
+	display: flex;
+	justify-content: space-between;
+}
 
+.landing {
+	margin-top: -400px;
+	text-align: center;
+}
+
+.classes img {
+	width: 88px;
+	height: 60px;
+	/*background-color: #404041;
+	display: inline;
+	padding: 0.5rem;
+
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;*/
+}
 #bgImage {
   margin-top: -20px;
+}
+
+fade-font {
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 50px;
+	background-color: #404041;
+  color: #fff;
+  display: inline;
+  padding: 0.5rem;
+
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
