@@ -53,6 +53,7 @@ var studentPortf = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Skill'
   }],
+
   OrSkillString:{
     type:String
   },

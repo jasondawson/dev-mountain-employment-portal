@@ -111,9 +111,9 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   };
 
   $scope.showSkills();
-
-  $scope.updateStudent= function(student){
-    
+//updateStudent($data) function from html
+  $scope.updateStudent= function(studentInfo){
+    //var saveInfo = studentProfileSvc.
 
   }
 
