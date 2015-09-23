@@ -4,12 +4,15 @@ app.directive('portfolioView', function() {
     scope: {
       student: "="
     },
-    template: '<div class="outer-box"><img src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}" style="width: 200px; height: 200px">Name: {{student.name.first}} {{student.name.last}}<br>Bio: {{student.Bio}} <br>Skills: {{student.skills.title}}<br></div>',
+    templateUrl: '/html-templates/hoverPortfolio.html',
     link: function(scope, elem, attrs) {
-      console.log('this is scope link', scope);
+      console.log('this is scope link', scope.student.projects);
       var test = scope.student;
-      var newHtml = '<div class="outer-box"> Personal Website: ' +
-        test.personalWebsite +
+      var projects = {};
+
+      var newHtml =
+        '<div class="outer-box" ng-repeat="project in test.projects"> Project: ' +
+        test.name +
         '</div>';
       console.log('this is test', test);
       elem.on('click', function() {
