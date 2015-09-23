@@ -26,13 +26,19 @@ app.directive('portfolioView', function() {
         sp_name + '<br>Type: ' + sp_type + '<br>Description: ' +
         sp_description +
         '</div> </div>';
+
+      var oldHtml = "";
+
       elem.on('mouseenter', function() {
         elem.html(
           newHtml
         )
       });
+
       elem.on('mouseleave', function() {
-        elem.html();
+        elem.html(
+          oldHtml
+        )
       });
     }
 
