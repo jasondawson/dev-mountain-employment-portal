@@ -36,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('logout', {
       url: "/homeView",
       templateUrl: "html-templates/homeView.html",
-      controller: "homeViewController" 
+      controller: "homeViewCtrl" 
     })
 
   .state("portfolios", {
