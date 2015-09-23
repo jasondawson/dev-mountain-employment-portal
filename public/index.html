@@ -9,14 +9,54 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.css">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css" rel="stylesheet">
 	<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+	<link href="bower_components/wow/css/libs/animate.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-	<header>
+<div>
+
+	<nav class ="navbar navbar-default">
+<div class="container-fluid">
+<!-- Devmtn Logo and Toggle Link Go here	 -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		 <span class="sr-only">Toggle navigation</span>
+		 <span class="icon-bar"></span>
+		 <span class="icon-bar"></span>
+		 <span class="icon-bar"></span>
+	 </button>
+		<a ui-sref="homeView"class="navbar-brand">
+			<img  class="logo" alt="DevMoutain Employee Portal" src="https://devmounta.in/img/logowhiteblue.png">
+		</a>
+	</div>
+<!-- Links go here -->
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav pull-right">
+	<li>
+		<a ui-sref="portfolios">Porfolios</a>
+	</li>
+	<li>
+		<a ui-sref="login">Student Log-In</a>
+	</li>
+	<li>
+		<a ui-sref="admin">Administrator</a>
+	</li>
+</ul>
+
+</div>
+
+</div>
+	</nav>
+
+
+
+	<!-- <header>
 		<div class="logoArt">
 			<a ui-sref="homeView">
-				<img src="artwork/dvmtlogo2.png" width="500px">
+				<img class="logo" src="https://devmounta.in/img/logowhiteblue.png">
 			</a>
 		</div>
 		<nav>
@@ -26,12 +66,14 @@
 				<li><button class="loginButton"><a ui-sref="login">Student Login</a></button></li>
 			</ul>
 		</nav>
-	</header>
+	</header> -->
 
 
 	<div ui-view></div>
 
 
+
+</div>
        <!-- /////SCRIPTS/////// -->
 
 <!-- Jquery Script -->
@@ -50,7 +92,7 @@
 	<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 	<script src="bower_components/checklist-model/checklist-model.js"></script>
 	<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-
+  <script src="bower_components/wow/dist/wow.min.js"></script>
 <!-- JS Files -->
 
 	<script src="app.js"></script>
@@ -67,7 +109,8 @@
 	<script src="services/publicPortfoliosSvc.js"></script>
 	<script src="services/studentProfileSvc.js"></script>
 	<script src="directives/imageDirective.js"></script>
-  	<script src="directives/porfoliohover.js"></script>
+<script src="directives/porfoliohover.js"></script>
+ <script src="controllers/homeviewCtrl.js"></script>
 
 </body>
 </html>

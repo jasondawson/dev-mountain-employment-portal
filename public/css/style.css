@@ -1,77 +1,66 @@
 body {
-	width: 100%;
-	max-width: 1300px;
-	margin: 0 auto;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-nav {
-	width: 500px;
-	margin-bottom: 20px;
-	float: right;
+.navbar {
+	height: 86px;
 }
 
+.navbar-nav {
+	padding-top: 11px;
+}
 
-
-nav ul li a {
+a {
+	box-sizing: border-box;
 	text-decoration: none;
-	display: block;
-	width: 100%;
-	color: black;
-	font-family: calibri;
-
+	vertical-align: middle;
+  color: #404041 !important;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
 }
-
-.title{
-	font-size: 24px;
-	font-style: bold;
+.title {
+  font-size: 24px;
+  font-style: bold;
 }
-.editable-empty{
-	color:black!important;
-}
-
-
-nav ul li {
-
-	padding-left: 15px;
-	padding-right: 15px;
-	float: right;
+.editable-empty {
+  color: black!important;
 }
 
 
 .homeViewBody {
-	width: 100%;
-
-	/*background-image: url("artwork/devmt1.jpg");*/
+  width: 100%;
+	-webkit-filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);
+	    filter: contrast(1.4) saturate(1.8) sepia(.6) opacity(.8);
 }
-
 .logoArt {
-	width: 510px;
-}
-
-.portfoliosButton {
-	position: absolute;
-	bottom: 50%;
-	left: 43%;
-	z-index: 100;
+  width: 510px;
 }
 
 #adminSearch {
-	width: 50%;
+  width: 50%;
 }
-
 #percentCompleted {
-	width: 45px;
+  width: 45px;
 }
-
 h2 {
-	color: brown;
-	margin-left: 15px;
+  color: brown;
+  margin-left: 15px;
+}
+.outer-box {
+  border: 1px solid gray;
+  height: 100;
+  width: 960px;
+  padding: 3px;
+  margin: 3px
+}
+.logo {
+	margin-top: 5px;
+  width: 161px;
+  height: 30px
 }
 
-.outer-box {
-border: 1px solid gray;
-height: 100;
-width: 960px;
-padding: 3px;
-margin: 3px
+#bgImage {
+  margin-top: -20px;
 }
