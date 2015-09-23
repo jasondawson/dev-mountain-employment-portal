@@ -6,20 +6,34 @@ app.directive('portfolioView', function() {
     },
     templateUrl: '/html-templates/hoverPortfolio.html',
     link: function(scope, elem, attrs) {
-      console.log('this is scope link', scope.student.projects);
-      var test = scope.student;
-      var projects = {};
-
+      //gets the first project and shows it
+      var project = scope.student.projects;
+      var firstProject = project[0];
+      var fp_name = firstProject.name;
+      var fp_type = firstProject.projectType;
+      var fp_description = firstProject.description;
+      //gets the second project and shows it
+      var secondProject = project[1];
+      var sp_name = secondProject.name;
+      var sp_type = secondProject.projectType;
+      var sp_description = secondProject.description;
+      //the template that shows the second project
       var newHtml =
-        '<div class="outer-box" ng-repeat="project in test.projects"> Project: ' +
-        test.name +
-        '</div>';
-      console.log('this is test', test);
-      elem.on('click', function() {
+        '<div class="projects outer-box"><div class="firstproject"> Project Name: ' +
+        fp_name + '<br>Type: ' + fp_type + '<br>Description: ' +
+        fp_description +
+        '</div><br><div class="secondproject"> Project Name: ' +
+        sp_name + '<br>Type: ' + sp_type + '<br>Description: ' +
+        sp_description +
+        '</div> </div>';
+      elem.on('mouseenter', function() {
         elem.html(
           newHtml
         )
-      })
+      });
+      elem.on('mouseleave', function() {
+        elem.html();
+      });
     }
 
     // link: function(scope, elems, attrs) {
