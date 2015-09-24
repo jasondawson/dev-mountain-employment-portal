@@ -72,6 +72,7 @@ module.exports = {
     },
 
     update: function(req, res) {
+        console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
         StudentPortf.findOneAndUpdate({
                 loginInfo: req.params.id
             }, {

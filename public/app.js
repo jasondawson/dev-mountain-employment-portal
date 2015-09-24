@@ -1,3 +1,4 @@
+"use Strict";
 var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
   'ngMaterial', 'ngAnimate'
 ]);
