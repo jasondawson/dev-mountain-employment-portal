@@ -21,14 +21,14 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	 	var me = loginSvc.getCurrentUser();
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182' 
-			//+ me.Id
-			,
+			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182', 
+			//+ me.Id,
+			
 			method: 'GET',
-			cache: false
+			//cache: false
 			// data: data
 		}).then(function(response) {
-			//console.log('this is response.data in service', response.data);
+			console.log('this is response.data in service', response.data);
 			deferred.resolve(response.data);
 		})
 		return deferred.promise;
@@ -37,8 +37,8 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/studentPortfolio/'
-			+ me.Id,
+			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182',
+			//+ me.Id,
 			data: info
 		}).then(function (response) {
 			deferred.resolve(response);
@@ -50,7 +50,8 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: 'http://localhost:3000/api/studentPortfolio/'+ me.Id,
+			url: 'http://localhost:3000/api/studentPortfolio/',
+			//+ me.Id,
 			data: info
 		}).then(function (response) {
 			deferred.resolve(response);

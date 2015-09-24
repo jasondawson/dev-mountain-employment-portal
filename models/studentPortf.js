@@ -82,7 +82,6 @@ var studentPortf = new Schema({
     } /*see how Randy did his project*/
   },
   status: {
-
     text: {
       type: String
     }
