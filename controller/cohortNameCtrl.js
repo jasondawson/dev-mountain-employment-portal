@@ -2,6 +2,7 @@ var cohortName = require('../models/cohortNameSchema');
 
 module.exports = {
 
+
     create: function(req, res) {
 
         var newCohortName = new cohortName(req.body);
@@ -36,4 +37,5 @@ module.exports = {
     }
 
     //end module.exports
+
 }

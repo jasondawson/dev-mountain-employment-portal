@@ -1,9 +1,11 @@
 var StudentPortf = require('../models/studentPortf');
 var User = require('../models/userSchema');
 
+
 CustomLogger = function() {
     this.active = true;
 }
+
 
 CustomLogger.prototype.deactivate = function() {
     this.active = false;
@@ -20,29 +22,35 @@ var myLog = new CustomLogger();
 // uncomment next line to turn console logs on
 // myLog.deactivate();
 module.exports = {
+     create: function(req, res) {
+    console.log('this is studentPortf req', req.body);
+    var newstudentPortf = new StudentPortf(req.body);
+    newstudentPortf.save(function(err, result) {
+      if (err) return res.status(500).send(err);
+      res.send(result)
+      console.log('this is studentPortf send result', result);
+    });
+  },
+  read: function(req, res) {
+    StudentPortf.find(req.query)
+      .populate(
+        'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
+      )
+      .exec(function(err, result) {
+        console.log('this is studentPortf read result STCRtl', result);
+        if (err) return res.status(500).send(err);
+        res.send(result);
+      });
+  },
 
-    create: function(req, res) {
-        myLog.log('this is studentPortf req', req.body);
-        var newstudentPortf = new StudentPortf(req.body);
-        newstudentPortf.save(function(err, result) {
-            if (err) return res.status(500).send(err);
-            res.send(result)
-            myLog.log('this is studentPortf send result', result);
-        });
-    },
-    read: function(req, res) {
-        StudentPortf.find(req.query)
-            .populate('cohort.cohortName cohort.cohortLocation cohort.className')
-            .exec(function(err, result) {
-                myLog.log('this is studentPortf read result STCRtl', result);
-                if (err) return res.status(500).send(err);
-                res.send(result);
-            });
-    },
     getStudentById: function(req, res) {
         User.findById({
             _id: req.params.id
         })
+        .populate(
+          'cohort.cohortName cohort.cohortLocation cohort.className skills'
+        )
+        //.populate('cohort.cohortLocation')
 
         .exec(function(err, result) {
             if (err) return res.status(500).send(err);

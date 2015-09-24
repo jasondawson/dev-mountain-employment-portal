@@ -1,18 +1,22 @@
 app.service("cohortLocServ", function($http, $q) {
 
   this.getCohortLoc=function(){
+    // console.log("this is super fun in the service");
     var deferred=$q.defer();
     $http({
-      url: 'http://localhost:3000/api/cohortLocation',
+      url: 'http://localhost:3000/cohortLocation',
       method: 'GET',
       // data: data
     }).then(function(response) {
-      //console.log("cohort LOcation collection", response.data)
-      deferred.resolve(response.data);
+      // console.log("cohort Location collection", response.data)
+      deferred.resolve(response);
     })
     return deferred.promise;
   }
-      this.UpdateCohortLoc = function (cohortLoc) {
+      
+
+
+  this.UpdateCohortLoc = function (cohortLoc) {
     var deferred = $q.defer();
     $http({
       method: 'PUT',
@@ -26,7 +30,9 @@ app.service("cohortLocServ", function($http, $q) {
     });
     return deferred.promise;
   };
-    this.addCohortLoc = function (cohortLoc) {
+    
+
+this.addCohortLoc = function (cohortLoc) {
     var deferred = $q.defer();
     $http({
       method: 'POST',
@@ -40,7 +46,9 @@ app.service("cohortLocServ", function($http, $q) {
     });
     return deferred.promise;
   };
-    this.deleteCohortLoc = function (cohortLoc) {
+    
+
+  this.deleteCohortLoc = function (cohortLoc) {
     var deferred = $q.defer();
     $http({
       method: 'DELETE',

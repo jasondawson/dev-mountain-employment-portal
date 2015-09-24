@@ -143,19 +143,15 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-
-
 router.route('/api/project')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
 
-
-//PUT IT BACKKKKKKK
-router.route('/api/studentPortfolio')
+router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('/api/project/:id') ///PUT THIS BACK UP THERE
+router.route('/api/project/:id')
   .put(authCtrl.isAuthenticated, projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
@@ -165,6 +161,7 @@ router.route('/api/projects')
 router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
+
 router.route('/api/studentPortfolio/:profileId')
   .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
@@ -173,14 +170,24 @@ router.route('/api/studentPortfolio/:profileId')
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
-  .get(authCtrl.isAuthenticated, cohortNameCtrl.read);
+  .get(/*authCtrl.isAuthenticated, */cohortNameCtrl.read);
 
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
-  router.route('/api/cohortLocation')
+
+////temporary substitute api's because the real ones didn't work
+
+
+router.route('/cohortLocation')
+  .get(cohortLocationCtrl.read);
+
+////////////////
+
+
+router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
-  .get(/*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
+  .get( /*authCtrl.isAuthenticated,*/ cohortLocationCtrl.read);
 
 router.route('/api/cohortLocation/:id')
   .put(authCtrl.isAuthenticated, cohortLocationCtrl.update)

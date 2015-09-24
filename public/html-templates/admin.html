@@ -1,25 +1,32 @@
 <div>
 <h2>Administrator Page</h2>
 
-
-
-
-   
-   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Add Cohorts, Classes, and Locations</h1>
-      </md-toolbar>
-      <md-content layout-padding>
-       <input class="form-control" type="text" placeholder="Add Stuff Here" >
-       <br/>
-       <input class="form-control" type="text" placeholder="Add Stuff Here" >
-       <br/>
-       <input class="form-control" type="text" placeholder="Add Stuff Here" >
-       <br/>
-       <input class="form-control" type="text" placeholder="Add Stuff Here" >
-        <p hide-md show-gt-md></p>
-      </md-content>
-    </md-sidenav>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Add Locations, Cohorts, and Courses</h1>
+      	</md-toolbar>
+      		<md-content layout-padding>
+       	
+       		<input class="form-control" type="text" placeholder="Add New Cohort Location - City, State" ng-model="newLoc.text" ng-keydown="$event.which === 13 && addNewLocation(newLoc)" />
+       		<ul>
+       			<li ng-repeat="cohortLocation in cohortLocations" >{{cohortLocation.text}}</li>
+       		</ul>
+       		<br/>
+       
+       		<input class="form-control" type="text" placeholder="Add New Course Name" ng-model="newCourse.text" ng-keydown="$event.which === 13 && addNewCourseName(newCourse)" />
+       		<ul>
+       			<li ng-repeat="courseName in courseNames" ng-model="newCourse.text" >{{courseName.text}}</li>
+       		</ul>
+      		<br/>
+       
+       		<input class="form-control" type="text" placeholder="Add New Cohort Name" ng-model="newCohort.text" ng-keydown="$event.which === 13 && addNewCohortName(newCohort)" />
+       		<ul>
+       			<li ng-repeat="cohortName in cohortNames" >{{cohortName.text}}</li>
+       		</ul>
+        	
+        	<p hide-md show-gt-md></p>
+    </md-content>
+</md-sidenav>
 
     <md-button ng-click="toggleLeft()"
             class="md-primary">
@@ -45,7 +52,7 @@
 		<!-- <button><a ui-sref="adminAddSchool">Add New Cohort or School</a></button> -->
 		<br/>
 		<br/>
-		<input class="form-control" id="adminSearch"ng-model="searchTerm" placeholder="Filter Your Search">
+		<input class="form-control" id="adminSearch" ng-model="searchTerm" placeholder="Filter Your Search">
 		<br/>
 		<br/>
 	</thead>

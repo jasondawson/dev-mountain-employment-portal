@@ -4,9 +4,15 @@ app.directive('portfolioView', function() {
     scope: {
       student: "="
     },
-    template: '<div class="outer-box">Name: {{student.name.first}} {{student.name.last}}<br>Bio: {{student.Bio}} <br>Skills: {{student.skills}}</div>'
-      // link: function(scope, elems, attrs) {
-      //   console.log(scope.datasource);
-      // }
+    templateUrl: '/html-templates/hoverPortfolio.html',
+    controller: function($scope) {
+      $scope.hidden = false;
+      $scope.showHidden = function(e) {
+        $scope.hidden = true;
+      }
+      $scope.hide = function(e) {
+        $scope.hidden = false;
+      }
+    }
   }
 });
