@@ -12,10 +12,14 @@ module.exports = {
     });
   },
   read: function(req, res) {
+    console.log('looking for students');
     StudentPortf.find(req.query)
       .populate(
-        'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
+        'projects skills'
       )
+      // .populate(
+      //   'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
+      // )
       .exec(function(err, result) {
         console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
