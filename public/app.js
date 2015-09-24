@@ -2,7 +2,6 @@ var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
   'ngMaterial', 'ngAnimate'
 ]);
 
-
 app.config(function($stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /homeView
@@ -36,7 +35,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('logout', {
       url: "/homeView",
       templateUrl: "html-templates/homeView.html",
-      controller: "homeViewController" 
+      controller: "homeViewCtrl"
     })
 
   .state("portfolios", {
@@ -55,6 +54,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   //   url: "/adminAddSchool",
   //   templateUrl: "html-templates/adminAddSchool.html"
   // })
+
 
 });
 
