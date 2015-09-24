@@ -10,8 +10,8 @@
 
 
 	<div >
-		<span editable-text="studentData.studentPortf.name.first"  e-name="name" e-required e-placeholder="Enter name">{{  (studentData.studentPortf.name.first || 'Enter Name')|uppercase }}</span>
-		<span editable-text=" studentData.studentPortf.name.last" e-name="lastname" e-required e-placeholder="Enter last name">{{ (studentData.studentPortf.name.last|| 'empty')|uppercase }}</span>
+		<span editable-text="studentData.studentPortf.name.first"  e-name="name.first" e-required e-placeholder="Enter name">{{  (studentData.studentPortf.name.first || 'Enter Name')|uppercase }}</span>
+		<span editable-text="studentData.studentPortf.name.last" e-name="name.last" e-required e-placeholder="Enter last name">{{ (studentData.studentPortf.name.last|| 'empty')|uppercase }}</span>
 	</div>
 	<div>
 		<span editable-text="studentData.studentPortf.email" e-name="email" e-placeholder="Enter email">{{ studentData.studentPortf.email || 'youremail@email.com' }}</span>
