@@ -162,8 +162,9 @@ router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
 
-router.route('/api/studentPortfolio/:profileId')
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+router.route('/api/studentPortfolio/:id')
+  .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+ 
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);

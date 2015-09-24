@@ -3,19 +3,12 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
   $scope.studentData = {};/// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
-  $scope.studentClassName={};
-  $scope.studentCohortLocation={};
-  $scope.studentCohortName={};
-  $scope.studentSkills={};
+
   $scope.getStudentProf = function() {
     studentProfileSvc.getStudentProf().then(function(response) {
-      $scope.studentData = response;
-      $scope.studentClassName = response.studentPortf.cohort.className[0]._id;
-      $scope.studentCohortLocation = response.studentPortf.cohort.cohortLocation[0]._id;
-      $scope.studentCohortName = response.studentPortf.cohort.cohortName[0]._id;
-       $scope.studentSkills=response.studentPortf.skills;
+      $scope.studentData = response.studentPortf;
       console.log($scope.studentData);
-      console.log($scope.studentSkills);
+
     })
   };
 	$scope.getStudentProf();
@@ -23,50 +16,30 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
     $scope.classNames =[];
   $scope.getClassNames=function(){
     classNameServ.getClassName().then(function(response){
-      $scope.classNames=response;
+    $scope.classNames=response.data;
+    console.log(response.data);
     })
   };
   $scope.getClassNames();
 
-    $scope.addClassName=function(cohortName){
-    if(cohortName){
-      classNameServ.addClassName(cohortName).then(function(response){
-        $scope.newClassName=response
-      })
-    }
-  }
-
   $scope.cohortLocations =[];
   $scope.getcohortLocations=function(){
     cohortLocServ.getCohortLoc().then(function(response){
-      $scope.cohortLocations=response;
+     //$scope.response.push(cohortLocations);
+     $scope.cohortLocations=response.data;
     })
   };
   $scope.getcohortLocations();
 
-    $scope.addcohortLocation=function(cohortName){
-    if(cohortName){
-      cohortLocServ.addCohortLoc(cohortName).then(function(response){
-        $scope.newCohortLoc=response
-      })
-    }
-  }
-
   $scope.cohortNames =[];
   $scope.getcohortnames=function(){
-    cohortNameServ.getCohortName().then(function(response){
-      $scope.cohortNames=response;
+    cohortNameServ.getCohortNames().then(function(response){
+      console.log(response);
+     $scope.cohortNames=response.data;
     })
   };
   $scope.getcohortnames();
 
-  $scope.addcohortName=function(cohortName){
-    if(cohortName){
-      cohortNameServ.addCohortName(cohortName).then(function(response){
-        $scope.newCohortName=response
-      })
-    }
-  }
 
   $scope.statuses =[
     {text:'Student'},
@@ -92,25 +65,18 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
   $scope.showSkills= function(){
     var selected =[];
-/*    angular.forEach($scope.skillsArray, function(obj){
-    
-      if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
-        selected.push(obj.title);
-        console.log($scope.studentSkills[obj._id])
-      }
-    });
-    return selected.length ? selected.join(', ') : "Not Set";
-  };*/
     angular.forEach($scope.studentSkills, function(obj){
     //console.log($scope.studentSkills[obj._id]);
       if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
         selected.push(obj.title);
+        console.log(selected);
       }
     });
     return selected.length ? selected: "";
   };
 
   $scope.showSkills();
+
 //updateStudent($data) function from html
   $scope.updateStudent= function(studentInfo){
     console.log("what $data i am getting?",studentInfo);

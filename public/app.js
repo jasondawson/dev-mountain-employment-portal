@@ -58,6 +58,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-app.run(function(editableOptions) {
+app.run(function(editableOptions, $state, $rootScope) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+  /*$rootScope.$on('$stateChangeStart', 
+function(event, toState, toParams, fromState, fromParams){ 
+    event.preventDefault(); */
+    // transitionTo() promise will be rejected with 
+    // a 'transition prevented' error
+//});
 });
+
