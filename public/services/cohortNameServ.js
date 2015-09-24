@@ -7,7 +7,7 @@ app.service("cohortNameServ", function($http, $q) {
       method: 'GET',
      url: 'http://localhost:3000/api/cohortName'
     }).then(function(response) {
-      console.log("cohort names response in service", response)
+
       deferred.resolve(response);
     })
     return deferred.promise;

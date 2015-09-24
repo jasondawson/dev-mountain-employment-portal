@@ -4,7 +4,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	this.storeImage = function(imageData, filename) {
 		var imageExtension = imageData.split(';')[0].split('/');
 		imageExtension = imageExtension[imageExtension.length - 1];
-		console.log(imageExtension);
+		//console.log(imageExtension);
 
 		var newImage = {
 			imageName: filename,
@@ -21,8 +21,9 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	 	var me = loginSvc.getCurrentUser();
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/' 
-			+ me.Id,
+			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182' 
+			//+ me.Id
+			,
 			method: 'GET',
 			cache: false
 			// data: data

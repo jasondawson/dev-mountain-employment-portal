@@ -42,7 +42,7 @@
       <br>
 
       <span editable-select="studentClassName" e-name="classNames" e-ng-options="c._id as c.text for c in classNames">
-        {{ (classNames | filter:{_id: studentClassName})[0].text || " Your Class Name/Type Here" }}
+        {{ (classNames | filter:{_id: studentClassName}).text || " Your Class Name/Type Here" }}
       </span>
   </div>
 	<div>
@@ -50,7 +50,7 @@
       <span class="title">Cohort Location: </span>
       <br>
       <span editable-select="studentCohortLocation" e-name="cohortLocation"  e-ng-options="c._id as c.text for c in cohortLocations">
-        {{ (cohortLocations | filter:{_id: studentCohortLocation})[0].text || "Cohort location e.g. Provo, UT" }}
+        {{ (cohortLocations | filter:{_id: studentCohortLocation}).text || "Cohort location e.g. Provo, UT" }}
       </span>
     </div>
     	<div>
@@ -58,7 +58,7 @@
       <span class="title">Cohort:</span>
       <br>
       <span editable-select="studentCohortName" e-name="cohortName" e-ng-options="c._id as c.text for c in cohortNames">
-        {{(cohortNames | filter:{_id:studentCohortName})[0].text || "Your Cohort e.g. DM1"}}
+        {{(cohortNames | filter:{_id:studentCohortName}).text || "Your Cohort e.g. DM1"}}
       </span>
       <br>
      
@@ -73,7 +73,7 @@
       <span class="title">Status</span>
       <br>
       <span editable-select="studentData.studentPortf.status.text" e-name="status" e-ng-options="s.text for s in statuses">
-        {{ (statuses | filter:{text: studentData.studentPortf.status.text})[0].text || "Your Status" }}
+        {{ (statuses | filter:{text: studentData.studentPortf.status.text}).text || "Your Status" }}
       </span>
     </div>
     <div>
@@ -81,7 +81,7 @@
       <span class="title">Relocation</span>
       <br>
       <span editable-select="studentData.studentPortf.relocation.text" e-name="relocation" e-ng-options="s.text for s in relocationOptns">
-        {{ (relocationOptns | filter:{text: studentData.studentPortf.relocation.text})[0].text || "Relocation Options" }}
+        {{ (relocationOptns | filter:{text: studentData.studentPortf.relocation.text}).text || "Relocation Options" }}
       </span>
     </div>
     <div>
@@ -134,7 +134,7 @@
       <!-- Project Type -->
       <span class='title'>Proyect Type</span>
       <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
-        {{ (projectTypes | filter:{value: studentData.projects.projectTypes})[0].text || projectTypes[0] }}
+        {{ (projectTypes | filter:{value: studentData.projects.projectTypes}).text || projectTypes[0] }}
       </span>
 
     </div> 

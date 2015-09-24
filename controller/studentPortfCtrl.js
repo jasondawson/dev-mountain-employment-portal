@@ -33,9 +33,9 @@ module.exports = {
   },
   read: function(req, res) {
     StudentPortf.find(req.query)
-      .populate(
+      /*.populate(
         'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
-      )
+      )*/
       .exec(function(err, result) {
         console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
@@ -47,11 +47,6 @@ module.exports = {
         User.findById({
             _id: req.params.id
         })
-        .populate(
-          'cohort.cohortName cohort.cohortLocation cohort.className skills'
-        )
-        //.populate('cohort.cohortLocation')
-
         .exec(function(err, result) {
             if (err) return res.status(500).send(err);
             var studentPortfolio = {};
@@ -61,7 +56,7 @@ module.exports = {
             StudentPortf.findOne({
                     loginInfo: userId
                 })
-                .populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
+                //.populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
                 .exec(function(err, result) {
                     studentPortfolio.studentPortf = result;
                     res.send(studentPortfolio);

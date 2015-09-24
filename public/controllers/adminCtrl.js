@@ -103,10 +103,10 @@ app.controller("adminCtrl", function($scope, adminSvc, cohortLocServ,
   }
 
   var getCohortNames = function() {
-    console.log("get the cohort names in controller")
+    //console.log("get the cohort names in controller")
     cohortNameServ.getCohortNames().then(function(response) {
       $scope.cohortNames = response.data;
-      console.log("getCohortNames response from DB", $scope.cohortNames);
+     // console.log("getCohortNames response from DB", $scope.cohortNames);
 
 
     })
@@ -115,7 +115,7 @@ app.controller("adminCtrl", function($scope, adminSvc, cohortLocServ,
 
   $scope.addNewCohortName = function(newCohort) {
     cohortNameServ.addCohortName(newCohort).then(function(response) {
-      console.log("new cohort name added", response);
+     // console.log("new cohort name added", response);
       getCohortNames();
       $scope.newCohort = "";
     })
