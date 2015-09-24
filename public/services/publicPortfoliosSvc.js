@@ -3,7 +3,7 @@ app.service("publicPortfoliosSvc", function($http, $q) {
   this.getStudentProf = function() {
     var deferred = $q.defer();
     $http({
-      url: 'http://localhost:3000/api/studentPorftolio',
+      url: 'http://localhost:3000/api/studentPortfolio',
       method: 'GET',
     }).then(function(response) {
       console.log('this is response.data in service', response.data);

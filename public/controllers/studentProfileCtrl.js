@@ -111,11 +111,14 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
   };
 
   $scope.showSkills();
+//updateStudent($data) function from html
+  $scope.updateStudent= function(studentInfo){
+    console.log("what $data i am getting?",studentInfo);
+   studentProfileSvc.updateStudentInfo(studentInfo).then(function(response){
+    $scope.getStudentProf()
+   })
 
-  $scope.updateStudent= function(student){
-    
-
-  }
+  };
 
 
     $scope.projectTypes =[
