@@ -170,7 +170,7 @@ router.route('/api/studentPortfolio/:profileId')
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
-  .get(/*authCtrl.isAuthenticated, */cohortNameCtrl.read);
+  .get(cohortNameCtrl.read);
 
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
