@@ -35,13 +35,14 @@ module.exports = {
     console.log('looking for students');
     StudentPortf.find(req.query)
 
-      /*.populate(
-        'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
+    /*  .populate(
+        'cohort.cohortName cohortName cohort.cohortLocation cohort.className projects skills'
       )*/
-
+   
       .populate(
-        'projects skills'
+        'cohort.cohortname cohort.className cohort.cohortLocation projects skills'
       )
+      //.populate("cohort.cohortName")
       .exec(function(err, result) {
         console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
@@ -62,7 +63,7 @@ module.exports = {
             StudentPortf.findOne({
                     loginInfo: userId
                 })
-                //.populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
+                .populate('cohort.cohortname cohort.cohortLocation cohort.className skills')
                 .exec(function(err, result) {
                     studentPortfolio.studentPortf = result;
                     res.send(studentPortfolio);

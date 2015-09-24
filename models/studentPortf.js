@@ -1,10 +1,7 @@
 var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
-/*var cohortName = new Schema({
-  value: {type:Number},
-  text: {type:String}
-});*/
+
 ///CREATE A Chemas for ea of my list on student Controller so taht i can have those collections saved on my database and be able to create new lists!!!
 
 var studentPortf = new Schema({
@@ -72,7 +69,7 @@ var studentPortf = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'CohortClassName'
     },
-    cohortName: {
+    cohortname: {
       type: Schema.Types.ObjectId,
       ref: 'CohortName'
     },

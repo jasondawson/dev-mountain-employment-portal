@@ -6,7 +6,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
   $scope.getStudentProf = function() {
     studentProfileSvc.getStudentProf().then(function(response) {
-      $scope.studentData = response;
+      $scope.studentData = response.studentPortf;
       console.log($scope.studentData);
 
     })
@@ -65,25 +65,18 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNa
 
   $scope.showSkills= function(){
     var selected =[];
-/*    angular.forEach($scope.skillsArray, function(obj){
-    
-      if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
-        selected.push(obj.title);
-        console.log($scope.studentSkills[obj._id])
-      }
-    });
-    return selected.length ? selected.join(', ') : "Not Set";
-  };*/
     angular.forEach($scope.studentSkills, function(obj){
     //console.log($scope.studentSkills[obj._id]);
       if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
         selected.push(obj.title);
+        console.log(selected);
       }
     });
     return selected.length ? selected: "";
   };
 
   $scope.showSkills();
+
 //updateStudent($data) function from html
   $scope.updateStudent= function(studentInfo){
     console.log("what $data i am getting?",studentInfo);

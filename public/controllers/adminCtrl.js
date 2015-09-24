@@ -100,7 +100,7 @@ $scope.students = [];
     //console.log("get the cohort names in controller")
     cohortNameServ.getCohortNames().then(function(response) {
       $scope.cohortNames = response.data;
-     // console.log("getCohortNames response from DB", $scope.cohortNames);
+     console.log("getCohortNames response from DB", $scope.cohortNames);
 
 
     })
