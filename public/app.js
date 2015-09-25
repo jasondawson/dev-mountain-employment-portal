@@ -58,6 +58,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 });
+app.directive("progressbar", function () {
+   return {
+        restrict: "A",
+        scope: {
+            total: "=",
+            current: "="
+        },
+        link: function (scope, element) {
+
+            scope.$watch("current", function (value) {
+                element.css("width", scope.current / scope.total * 100 + "%");
+            });
+            scope.$watch("total", function (value) {
+                element.css("width", scope.current / scope.total * 100 + "%");
+            })
+        }
+    };
+});
 
 app.run(function(editableOptions, $state, $rootScope) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

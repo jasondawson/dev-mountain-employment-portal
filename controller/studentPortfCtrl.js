@@ -70,11 +70,10 @@ module.exports = {
                 })
         })
     },
-
-    update: function(req, res) {
+update: function(req, res) {
         console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
         StudentPortf.findOneAndUpdate({
-                loginInfo: req.params.id
+                _id: req.params.id
             }, {
                 $set: req.body
             }, {
@@ -91,6 +90,7 @@ module.exports = {
                 res.send(result);
             });
     },
+
 
     delete: function(req, res) {
         StudentPortf.findByIdAndRemove(req.params.id, function(err, result) {

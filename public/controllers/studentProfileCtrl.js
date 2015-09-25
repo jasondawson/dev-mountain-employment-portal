@@ -4,8 +4,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
-	$scope.studentData = {}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
-
+	$scope.studentData = {skills:[]}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
 	$scope.getStudentProf = function() {
 		studentProfileSvc.getStudentProf().then(function(response) {
 			$scope.studentData = response.studentPortf;
@@ -65,24 +64,32 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getstudentSkills = function() {
 		studentSkillsService.getStudentSkills().then(function(response) {
 			$scope.skillsArray = response;
-			console.log(response);
+			//console.log(response);
 		})
 	};
 	$scope.getstudentSkills();
 
-	$scope.showSkills = function() {
-		var selected = [];
-		angular.forEach($scope.studentSkills, function(obj) {
-			//console.log($scope.studentSkills[obj._id]);
-			if ($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]) {
-				selected.push(obj.title);
-				console.log(selected);
-			}
-		});
-		return selected.length ? selected : "";
-	};
+  $scope.showSkills= function(){
+    var selected =[];
+/*    angular.forEach($scope.skillsArray, function(obj){
+    
+      if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
+        selected.push(obj.title);
+        console.log($scope.studentSkills[obj._id])
+      }
+    });
+    return selected.length ? selected.join(', ') : "Not Set";
+  };*/
+    angular.forEach($scope.studentData.skills, function(obj){
+    //console.log($scope.studentSkills[obj._id]);
+      if($scope.studentData.skills[obj._id] === $scope.skillsArray[obj._id]){
+        selected.push(obj.title);
+      }
+    });
+    return selected.length ? selected: "";
+  };
 
-	$scope.showSkills();
+  $scope.showSkills();
 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
