@@ -21,7 +21,7 @@ var projectInfo = new Schema({
     codeSource: [{
         name: {
             type: String,
-            uppercase: true
+            //uppercase: true
         },
         url: {
             type: String
