@@ -35,7 +35,7 @@ $scope.students = [];
 
 
   $scope.showProfile = function(student) { ////this function changes boolean in database for the checkboxes
-    console.log(student)
+    console.log("showProfile result in controller", student)
     adminSvc.adminUpdateShowStudent(student).then(function(response) {
       if (response.status === 200) {
         $scope.adminReadStudents();
