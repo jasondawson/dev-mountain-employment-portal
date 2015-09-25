@@ -5,13 +5,13 @@
 <p>
 School Location:
 </p>
-<button ng-click="studentFilter={}">Utah</button>
+<button>Utah</button>
 <button>Texas</button>
 
 <p>
 Class:
 </p>
-<button>Web Development</button> <button>iOS Development</button>
+<button ng-click="setClass='Web Development'">Web Development</button> <button>iOS Development</button>
 <p>
 Percent Completed:
 <button ng-click="studentFilter={percentCompleted:100}">100</button>
@@ -25,7 +25,7 @@ Percent Completed:
 </p>
 </div>
 <br>
-<div ng-repeat="student in studentPortfolio | filter:studentFilter">
+<div ng-repeat="student in studentPortfolio | filter:studentFilter | className:setClass">
 <portfolio-view student="student"></portfolio-view>
 </div>
 
