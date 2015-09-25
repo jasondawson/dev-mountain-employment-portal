@@ -26,16 +26,30 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 
 	$scope.getStudentProj();
 
+	$scope.web = "web";
 
+	$scope.ios;
+
+	var cohortType;
+	$scope.setClass = function(classes) {
+		if (classes === "web") {
+			cohortType = "Web Development"
+		} else {
+			cohortType = "IOS"
+		}
+		className();
+	}
 
 })
+
+
 
 app.filter('className', function() {
 	return function(val) {
 		console.log('this is val', val);
 		var classes = [];
 		angular.forEach(val, function(student) {
-			if (student.cohort.className.text === 'Web Development') {
+			if (student.cohort.className.text === "Web Development") {
 				classes.push(student);
 			}
 		})
