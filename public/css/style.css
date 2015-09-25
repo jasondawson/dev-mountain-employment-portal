@@ -3,7 +3,9 @@ body {
   max-width: 1300px;
   margin: 0 auto;
 }
-
+.percentageDiv{
+  width: 100px;
+}
 .navbar {
 	height: 86px;
 }

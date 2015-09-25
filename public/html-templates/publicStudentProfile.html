@@ -75,7 +75,7 @@
       <!-- editable status (select-local) -->
       <span class="title">Status</span>
       <br>
-      <span editable-select="studentData.status" e-name="status" e-ng-options="s.text for s in statuses">
+      <span editable-select="studentData.status.text" e-name="status" e-ng-options="status.text for status in statuses">
         {{ studentData.status.text || "Your Status" }}
       </span>
     </div>
@@ -83,7 +83,7 @@
       <!-- editable relocation (select-local) -->
       <span class="title">Relocation</span>
       <br>
-      <span editable-select="studentData.relocation" e-name="relocation" e-name="relocation" e-ng-options="s.text for s in relocationOptns">
+      <span editable-select="studentData.relocation.text" e-name="relocation" e-ng-options="option.text for option in relocationOptns">
         {{ studentData.relocation.text || "Relocation Options" }}
       </span>
     </div>
@@ -110,6 +110,8 @@
 		<span editable-text="studentData.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.currentLoc.city || 'City' }}</span>
 		<span editable-text="studentData.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.currentLoc.state || 'State' }}</span>
 	</div>
+      
+    <div>
 	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
       <button type="button" class="btn btn-default" ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
@@ -126,86 +128,15 @@
       </span>
     </div>
 </form>
-
 <div>
-
-<div class="showcase">
-    <h2>Showcase</h2>
-    <br>
-
-<div ng-repeat = "project in studentData.projects">
-    <div>
-    <span class= "title">Proyect name</span>
-  		<span editable-text="p.name"  e-name="studentData.projects[p].name" e-placeholder="My Awsome Project">{{  (p.name || 'Enter Project Name')|uppercase }}</span>
-
-  	</div>
-    <div><!-- Project Type -->
-        <span class='title'>Proyect Type</span>
-        <span editable-select="p.projectType" e-name="p.projectType" e-ng-options="s.value as s.text for s in projectTypes">
-          {{ p.projectType|| "Project" }}
-        </span>
-
-    </div>
-    <div>
-        <span class="title">Proyect Description </span>
-        <span editable-text="p.description" e-name="project.description"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ p.description || 'About your project' }}</span>
-    </div>
-    <div>
-      <span class="title">Code Source </span>
-      <span editable-text="studentData.project.codeSource.name" e-name="project.codeSource.name"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.codeSource.name || 'e.g. GItHUB or JSFiddle' }}</span>
-      <a href='http://{{studentData.project.codeSource.url}}'  editable-text="project.codeSource.name" e-placeholder="Enter Github Account">
-        {{ studentData.project.codeSource.url}}
-      </a>
-    </div>      
-    <div>
-      <span class="title">TechUsed </span>
-      <span editable-text="studentData.project.TechUsed" e-name="project.TechUsed"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
-    </div>
-
-
-     <!--     picture: {
-          type: String
-      }, 
-      name: {
-          type: String
-      },
-      description: {
-          type: String
-      },
-      projectType: {
-          type: String,
-          enum: [
-              'Personal',
-              'Group'
-          ]
-      },
-      codeSource: [{
-          name: {
-              type: String,
-              uppercase: true
-          },
-          url: {
-              type: String
-          }
-      }],
-      TechUsed: {
-          type: String
-      } -->
-      <form editable-form name="editableProfileForm" onbeforesave="updateProfile($data, project.id)" ng-show="editableProfileForm.$visible" class="form-buttons form-inline" shown="inserted == project">
-            <button type="submit" ng-disabled="editableProfileForm.$waiting" class="btn btn-primary">
-              save
-            </button>
-            <button type="button" ng-disabled="editableProfileForm.$waiting" ng-click="editableProfileForm.$cancel()" class="btn btn-default">
-              cancel
-            </button>
-      </form>
-      <div class="buttons" ng-show="!editableProfileForm.$visible">
-            <button class="btn btn-primary" ng-click="editableProfileForm.$show()">edit</button>
-            <button class="btn btn-danger" ng-click="removeProject($index)">del</button>
+    <p>Percentage Completed</p>
+    <div class="percentageDiv">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" progressbar total="100" current="studentData.percentCompleted">{{ studentData.percentCompleted}}% <span class="sr-only">10% Complete (warning)</span>
+        </div>
       </div>
+    </div>
   </div>
-   <button class="btn btn-default" ng-click="addProject()">Add Project</button>
-</div>
 
 
 

@@ -81,7 +81,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
     return selected.length ? selected.join(', ') : "Not Set";
   };*/
     angular.forEach($scope.studentData.skills, function(obj){
-    //console.log($scope.studentData.skills[obj._id]);
+    //console.log($scope.studentSkills[obj._id]);
       if($scope.studentData.skills[obj._id] === $scope.skillsArray[obj._id]){
         selected.push(obj.title);
       }
