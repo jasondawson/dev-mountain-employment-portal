@@ -34,6 +34,20 @@ this.getCurrentUser=function(){
       })
     return deferred.promise;
   };
+    
+  /*
+  TODO:
+    this.getLoggedInUser = function(){
+        return {
+           id:
+           roles: ['student', 'lead_instructor']
+        }
+        
+        //
+        return $http.get('/urltheygaveme', .....
+    }
+  
+  */
 
   // end of service
 });
