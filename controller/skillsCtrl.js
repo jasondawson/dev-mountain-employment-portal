@@ -12,7 +12,7 @@ module.exports = {
     },
     read: function(req, res) {
         Skills.find(req.query).exec(function(err, result) {
-            console.log('this is Skills read result', result);
+           // console.log('this is Skills read result', result);
             if (err) return res.status(500).send(err);
             res.send(result);
         });
