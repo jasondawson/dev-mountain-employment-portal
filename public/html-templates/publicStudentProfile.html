@@ -10,7 +10,13 @@
 	</div>
 <form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
 
+  <div>
+  <input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
+    <a href='http://{{s3url}}'  editable-text="studentData.picture" e-placeholder="Enter Github Account">
+      <img src="s3url">{{ s3url}}
 
+    </a>
+  </div>
 	<div >
 		<span editable-text="studentData.name.first"  e-name="firstname" e-required e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }}</span>
 		<span editable-text="studentData.name.last" e-name="lastname" e-required e-placeholder="Enter last name">{{ (studentData.name.last|| 'empty')|uppercase }}</span>
@@ -21,20 +27,20 @@
 
 
 	<div>
-	  <a href='http://{{studentData.github}}'  editable-text="studentData.github" e-placeholder="Enter Github Account">
+	  <a href='http://{{studentData.github}}'  editable-text="github" e-placeholder="Enter Github Account">
 	    {{ studentData.github}}
 	  </a>
 	</div>
 
 
 	<div>
-	  <a href='http://{{studentData.personalWebsite}}'  editable-text="studentData.personalWebsite" e-placeholder="Enter Website link" >
+	  <a href='http://{{studentData.personalWebsite}}'  editable-text="personalWebsite" e-placeholder="Enter Website link" >
 	    http://{{ studentData.personalWebsite}}
 	  </a>
 	</div>
 
 	<div>
-		<a href='http://{{studentData.LinkdIn}}'  editable-text="studentData.LinkdIn" e-placeholder="Enter LinkdIn">
+		<a href='http://{{studentData.LinkdIn}}'  editable-text="LinkdIn" e-placeholder="Enter LinkdIn">
 	    {{ studentData.LinkdIn ||'Your LinkdIn Account' }}
 	  	</a>
 	</div>
@@ -123,31 +129,70 @@
     </div>
 </form>
 
-<form editable-form name="editableProjectForm" onaftersave="updateProject()">
+
+<form editable-form name="editableProjectForm" onaftersave="updateProject($data)">
 <div class="showcase">
   <h2>Showcase</h2>
   <br>
 </div>
 	<div>
   <span class= "title">Proyect name</span>
-		<span editable-text="studentData.projects.name"  e-name="projectName" e-placeholder="My Awsome Project">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
+		<span editable-text="studentData.projects.name"  e-name="project.name" e-placeholder="My Awsome Project">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
 
 	</div>
     <div>
       <!-- Project Type -->
       <span class='title'>Proyect Type</span>
-      <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
-        {{ (projectTypes | filter:{value: studentData.projects.projectTypes}).text || projectTypes[0] }}
+      <span editable-select="studentData.projects.projectType." e-name="project.projectType" e-ng-options="s.value as s.text for s in projectTypes">
+        {{ studentData.projects.projectType|| "Project" }}
       </span>
 
     </div>
     <div>
     <span class="title">Proyect Description </span>
-    <span editable-text="studentData.project.description" e-name="Bio" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.Bio || 'About your project' }}</span>
+    <span editable-text="studentData.project.description" e-name="project.description" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.description || 'About your project' }}</span>
+  </div>
+  <div>
+    <span class="title">Code Source </span>
+    <span editable-text="studentData.project.codeSource.name" e-name="project.codeSource.name" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.codeSource.name || 'e.g. GItHUB or JSFiddle' }}</span>
+    <a href='http://{{studentData.project.codeSource.url}}'  editable-text="project.codeSource.name" e-placeholder="Enter Github Account">
+      {{ studentData.project.codeSource.url}}
+    </a>
+  </div>      
+  <div>
+    <span class="title">TechUsed </span>
+    <span editable-text="studentData.project.TechUsed" e-name="project.TechUsed" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
   </div>
 
 
-
+   <!--     picture: {
+        type: String
+    }, 
+    name: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    projectType: {
+        type: String,
+        enum: [
+            'Personal',
+            'Group'
+        ]
+    },
+    codeSource: [{
+        name: {
+            type: String,
+            uppercase: true
+        },
+        url: {
+            type: String
+        }
+    }],
+    TechUsed: {
+        type: String
+    } -->
 
 <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->

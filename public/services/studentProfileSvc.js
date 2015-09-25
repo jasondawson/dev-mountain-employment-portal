@@ -21,7 +21,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	 	var me = loginSvc.getCurrentUser();
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182', 
+			url: 'http://localhost:3000/api/studentPortfolio/55f723dd5c39cb631af86f1a', 
 			//+ me.Id,
 			
 			method: 'GET',
@@ -37,7 +37,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/studentPortfolio/55fb28b28e2750f176378182',
+			url: 'http://localhost:3000/api/studentPortfolio/55f723dd5c39cb631af86f1a',
 			//+ me.Id,
 			data: info
 		}).then(function (response) {
