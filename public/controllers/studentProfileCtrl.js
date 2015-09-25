@@ -100,23 +100,32 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	};
 
-
+//saving Student Image
+	$scope.saveProfilePic = function(data) {
+		console.log('this is studentdata', data);
+		studentProfileSvc.updateStudentInfo(data).then(function(response) {
+			$scope.getStudentProf()
+		})
+	};
+	
 	$scope.projectTypes = [{
 		text: 'Personal'
 	}, {
 		text: 'Group'
 	}, ];
 
-	//saving Student Image
-
-
-
-	$scope.saveProfilePic = function(data) {
-		console.log('this is studentdata', data);
-		studentProfileSvc.updateStudentInfo(data).then(function(response) {
+  $scope.updateProject = function(data, project) {
+    //$scope.user not updated yet
+    angular.extend(data, {projects: project});
+    studentProfileSvc.updateStudentInfo(data).then(function(response) {
 			$scope.getStudentProf()
 		})
+  };
 
-	};
+/*angular.extend(data, {projects: project});
+    return $http.put('http://localhost:3000/api/studentPortfolio/55f708cc4a368e270de0ecff', data)*/
+
+
+
 
 });
