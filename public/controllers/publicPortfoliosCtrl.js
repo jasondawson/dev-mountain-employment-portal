@@ -24,6 +24,7 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 
 app.filter('className', function() {
 	return function(val) {
+		console.log('this is val', val);
 		var classes = [];
 		angular.forEach(val, function(student) {
 			if (student.cohort.className.text === 'Web Development') {
