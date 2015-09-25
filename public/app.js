@@ -51,39 +51,34 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "studentProfileCtrl"
   })
 
-  // .state("adminAddSchool", {
-  //   url: "/adminAddSchool",
-  //   templateUrl: "html-templates/adminAddSchool.html"
-  // })
 
 
 });
-app.directive("progressbar", function () {
-   return {
-        restrict: "A",
-        scope: {
-            total: "=",
-            current: "="
-        },
-        link: function (scope, element) {
+app.directive("progressbar", function() {
+  return {
+    restrict: "A",
+    scope: {
+      total: "=",
+      current: "="
+    },
+    link: function(scope, element) {
 
-            scope.$watch("current", function (value) {
-                element.css("width", scope.current / scope.total * 100 + "%");
-            });
-            scope.$watch("total", function (value) {
-                element.css("width", scope.current / scope.total * 100 + "%");
-            })
-        }
-    };
+      scope.$watch("current", function(value) {
+        element.css("width", scope.current / scope.total * 100 + "%");
+      });
+      scope.$watch("total", function(value) {
+        element.css("width", scope.current / scope.total * 100 + "%");
+      })
+    }
+  };
 });
 
 app.run(function(editableOptions, $state, $rootScope) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-  /*$rootScope.$on('$stateChangeStart', 
-function(event, toState, toParams, fromState, fromParams){ 
+  /*$rootScope.$on('$stateChangeStart',
+function(event, toState, toParams, fromState, fromParams){
     event.preventDefault(); */
-    // transitionTo() promise will be rejected with 
-    // a 'transition prevented' error
-//});
+  // transitionTo() promise will be rejected with
+  // a 'transition prevented' error
+  //});
 });
-
