@@ -75,7 +75,7 @@
       <!-- editable status (select-local) -->
       <span class="title">Status</span>
       <br>
-      <span editable-select="studentData.status.text" e-name="status" e-ng-options="status.text for status in statuses">
+      <span editable-select="studentData.status" e-name="status" e-ng-options="status.text for status in statuses">
         {{ studentData.status.text || "Your Status" }}
       </span>
     </div>
@@ -83,7 +83,7 @@
       <!-- editable relocation (select-local) -->
       <span class="title">Relocation</span>
       <br>
-      <span editable-select="studentData.relocation.text" e-name="relocation" e-ng-options="option.text for option in relocationOptns">
+      <span editable-select="studentData.relocation" e-name="relocation" e-ng-options="option.text for option in relocationOptns">
         {{ studentData.relocation.text || "Relocation Options" }}
       </span>
     </div>
@@ -140,7 +140,56 @@
 
 
 
-</form>
+<div class="showcase">
+    <h2>Showcase</h2>
+    <br>
+
+<div ng-repeat = "project in studentData.projects">
+    <div>
+    <span class= "title">Project name</span>
+      <span editable-text="project.name"  e-name="projectName" e-form="editableProjectForm" e-placeholder="My Awsome Project">{{  (project.name || 'Enter Project Name')|uppercase }}</span>
+
+    </div>
+    <div>
+        <span class='title'>Project Type</span>
+        <span editable-select="project.projectType.text" e-name="projectType" e-form="editableProjectForm" e-ng-options="type.value as type.text for type in projectTypes">
+          {{ project.projectType.text|| "Project" }}
+        </span>
+
+    </div>
+    <div>
+        <span class="title">Project Description </span>
+        <span editable-text="project.description" e-name="description" e-form="editableProjectForm" e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ project.description || 'About your project' }}</span>
+    </div>
+    <div>
+      <span class="title">Code Source </span>
+      <div ng-repeat= "source in project.codeSource">
+      <span editable-text="source.name" e-name="source.name" e-form="editableProjectForm" e-placeholder="e.g. GItHUB or JSFiddle"></span>
+      <a href='http://{{source.url}}'  editable-text="source.url" e-form="editableProjectForm" e-name="source.url" e-placeholder="Enter URL address">
+        {{source.name || 'e.g. GItHUB or JSFiddle' }}
+      </a>
+      </div>
+    </div>      
+    <div>
+      <span class="title">TechUsed </span>
+      <span editable-text="project.TechUsed" e-name="TechUsed" e-form="editableProjectForm">{{ project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
+    </div>
+      <form editable-form name="editableProjectForm" onbeforesave="updateProject($data, project)" ng-show="editableProjectForm.$visible" class="form-buttons form-inline" shown="inserted == project">
+            <button type="submit" ng-disabled="editableProjectForm.$waiting" class="btn btn-primary">
+              save
+            </button>
+            <button type="button" ng-disabled="editableProjectForm.$waiting" ng-click="editableProjectForm.$cancel()" class="btn btn-default">
+              cancel
+            </button>
+      </form>
+      <div class="buttons" ng-show="!editableProjectForm.$visible">
+            <button class="btn btn-primary" ng-click="editableProjectForm.$show()">edit</button>
+            <button class="btn btn-danger" ng-click="removeProject($index)">del</button>
+      </div>
+  </div>
+   <button class="btn btn-default" ng-click="addProject()">Add Project</button>
+</div>
+
 </div>
 <br>
 <div class="showcase">
