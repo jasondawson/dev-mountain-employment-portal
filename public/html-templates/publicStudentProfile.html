@@ -10,13 +10,6 @@
 	</div>
 <form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
 
-  <div>
-  <input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
-    <a href='http://{{s3url}}'  editable-text="studentData.picture" e-placeholder="Enter Github Account">
-      <img src="s3url">{{ s3url}}
-
-    </a>
-  </div>
 	<div >
 		<span editable-text="studentData.name.first"  e-name="firstname" e-required e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }}</span>
 		<span editable-text="studentData.name.last" e-name="lastname" e-required e-placeholder="Enter last name">{{ (studentData.name.last|| 'empty')|uppercase }}</span>
@@ -100,7 +93,7 @@
 
       <ul>
       <li ng-repeat="s in showSkills() track by $index">
-      {{s}}</li>
+      {{s.title}}</li>
       </ul>
     </span>
 
@@ -129,39 +122,40 @@
     </div>
 </form>
 
-
+<div>
 <form editable-form name="editableProjectForm" onaftersave="updateProject($data)">
 <div class="showcase">
   <h2>Showcase</h2>
   <br>
 </div>
-	<div>
+<div ng-repeat = "p in studentData.projects">
+  <div>
   <span class= "title">Proyect name</span>
-		<span editable-text="studentData.projects.name"  e-name="project.name" e-placeholder="My Awsome Project">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
+		<span editable-text="p.name"  e-name="studentData.projects[p].name" e-placeholder="My Awsome Project">{{  (p.name || 'Enter Project Name')|uppercase }}</span>
 
 	</div>
     <div>
       <!-- Project Type -->
       <span class='title'>Proyect Type</span>
-      <span editable-select="studentData.projects.projectType." e-name="project.projectType" e-ng-options="s.value as s.text for s in projectTypes">
-        {{ studentData.projects.projectType|| "Project" }}
+      <span editable-select="p.projectType" e-name="p.projectType" e-ng-options="s.value as s.text for s in projectTypes">
+        {{ p.projectType|| "Project" }}
       </span>
 
     </div>
     <div>
     <span class="title">Proyect Description </span>
-    <span editable-text="studentData.project.description" e-name="project.description" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.description || 'About your project' }}</span>
+    <span editable-text="p.description" e-name="project.description"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ p.description || 'About your project' }}</span>
   </div>
   <div>
     <span class="title">Code Source </span>
-    <span editable-text="studentData.project.codeSource.name" e-name="project.codeSource.name" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.codeSource.name || 'e.g. GItHUB or JSFiddle' }}</span>
+    <span editable-text="studentData.project.codeSource.name" e-name="project.codeSource.name"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.codeSource.name || 'e.g. GItHUB or JSFiddle' }}</span>
     <a href='http://{{studentData.project.codeSource.url}}'  editable-text="project.codeSource.name" e-placeholder="Enter Github Account">
       {{ studentData.project.codeSource.url}}
     </a>
   </div>      
   <div>
     <span class="title">TechUsed </span>
-    <span editable-text="studentData.project.TechUsed" e-name="project.TechUsed" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
+    <span editable-text="studentData.project.TechUsed" e-name="project.TechUsed"  e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
   </div>
 
 
@@ -209,7 +203,8 @@
         </button>
       </span>
     </div>
-     </div>
+</div>
+</div>
 </form>
 
 
