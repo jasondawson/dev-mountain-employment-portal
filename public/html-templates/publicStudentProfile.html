@@ -199,29 +199,72 @@
 <br>
 <br>
 <div class="projects" ng-repeat="project in studentData.projects">
-Project Type: {{project.projectType}}
-<br>
-Project Name: {{project.name}}
-<br>
-Description: {{project.description}}
-<br>
-Tech Used: {{project.TechUsed}}
+    <!--TODO
+    NAME: Repeated projects
+    <div>
+        <input class="profile-edit" ng-model="project.projectType"
+               ng-disabled="!isMyProfile()"></input>
+    <div>
+    Change these to input boxes
+    
+    add a new css class
+      .profile-edit:disabled {
+         make it look like plain text
+        0 border
+        0 background
+      }
+    controller has
+    $scope.newProject = {
+
+    }
+
+    $scope.saveNewProject
+        takes $scope.newProject 
+        sends it to the database
+        $scope.newProject = {
+
+        }
+
+    PSEUDO HTML
+    div
+        div .new
+            input newProject.name, newProject.description, other fields
+        div repeat (SEE: Repeated projects above
+            project name
+
+
+-->
+    Project Type: {{project.projectType}}
+    <br>
+    Project Name: {{project.name}}
+    <br>
+    Description: {{project.description}}
+    <br>
+    Tech Used: {{project.TechUsed}}
+    <!--
+    add a save button
+    ng-click="saveProject(project);
+        -> make put request with that project
+            Build url
+                /api/updateproject/:projectId/?projectType=|project.projectType|&name=|project.name|
+
+-->
 </div>
 <br>
 <b>This is the TechSkills</b>
 <br>
 <div class="skills" ng-repeat="devskill in studentData.devSkills">
-  <br>
-TechSkill:
-<br>
-Description: {{devskill.description}}
-<br>
-Source:
-<br>
-<div ng-repeat="link in devskill.link">
-<a href="{{link.url}}">{{link.name}}</a>
-<br>
-</div>
+      <br>
+    TechSkill:
+    <br>
+    Description: {{devskill.description}}
+    <br>
+    Source:
+    <br>
+    <div ng-repeat="link in devskill.link">
+    <a href="{{link.url}}">{{link.name}}</a>
+    <br>
+    </div>
 </div>
 
 </div>

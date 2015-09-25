@@ -1,6 +1,19 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter,
 	$http) {
+    
+    /*
+        TODO: 
+        $stateParams.studentId 
+        
+     loggedInUser = of whoever is logged in 
+            Make a new service to get logged in user
+            Make a new node endpoint to return logged in user
+    function isMyProfile(){
+        return loggedInUser.id = $stateParams.studentId)
+    }
+    
+    */
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
