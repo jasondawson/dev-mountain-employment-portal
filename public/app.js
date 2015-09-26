@@ -51,6 +51,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "studentProfileCtrl"
   })
 
+  .state("porfolioview", {
+    url: "/portfolioview",
+    templateUrl: "html-templates/portfolioList.html",
+    controller: "portfolioListCtrl"
+  })
 
 
 });
