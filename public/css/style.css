@@ -13,7 +13,10 @@ body {
 .navbar-nav {
 	padding-top: 11px;
 }
-
+.project-edit{
+border:0;
+width: 100%;
+}
 a {
 	box-sizing: border-box;
 	text-decoration: none;

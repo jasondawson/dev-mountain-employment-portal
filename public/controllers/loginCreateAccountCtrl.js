@@ -9,12 +9,14 @@ app.controller("loginCreateAccountCtrl", function($scope, $location, loginSvc) {
     console.log('this is login data', data);
     loginSvc.logInUser(data).then(function(response) {
       console.log('this is login response', response);
+
       if (response === "authentication failed") {
         $scope.user = "";
         $location.path("/login");
       } else {
         $scope.user = "";
-        $location.path("/profiles");
+        $location.path("/profile");
+        // $location.path("/profile/"+response);
       }
     })
   }
@@ -24,7 +26,7 @@ app.controller("loginCreateAccountCtrl", function($scope, $location, loginSvc) {
     loginSvc.register(data).then(function(response) {
       console.log('this is register response', response);
       $scope.user = "";
-      $location.path("/profiles");
+      $location.path("/profile");
     })
   }
 

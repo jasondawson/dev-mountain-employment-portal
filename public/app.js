@@ -44,13 +44,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "html-templates/publicPortfolios.html",
     controller: "publicPortfoliosCtrl"
   })
-
-  .state("profiles", {
-    url: "/profiles",
+  .state("profile", {
+    url: "/profile",
     templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl"
   })
-
+  // .state("profile",{
+  //   url:"/profile/:loginId",
+  //   templateUrl: "html-templates/publicStudentProfile.html",
+  //   controller: "studentProfileCtrl"
+  // })
 
 
 });

@@ -151,8 +151,8 @@ router.route('/api/project')
 router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('/api/project/:id')
-  .put(authCtrl.isAuthenticated, projectCtrl.update)
+router.route('api/updateProject/:id')
+  .put(/*authCtrl.isAuthenticated,*/ projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 router.route('/api/projects')

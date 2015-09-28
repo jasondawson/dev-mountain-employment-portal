@@ -12,13 +12,9 @@ var projectInfo = new Schema({
         type: String
     },
     projectType: {
-        type: String,
-        enum: [
-            'Personal',
-            'Group'
-        ]
+            type: String
     },
-    codeSource: [{
+    codeSource: {
         name: {
             type: String,
             //uppercase: true
@@ -26,7 +22,7 @@ var projectInfo = new Schema({
         url: {
             type: String
         }
-    }],
+    },
     TechUsed: {
         type: String
     }

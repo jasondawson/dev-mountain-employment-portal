@@ -63,7 +63,7 @@ module.exports = {
             StudentPortf.findOne({
                     loginInfo: userId
                 })
-                .populate('cohort.cohortname cohort.cohortLocation cohort.className projects skills')
+                .populate('cohort.cohortname cohort.cohortLocation cohort.className projects skills DevSkills')
                 .exec(function(err, result) {
                     studentPortfolio.studentPortf = result;
                     res.send(studentPortfolio);

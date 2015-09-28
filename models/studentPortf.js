@@ -99,6 +99,10 @@ var studentPortf = new Schema({
   projects: [{
     type: Schema.Types.ObjectId,
     ref: 'ProjectInfo'
+  }],
+  DevSkills: [{
+    type: Schema.Types.ObjectId,
+    ref: 'DevSkill'
   }]
 
 });

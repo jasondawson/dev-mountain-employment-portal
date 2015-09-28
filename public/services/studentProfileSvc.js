@@ -19,9 +19,12 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	this.getStudentProf = function() {
 		var deferred = $q.defer();
 	 	var me = loginSvc.getCurrentUser();
+	 	console.log("getCurrentUser fucniton GET LOGINUSER ID",me)
+
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55f723dd5c39cb631af86f1a', 
+			url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 
+			// url: 'http://localhost:3000/api/studentPortfolio/'+me.Id, 
 			//ID = LOGIN USER ID,
 			
 			method: 'GET',
@@ -45,6 +48,34 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		});
 		return deferred.promise;
 	};
+
+	this.updateProject= function(project){
+		console.log('what info im i gettign???',project)
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: 'http://localhost:3000/api/updateProject/'+project._id+'/?projectType=|project.projectType|&name=|project.name|&description=|project.description|&TechUsed=|project.TechUSed|&codeSource.name|project.codeSource.name|&codeSource.url|project.codeSource.url',
+			//data: project
+		}).then(function (response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+		
+	}
+
+	this.addProject = function(newProject){
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: 'http://localhost:3000/api/project',
+			
+			data: newProject
+		}).then(function (response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+
+	}
 
 		this.saveStudentInfo = function (info) {
 		var deferred = $q.defer();
