@@ -54,7 +54,18 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/updateProject/'+project._id+'/?projectType=|project.projectType|&name=|project.name|&description=|project.description|&TechUsed=|project.TechUSed|&codeSource.name|project.codeSource.name|&codeSource.url|project.codeSource.url',
+			url: '/api/updateProject/'+project._id,
+			data:{
+				projectType:project.projectType,
+				name:project.name,
+				picture:project.picture,
+				description:project.description,
+				TechUsed:project.TechUSed,
+				codeSource:{
+					name:project.codeSource.name,
+					url:project.codeSource.url
+				}
+			}
 			//data: project
 		}).then(function (response) {
 			deferred.resolve(response);
@@ -63,13 +74,23 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		
 	}
 
-	this.addProject = function(newProject){
+	this.addProject = function(newProject, studentId){
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: 'http://localhost:3000/api/project',
+			url: '/api/project/55f708cc4a368e270de0ecff'+ studentId,
 			
-			data: newProject
+			data: {
+				projectType:newProject.projectType,
+				name:newProject.name,
+				picture: newProject.picture,
+				description:newProject.description,
+				TechUsed:newProject.TechUSed,
+				codeSource:{
+					name:newProject.codeSource.name,
+					url:newProject.codeSource.url
+				}
+			}
 		}).then(function (response) {
 			deferred.resolve(response);
 		});

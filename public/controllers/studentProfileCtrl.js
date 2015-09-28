@@ -130,15 +130,29 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 			})
 	}
 
+		$scope.saveProjectPic = function(data) {
+		studentProfileSvc.updateProject(data).then(function(response) {
+			$scope.getStudentProf()
+		})
+	};
+
   $scope.newProject = {
-
-
+  				projectType:null,
+				name:null,
+				picture: null,
+				description:null,
+				TechUsed:null,
+				codeSource:{
+					name:null,
+					url:null
+				}
   }
 
-  	$scope.saveNewProject= function(){
+  	$scope.saveNewProject= function(newProject){
   		studentProfileSvc.addProject($scope.newProject).then(
 			function(response){
-				$scope.getStudentProf()
+				console.log(response.data._id);
+				//$scope.getStudentProf()
 			})
   }
   /*
@@ -147,6 +161,9 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
   sends it to the database
   $scope.newProject = {}
   HOW DO I SAVE IT TO STUDENT PROFILE?
+
+get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projectsArray
+
   */
 
 

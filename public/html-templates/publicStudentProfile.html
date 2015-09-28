@@ -136,15 +136,14 @@
     </div>
     </div>
 
-    <div class="showcase" style="background-color: #C0ECFA">
+    <div class="showcase" >
     <h4>Showcase</h4>
-    <div ng-hide= '!isMyProfile()'>
+    <div ng-hide= '!isMyProfile()' style="background-color: #C0ECFA">
       <div>
       <h4>Add New Project</h4>
       <label>Image Path</label><br>
       <img ng-src="{{newProject.picture}}" style="width: 200px; height: 200px">
-      <input type="file" images="images" accept="image/pdf*" ng-model="newProject.picture" fileread />
-      <button class="btn btn-primary" ng-click="saveNewProjectPic(newProject)">Save-need to work on this</button>
+      <input type="file" images="images" accept="image/pdf*" ng-model="newProject.picture" newproject-fileread />
       </div>
       <div>
       <label>Project Name</label>
@@ -178,8 +177,8 @@
           <div>
           <label>Image Path</label><br>
           <img ng-src="{{project.picture}}" style="width: 200px; height: 200px">
-          <input type="file" images="images" accept="image/pdf*" ng-model="project.picture" fileread />
-          <button class="btn btn-primary" ng-click="saveProjectPic(project)">Save-need to work on this</button>
+          <input type="file" images="images" accept="image/pdf*" ng-model="project.picture" project-fileread />
+      <!--     <button class="btn btn-primary" ng-click="saveProjectPic(project)">Save-need to work on this</button> -->
           </div>
           <div>
             <label>Project Name</label>
@@ -205,7 +204,7 @@
             <label>Url</label>
             <input class="project-edit" ng-model="project.codeSource.url" ng-disabled="!isMyProfile()" placeholder=" used"></input>
           </div>          
-        <button class="btn btn-primary" ng-click="saveProject(project)">Save-need to work on this</button>
+        <button class="btn btn-primary" ng-click="saveProject(project)">Save</button>
   <!--TODO
   NAME: Repeated projects
   <div>

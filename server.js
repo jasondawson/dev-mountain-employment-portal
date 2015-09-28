@@ -143,7 +143,7 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-router.route('/api/project')
+router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
@@ -151,7 +151,7 @@ router.route('/api/project')
 router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('api/updateProject/:id')
+router.route('/api/updateProject/:id')
   .put(/*authCtrl.isAuthenticated,*/ projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
