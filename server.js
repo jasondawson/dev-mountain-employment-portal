@@ -164,12 +164,12 @@ router.route('/api/studentPortfolio')
 
 
 router.route('/api/studentPortfolio/:id')
-  .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
- 
-  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
+  .get(studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
+
+.post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
 
-  .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+.delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
@@ -215,6 +215,10 @@ router.route('/api/studentSkills/:id')
 
 router.route('/api/fullPortfolio/:id')
   .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);
+
+//this the end point for getting students by Cohort
+router.route('/api/getCohort/:id')
+  .get(studentPortfCtrl.getCohorts);
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';

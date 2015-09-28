@@ -40,6 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
   .state("portfolios", {
+<<<<<<< HEAD
     url: "/portfolios",
     templateUrl: "html-templates/publicPortfolios.html",
     controller: "publicPortfoliosCtrl"
@@ -54,6 +55,35 @@ app.config(function($stateProvider, $urlRouterProvider) {
   //   templateUrl: "html-templates/publicStudentProfile.html",
   //   controller: "studentProfileCtrl"
   // })
+=======
+      url: "/portfolios/",
+      templateUrl: "html-templates/publicPortfolios.html",
+      controller: "publicPortfoliosCtrl"
+    })
+    //
+    // .state("portfolios", {
+    //   url: "/portfolios/:cohort",
+    //   templateUrl: "html-templates/publicPortfolios.html",
+    //   controller: "publicPortfoliosCtrl",
+    //   resolve: {
+    //     portfolioroutes: function(publicPortfoliosSvc) {
+    //       return publicPortfoliosSvc.getStudentProf();
+    //     }
+    //   }
+    // })
+
+  .state("profiles", {
+    url: "/profiles",
+    templateUrl: "html-templates/publicStudentProfile.html",
+    controller: "studentProfileCtrl"
+  })
+
+  .state("portfolioview", {
+    url: "/portfolioview",
+    templateUrl: "html-templates/portfolioList.html",
+    controller: "portfolioListCtrl"
+  })
+>>>>>>> 1c69cb3b5997517b6b9ba939758839a8c7afc7e4
 
 
 });

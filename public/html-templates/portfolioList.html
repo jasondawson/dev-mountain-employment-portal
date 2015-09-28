@@ -12,20 +12,20 @@ BACKING CONTROLLER: porfolioListController
     }
 
 TODO:
-- Make the route
-- Update porfolio link to point to this page
-- Move filters to this page from the other page
+- Make the route - DONE
+- Update porfolio link to point to this page - DONE
+- Move filters to this page from the other page - DONE
 - Organize Data (Controller work)
 - Make thep page layout
 - Add click functionality to route to publicPortfolios
 
 HTML PseudoCode:
 
-div 
+div
     div .filters
         category filter
         location filter
-    
+
     div repeat portfolio in objectOfPortfolios
          on click - Change route
         div header
@@ -40,3 +40,42 @@ div
                     student picture
                     name
 -->
+<div class="container">
+  <div class="filterby">
+    <div class="cohortLocation">
+      <p><b>School Location:</b></p>
+      <button  type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'UT'}">Utah</button>
+      <button type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'TX'}">Texas</button>
+    </div>
+<div class="classClassification">
+      <p><b>Class:</b></p>
+    <button type="button" class="btn btn-default"  ng-click="studentFilter={classType:'Web Development'}">Web Development</button> <button type="button" class="btn btn-default"  ng-click="studentFilter={classType:'IOS'}">iOS Development</button>
+</div>
+<div>
+    <p><b>Reset:</b></p>
+
+      <button type="button" class="btn btn-default"  ng-click="studentFilter=undefined">Reset Filters</button>
+</div>
+  </div>
+<!-- End of filter div   -->
+<div class="cohortProfileView">
+  <div ng-repeat="profile in cohort | filter:studentFilter">
+      <br>
+      <h3>Cohort: {{profile.cohort}}</h3>
+      <br>
+      <p>Class: {{profile.classType}}</p>
+      <br>
+      <p>Location: {{profile.classLocation}}
+      </p>
+      <span class="studentpreview" ng-repeat="student in profile.profiles">
+        <div>
+
+      <img src="{{student.studentpic}}" style="width: 200px; height: 200px" />
+        <br>
+        <span>{{student.firstname}} {{student.lastname}}</span>
+          </div>
+
+</div>
+</div>
+<!-- End of Container div   -->
+</div>
