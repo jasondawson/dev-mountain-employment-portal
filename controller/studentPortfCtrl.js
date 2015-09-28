@@ -95,16 +95,7 @@ module.exports = {
   },
 
 
-<<<<<<< HEAD
-            StudentPortf.findOne({
-                    loginInfo: userId
-                })
-                .populate('cohort.cohortname cohort.cohortLocation cohort.className projects skills DevSkills')
-                .exec(function(err, result) {
-                    studentPortfolio.studentPortf = result;
-                    res.send(studentPortfolio);
-                })
-=======
+
   delete: function(req, res) {
     StudentPortf.findByIdAndRemove(req.params.id, function(err, result) {
       if (err) return res.status(500).send(err);
@@ -125,7 +116,7 @@ module.exports = {
           if (student.cohort.cohortname._id === req.params.id) {
             return student;
           }
->>>>>>> 1c69cb3b5997517b6b9ba939758839a8c7afc7e4
+
         })
         console.log('this is students', students);
         if (err) return res.status(500).send(err);
