@@ -152,8 +152,10 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
   		studentProfileSvc.addProject($scope.newProject).then(
 			function(response){
 				console.log(response.data._id);
-				//$scope.getStudentProf()
+				$scope.getStudentProf();
+				$scope.newProject={};
 			})
+
   }
   /*
   saveNewProject function 

@@ -78,7 +78,8 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: '/api/project/55f708cc4a368e270de0ecff'+ studentId,
+			url: '/api/project/55f708cc4a368e270de0ecff',
+			//+ studentId,
 			
 			data: {
 				projectType:newProject.projectType,

@@ -7,13 +7,20 @@ module.exports = {
         var newProject = new Project(req.body);
         newProject.save(function(err, result) {
             if (err) return res.status(500).send(err);
-            res.send(result)
+            
             console.log("CTRL add Project result", result._id)
-            studentPort.findByIdAndUpdate(req.params.studentId, {
+            studentPort.findByIdAndUpdate(req.params.studentId,
+             {
                 $push:{
                     "projects": result._id
                 }
-            })
+            },
+            function(err, response){
+            if (err) return res.status(500).send(err);
+            res.send();
+            }
+
+            )
             
         });
     },
