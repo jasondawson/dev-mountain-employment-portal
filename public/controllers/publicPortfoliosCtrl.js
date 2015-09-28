@@ -40,6 +40,10 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 		className();
 	}
 
+	$scope.viewFullProfile = function(id) {
+		console.log(id);
+	}
+
 })
 
 

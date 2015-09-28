@@ -25,8 +25,9 @@ Percent Completed:
 </p>
 </div>
 <br>
-<div ng-repeat="student in studentPortfolio | filter:studentFilter">
-<portfolio-view student="student"></portfolio-view>
+<div ng-repeat="student in studentPortfolio | filter:studentFilter" >
+<portfolio-view student="student" button ng-click="viewFullProfile(student._id)"></portfolio-view>
+
 </div>
 
 <br>

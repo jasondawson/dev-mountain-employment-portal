@@ -1,6 +1,9 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter,
-	$http) {
+	$http, loggedInUser) {
+
+
+	$scope.canEdit = $stateParams.id === loggedInUser._id
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
@@ -124,6 +127,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 /*angular.extend(data, {projects: project});
     return $http.put('http://localhost:3000/api/studentPortfolio/55f708cc4a368e270de0ecff', data)*/
+
 
 
 
