@@ -25,6 +25,7 @@
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
+    "mongodb": "^2.0.44",
     "mongodb-uri": "^0.9.7",
     "mongoose": "^4.1.6",
     "passport": "^0.3.0",

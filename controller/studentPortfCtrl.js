@@ -1,6 +1,8 @@
 var StudentPortf = require('../models/studentPortf');
 var User = require('../models/userSchema');
 var cohortLoc = require('../models/cohortLocSche');
+var mongoose = require('mongoose');
+var ObjectID = require('mongodb').ObjectID;
 
 
 CustomLogger = function() {
@@ -103,25 +105,22 @@ module.exports = {
   },
 
   getCohorts: function(req, res) {
-
+    var cohortId = req.params.id;
     StudentPortf.find().populate(
         'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
       )
-      .exec(function(err, result) {
+      .lean().exec(function(err, result) {
         var students = [];
-        var studentCohort = result.map(function(student) {
-          console.log('this is map', student.cohort.cohortname._id);
-          console.log('this is req.params.id ', req.params.id);
-          if (student.cohort.cohortname._id === req.params.id) {
-            return student;
+        result.forEach(function(student) {
+          var idWrapper = ObjectID.createFromHexString(cohortId);
+          if (student.cohort.cohortname._id.id === idWrapper.id) {
+            students.push(student);
           }
         })
-        console.log('this is students', students);
         if (err) return res.status(500).send(err);
         res.send(students);
-      });
+      })
   }
-
 
 
   //end module.exports
