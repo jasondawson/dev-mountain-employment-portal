@@ -16,8 +16,9 @@ app.controller('homeviewCtrl', function($scope) {
       cursorChar: " |",
     });
     $(".update-box").css({
-      'color': 'white',
-      'font-size': '30px'
+      'color': '#34ACE0',
+      'font-size': '30px',
+      'font-weight': 'bold'
     })
   }());
 
