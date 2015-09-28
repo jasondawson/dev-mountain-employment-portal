@@ -40,10 +40,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
   .state("portfolios", {
-    url: "/portfolios",
-    templateUrl: "html-templates/publicPortfolios.html",
-    controller: "publicPortfoliosCtrl"
-  })
+      url: "/portfolios/",
+      templateUrl: "html-templates/publicPortfolios.html",
+      controller: "publicPortfoliosCtrl"
+    })
+    //
+    // .state("portfolios", {
+    //   url: "/portfolios/:cohort",
+    //   templateUrl: "html-templates/publicPortfolios.html",
+    //   controller: "publicPortfoliosCtrl",
+    //   resolve: {
+    //     portfolioroutes: function(publicPortfoliosSvc) {
+    //       return publicPortfoliosSvc.getStudentProf();
+    //     }
+    //   }
+    // })
 
   .state("profiles", {
     url: "/profiles",
@@ -51,7 +62,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "studentProfileCtrl"
   })
 
-  .state("porfolioview", {
+  .state("portfolioview", {
     url: "/portfolioview",
     templateUrl: "html-templates/portfolioList.html",
     controller: "portfolioListCtrl"

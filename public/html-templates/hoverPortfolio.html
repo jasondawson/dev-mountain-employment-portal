@@ -4,9 +4,9 @@
   <img src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}" style="width: 200px; height: 200px"> Name: {{student.name.first}} {{student.name.last}}
   <br>Bio: {{student.Bio}}
   <br> Skills:
-  <div ng-repeat="skill in student.skills">
-    {{skill.title}}
-  </div>
+  <span ng-repeat="skill in student.skills">
+    {{skill.title}}{{$last ? '' : ', '}}
+  </span>
 </div>
 <div ng-repeat="project in student.projects | limitTo:2" ng-show="hidden">
   Project Name: {{project.name}}

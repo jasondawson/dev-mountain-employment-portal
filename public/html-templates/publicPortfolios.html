@@ -1,29 +1,5 @@
 <h3>Student Porfolios</h3>
-<div class="filter">
-<p>Filter by:</p>
 
-<p>
-School Location:
-</p>
-<button ng-click="studentFilter={classLocation:'UT'}">Utah</button>
-<button ng-click="studentFilter={classLocation:'TX'}">Texas</button>
-
-<p>
-Class:
-</p>
-<button ng-click="studentFilter={classType:'Web Development'}">Web Development</button> <button ng-click="studentFilter={classType:'IOS'}">iOS Development</button>
-<p>
-Percent Completed:
-<button ng-click="studentFilter={percentCompleted:100}">100</button>
-
-</p>
-
-<p>
-<button ng-click="studentFilter=undefined">Reset Filters</button>
-
-</p>
-</p>
-</div>
 <br>
 <div ng-repeat="student in studentPortfolio | filter:studentFilter">
     <!--TODO ng-click="viewStudent(student)" -->

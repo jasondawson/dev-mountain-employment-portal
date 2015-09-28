@@ -1,20 +1,24 @@
 app.controller('homeviewCtrl', function($scope) {
   new WOW().init();
 
-$scope.updates = ['Affordable', "Immersive", "highly-reviewed", "transformative", "innovative", "passionate", "accessible", "life-changing"];
+  $scope.updates = ["Web Developer", "iOS Developer"];
 
-//typed.js function
+  //typed.js function
 
-$(function(){
+  $(function() {
     $(".update-box").typed({
-      strings:$scope.updates,
+      strings: $scope.updates,
       typeSpeed: 40,
       loop: true,
       backDelay: 1500,
       contentType: 'text',
       loopCount: false,
-      cursorChar: " |"
+      cursorChar: " |",
     });
+    $(".update-box").css({
+      'color': 'white',
+      'font-size': '30px'
+    })
   }());
 
 });

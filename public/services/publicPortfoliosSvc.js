@@ -29,6 +29,17 @@ app.service("publicPortfoliosSvc", function($http, $q) {
     return deferred.promise;
   }
 
+  this.getByCohort = function() {
+    var deferred = $q.defer(data);
+    $http({
+      url: 'http://localhost:3000/api/studentPortfolio',
+      method: 'GET',
+    }).then(function(response) {
+      deferred.resolve(response.data);
+    })
+    return deferred.promise;
+  }
+
   this.getStudentProj = function(data) {
       var deferred = $q.defer();
       $http({
