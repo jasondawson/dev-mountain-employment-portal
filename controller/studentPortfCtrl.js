@@ -32,10 +32,17 @@ module.exports = {
     });
   },
   read: function(req, res) {
+    console.log('looking for students');
     StudentPortf.find(req.query)
+
+    /*  .populate(
+        'cohort.cohortName cohortName cohort.cohortLocation cohort.className projects skills'
+      )*/
+   
       .populate(
-        'cohort.cohortName cohort.cohortLocation cohort.className projects skills'
+        'cohort.cohortname cohort.className cohort.cohortLocation projects skills'
       )
+      //.populate("cohort.cohortName")
       .exec(function(err, result) {
         console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
@@ -47,11 +54,6 @@ module.exports = {
         User.findById({
             _id: req.params.id
         })
-        .populate(
-          'cohort.cohortName cohort.cohortLocation cohort.className skills'
-        )
-        //.populate('cohort.cohortLocation')
-
         .exec(function(err, result) {
             if (err) return res.status(500).send(err);
             var studentPortfolio = {};
@@ -61,17 +63,17 @@ module.exports = {
             StudentPortf.findOne({
                     loginInfo: userId
                 })
-                .populate('cohort.cohortName cohort.cohortLocation cohort.className skills')
+                .populate('cohort.cohortname cohort.cohortLocation cohort.className projects skills DevSkills')
                 .exec(function(err, result) {
                     studentPortfolio.studentPortf = result;
                     res.send(studentPortfolio);
                 })
         })
     },
-
-    update: function(req, res) {
+update: function(req, res) {
+        console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
         StudentPortf.findOneAndUpdate({
-                loginInfo: req.params.id
+                _id: req.params.id
             }, {
                 $set: req.body
             }, {
@@ -88,6 +90,7 @@ module.exports = {
                 res.send(result);
             });
     },
+
 
     delete: function(req, res) {
         StudentPortf.findByIdAndRemove(req.params.id, function(err, result) {

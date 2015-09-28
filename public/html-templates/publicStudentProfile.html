@@ -1,210 +1,275 @@
 
 <div class="container">
-  
-  	<div>
-	<input type="file" images="images" accept="image/pdf*" ng-model="s3url" fileread />
-	{{s3url}}
 
-	</div>
-<form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
+  <!-- <img src="{{s3url}}" style="width: 200px; height: 200px"> -->
+  <img src="{{studentData.picture}}" style="width: 200px; height: 200px">
+  <input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread />
 
-
-	<div >
-		<span editable-text="studentData.studentPortf.name.first"  e-name="name.first" e-required e-placeholder="Enter name">{{  (studentData.studentPortf.name.first || 'Enter Name')|uppercase }}</span>
-		<span editable-text="studentData.studentPortf.name.last" e-name="name.last" e-required e-placeholder="Enter last name">{{ (studentData.studentPortf.name.last|| 'empty')|uppercase }}</span>
-	</div>
-	<div>
-		<span editable-text="studentData.studentPortf.email" e-name="email" e-placeholder="Enter email">{{ studentData.studentPortf.email || 'youremail@email.com' }}</span>
-	</div>
+  <button ng-click="saveProfilePic(studentData)">Save</button>
 
 
-	<div>
-	  <a href='http://{{studentData.studentPortf.github}}'  editable-text="studentData.studentPortf.github" e-placeholder="Enter Github Account">
-	    {{ studentData.studentPortf.github}}
-	  </a>
-	</div>
+    <form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
 
-
-	<div>
-	  <a href='http://{{studentData.studentPortf.personalWebsite}}'  editable-text="studentData.studentPortf.personalWebsite" e-placeholder="Enter Website link" >
-	    http://{{ studentData.studentPortf.personalWebsite}}
-	  </a>
-	</div>
-
-	<div>
-		<a href='http://{{studentData.studentPortf.LinkdIn}}'  editable-text="studentData.studentPortf.LinkdIn" e-placeholder="Enter LinkdIn">
-	    {{ studentData.studentPortf.LinkdIn ||'Your LinkdIn Account' }}
-	  	</a>
-	</div>
-	<div>
-      <!-- editable Class Name (select-local) -->
-      <span class="title">Class:</span>
-      <br>
-
-      <span editable-select="studentClassName" e-name="classNames" e-ng-options="c._id as c.text for c in classNames">
-        {{ (classNames | filter:{_id: studentClassName})[0].text || " Your Class Name/Type Here" }}
-      </span>
-  </div>
-	<div>
-      <!-- editable Cohort Location (select-local) -->
-      <span class="title">Cohort Location: </span>
-      <br>
-      <span editable-select="studentCohortLocation" e-name="cohortLocation"  e-ng-options="c._id as c.text for c in cohortLocations">
-        {{ (cohortLocations | filter:{_id: studentCohortLocation})[0].text || "Cohort location e.g. Provo, UT" }}
-      </span>
-    </div>
-    	<div>
-      <!-- editable Cohort Name (select-local) -->
-      <span class="title">Cohort:</span>
-      <br>
-      <span editable-select="studentCohortName" e-name="cohortName" e-ng-options="c._id as c.text for c in cohortNames">
-        {{(cohortNames | filter:{_id:studentCohortName})[0].text || "Your Cohort e.g. DM1"}}
-      </span>
-      <br>
-     
-    </div>
-
-	<div class="BioBox">
-    <span class="title">About you</span>
-		<span editable-text="studentData.studentPortf.Bio" e-name="Bio" e-required e-placeholder="Tell us about you">{{ studentData.studentPortf.Bio || 'About you' }}</span>
-	</div>
-	<div>
-      <!-- editable status (select-local) -->
-      <span class="title">Status</span>
-      <br>
-      <span editable-select="studentData.studentPortf.status.text" e-name="status" e-ng-options="s.text for s in statuses">
-        {{ (statuses | filter:{text: studentData.studentPortf.status.text})[0].text || "Your Status" }}
-      </span>
+    <div >
+    <span editable-text="studentData.name.first"  e-name="name.first" e-required e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }}</span>
+    <span editable-text="studentData.name.last" e-name="name.last" e-required e-placeholder="Enter last name">{{ (studentData.name.last|| 'empty')|uppercase }}</span>
     </div>
     <div>
-      <!-- editable relocation (select-local) -->
-      <span class="title">Relocation</span>
-      <br>
-      <span editable-select="studentData.studentPortf.relocation.text" e-name="relocation" e-ng-options="s.text for s in relocationOptns">
-        {{ (relocationOptns | filter:{text: studentData.studentPortf.relocation.text})[0].text || "Relocation Options" }}
-      </span>
+    <span editable-text="studentData.email" e-name="email" e-placeholder="Enter email">{{ studentData.email || 'youremail@email.com' }}</span>
     </div>
+
+
+    <div>
+    <a href='http://{{studentData.github}}'  editable-text="studentData.github" e-placeholder="Enter Github Account">
+    {{ studentData.github}}
+    </a>
+    </div>
+
+
+    <div>
+    <a href='http://{{studentData.personalWebsite}}'  editable-text="studentData.personalWebsite" e-placeholder="Enter Website link" >
+    http://{{ studentData.personalWebsite}}
+    </a>
+    </div>
+
+    <div>
+    <a href='http://{{studentData.LinkdIn}}'  editable-text="studentData.LinkdIn" e-placeholder="Enter LinkdIn">
+    {{ studentData.LinkdIn ||'Your LinkdIn Account' }}
+    </a>
+    </div>
+    <div>
+    <!-- editable Class Name (select-local) -->
+    <span class="title">Class:</span>
+    <br>
+
+    <span editable-select="studentData.cohort.className._id" e-name="cohort.className" e-ng-options="c._id as c.text for c in classNames">
+    {{ studentData.cohort.className.text || " Your Class Name" }}
+    {{studentData.cohort.className.text}}
+
+    </span>
+    </div>
+    <div>
+    <!-- editable Cohort Location (select-local) -->
+    <span class="title">Cohort Location: </span>
+    <br>
+    <span editable-select="studentData.cohort.cohortLocation._id" e-name="cohort.cohortLocation"  e-ng-options="c._id as c.text for c in cohortLocations">
+    {{ studentData.cohort.cohortLocation.text || "Cohort location e.g. Provo, UT" }}
+    </span>
+    </div>
+    <div>
+    <!-- editable Cohort Name (select-local) -->
+    <span class="title">Cohort:</span>
+    <br>
+    <span editable-select="studentData.cohort.cohortname._id" e-name="cohort.cohortname" e-ng-options="c._id as c.text for c in cohortNames">
+    {{studentData.cohort.cohortname.text || "Your Cohort e.g. DM1"}}
+    </span>
+    <br>
+
+    </div>
+
+    <div class="BioBox">
+    <span class="title">About you</span>
+    <span editable-text="studentData.Bio" e-name="Bio" e-required e-placeholder="Tell us about you">{{ studentData.Bio || 'About you' }}</span>
+    </div>
+    <div>
+    <!-- editable status (select-local) -->
+    <span class="title">Status</span>
+    <br>
+    <span editable-select="studentData.status" e-name="status" e-ng-options="status.text for status in statuses">
+    {{ studentData.status.text || "Your Status" }}
+    </span>
+    </div>
+    <div>
+    <!-- editable relocation (select-local) -->
+    <span class="title">Relocation</span>
+    <br>
+    <span editable-select="studentData.relocation" e-name="relocation" e-ng-options="option.text for option in relocationOptns">
+    {{ studentData.relocation.text || "Relocation Options" }}
+    </span>
+    </div>
+    <div>
+    <span class="title">Skills: NOT SAVING SKILLS SELECTIONS</span>
     <div>
     <span class="title">Skills</span>
-    <!-- try editable-radiolist -->
-    <span editable-checklist="studentData.studentPortf.skills" e-ng-options="s.title for s in skillsArray">
-     
-      <ul>
-      <li ng-repeat="s in showSkills() track by $index">
-      {{s}}</li>
-      </ul>
+
+    <span editable-checklist="studentData.skills" e-ng-options="s._id as s.title for s in skillsArray">
+    <ul>
+    <li ng-repeat="s in showSkills() track by $index">
+    {{s.title}}</li>
+    </ul>
     </span>
+    </div>
 
     </div>
 
-	<div>
+    <div>
     <span class="title">Location</span>
     <br>
-		<span editable-text="studentData.studentPortf.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.studentPortf.currentLoc.city || 'City' }}</span>
-		<span editable-text="studentData.studentPortf.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.studentPortf.currentLoc.state || 'State' }}</span>
-	</div>
-	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
-        Edit
-      </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="editableProfileForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="editableProfileForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="editableProfileForm.$waiting" ng-click="editableProfileForm.$cancel()">
-          Cancel
-        </button>
-      </span>
+    <span editable-text="studentData.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.currentLoc.city || 'City' }}</span>
+    <span editable-text="studentData.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.currentLoc.state || 'State' }}</span>
     </div>
-</form>
 
-<form editable-form name="editableProjectForm" onaftersave="updateProject()">
-<div class="showcase">
-  <h2>Showcase</h2>
+
+    <div class="buttons" > <!-- ng-if='logged in' authentication problem -->
+    <!-- button to show form -->
+    <button type="button" ng-disabled="!isMyProfile()" class="btn btn-default" ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
+    Edit
+    </button>
+    <!-- buttons to submit / cancel form -->
+    <span ng-show="editableProfileForm.$visible">
+    <button type="submit" class="btn btn-primary" ng-disabled="editableProfileForm.$waiting">
+    Save
+    </button>
+    <button type="button" class="btn btn-default" ng-disabled="editableProfileForm.$waiting" ng-click="editableProfileForm.$cancel()">
+    Cancel
+    </button>
+    </span>
+    </div>
+    </form>
+    <div>
+    <p>Percentage Completed</p>
+    <div class="percentageDiv">
+    <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" progressbar total="100" current="studentData.percentCompleted">{{ studentData.percentCompleted}}% <span class="sr-only">10% Complete (warning)</span>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="showcase" >
+    <h4>Showcase</h4>
+    <div ng-hide= '!isMyProfile()' style="background-color: #C0ECFA">
+      <div>
+      <h4>Add New Project</h4>
+      <label>Image Path</label><br>
+      <img ng-src="{{newProject.picture}}" style="width: 200px; height: 200px">
+      <input type="file" images="images" accept="image/pdf*" ng-model="newProject.picture" newproject-fileread />
+      </div>
+      <div>
+      <label>Project Name</label>
+      <input class="project-edit" ng-model="newProject.name" ng-disabled="!isMyProfile()" placeholder="Type Project Name"></input>
+      </div>
+      <div>
+      <label>Project Type</label>
+      <input class="project-edit" ng-model="newProject.projectType" ng-disabled="!isMyProfile()" placeholder="Group project or Personal project"></input>
+      </div>
+      <div>
+      <label>Project Description</label>
+      <input class="project-edit" ng-model="newProject.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></input>
+      </div>
+      <div>
+      <label>Tech Used</label>
+      <input class="project-edit" ng-model="newProject.TechUsed" ng-disabled="!isMyProfile()" placeholder="Technology used"></input>
+      </div>
+      <div>
+      <label>Code Source</label>
+      <input class="project-edit" ng-model="newProject.codeSource.name" ng-disabled="!isMyProfile()" placeholder="used"></input>
+      </div>
+      <div>
+      <label>Url</label>
+      <input class="project-edit" ng-model="newProject.codeSource.url" ng-disabled="!isMyProfile()" placeholder=" used"></input>
+      </div>          
+      <button class="btn btn-primary" ng-click="saveNewProject(newProject)">ADDNEW-need to work on this</button>
+    </div>
+    
+    <br>
+      <div class="projects" ng-repeat="project in studentData.projects">
+          <div>
+          <label>Image Path</label><br>
+          <img ng-src="{{project.picture}}" style="width: 200px; height: 200px">
+          <input type="file" images="images" accept="image/pdf*" ng-model="project.picture" project-fileread />
+      <!--     <button class="btn btn-primary" ng-click="saveProjectPic(project)">Save-need to work on this</button> -->
+          </div>
+          <div>
+            <label>Project Name</label>
+            <input class="project-edit" ng-model="project.name" ng-disabled="!isMyProfile()" placeholder="Type Project Name"></input>
+          </div>
+          <div>
+            <label>Project Type</label>
+            <input class="project-edit" ng-model="project.projectType" ng-disabled="!isMyProfile()" placeholder="Type Project Type"></input>
+          </div>
+          <div>
+            <label>Project Description</label>
+            <input class="project-edit" ng-model="project.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></input>
+          </div>
+          <div>
+            <label>Tech Used</label>
+            <input class="project-edit" ng-model="project.TechUsed" ng-disabled="!isMyProfile()" placeholder="Technology used"></input>
+          </div>
+          <div>
+            <label>Code Source</label>
+            <input class="project-edit" ng-model="project.codeSource.name" ng-disabled="!isMyProfile()" placeholder="used"></input>
+          </div>
+          <div>
+            <label>Url</label>
+            <input class="project-edit" ng-model="project.codeSource.url" ng-disabled="!isMyProfile()" placeholder=" used"></input>
+          </div>          
+        <button class="btn btn-primary" ng-click="saveProject(project)">Save</button>
+  <!--TODO
+  NAME: Repeated projects
+  <div>
+  <input class="profile-edit" ng-model="project.projectType"
+  ng-disabled="!isMyProfile()"></input>
+  </div>
+  Change these to input boxes
+
+  add a new css class
+  .profile-edit:disabled {
+  make it look like plain text
+  0 border
+  0 background
+  }
+add a save button
+  ng-click="saveProject(project);
+  -> make put request with that project
+  Build url
+  /api/updateproject/:projectId/?projectType=|project.projectType|&name=|project.name|
+
+  controller has
+  $scope.newProject = {
+
+  }
+
+  $scope.saveNewProject
+  takes $scope.newProject 
+  sends it to the database
+  $scope.newProject = {
+
+  }
+
+  PSEUDO HTML
+  div
+  div .new
+  input newProject.name, newProject.description, other fields
+  div repeat (SEE: Repeated projects above
+  project name
+<div></div>
+-->   </div> <!--ng-repeat closes-->
+      </div> <!--showcase closes -->  
   <br>
-</div>
-	<div>
-  <span class= "title">Proyect name</span>
-		<span editable-text="studentData.projects.name"  e-name="projectName" e-placeholder="My Awsome Project">{{  (studentData.projects.name || 'Enter Project Name')|uppercase }}</span>
+  <b>This is the TechSkills</b>
+  <br>
+  <div class="skills" ng-repeat="devskill in studentData.DevSkills">
 
-	</div>
-    <div>
-      <!-- Project Type -->
-      <span class='title'>Proyect Type</span>
-      <span editable-select="studentData.projects.projectType" e-name="projectTypes" e-ng-options="s.value as s.text for s in projectTypes">
-        {{ (projectTypes | filter:{value: studentData.projects.projectTypes})[0].text || projectTypes[0] }}
-      </span>
+          <div>
+            <label>DevSkill Name</label>
+            <input class="project-edit" ng-model="devskill.name" ng-disabled="!isMyProfile()" placeholder="Type devskill Name"></input>
+          </div>
 
-    </div> 
-    <div>
-    <span class="title">Proyect Description </span>
-    <span editable-text="studentData.project.description" e-name="Bio" e-required e-placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">{{ studentData.studentPortf.Bio || 'About your project' }}</span>
+          <div>
+            <label>devskill Description</label>
+            <input class="project-edit" ng-model="devskill.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></input>
+          </div>
+          <div>
+            <label>Link</label>
+            <input class="project-edit" ng-model="devskill.link.name" ng-disabled="!isMyProfile()" placeholder="link name"></input>
+          </div>
+          <div>
+            <label>link URL</label>
+            <input class="project-edit" ng-model="devskill.link.url" ng-disabled="!isMyProfile()" placeholder="url address"></input>
+          </div>
+         
+        <button class="btn btn-primary" ng-click="saveDevSkill(devskill)">Save-need to work on this</button>
   </div>
 
-   
-
-
-<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="editableProjectForm.$show()" ng-show="!editableProjectForm.$visible">
-        Edit
-      </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="editableProjectForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="editableProjectForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="editableProjectForm.$waiting" ng-click="editableProjectForm.$cancel()">
-          Cancel
-        </button>
-      </span>
-    </div>
-     </div>
-</form>
-
-
-</form>
-</div>
-<br>
-<div class="showcase">
-  <h4>Showcase</h4>
-  <br>
-<b>This is the Projects</b>
-<br>
-<br>
-<div class="projects" ng-repeat="project in studentData.projects">
-Project Type: {{project.projectType}}
-<br>
-Project Name: {{project.name}}
-<br>
-Description: {{project.description}}
-<br>
-Tech Used: {{project.TechUsed}}
-</div>
-<br>
-<b>This is the TechSkills</b>
-<br>
-<div class="skills" ng-repeat="devskill in studentData.devSkills">
-  <br>
-TechSkill:
-<br>
-Description: {{devskill.description}}
-<br>
-Source:
-<br>
-<div ng-repeat="link in devskill.link">
-<a href="{{link.url}}">{{link.name}}</a>
-<br>
-</div>
-</div>
-
-</div>
-
-
-
-
-
-
-
+</div> <!-- END of div 'container' -->

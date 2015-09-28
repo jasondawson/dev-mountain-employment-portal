@@ -143,7 +143,7 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-router.route('/api/project')
+router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
@@ -151,8 +151,8 @@ router.route('/api/project')
 router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('/api/project/:id')
-  .put(authCtrl.isAuthenticated, projectCtrl.update)
+router.route('/api/updateProject/:id')
+  .put(/*authCtrl.isAuthenticated,*/ projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 router.route('/api/projects')
@@ -162,15 +162,18 @@ router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
 
-router.route('/api/studentPortfolio/:profileId')
-  .get(authCtrl.isAuthenticated, studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+
+router.route('/api/studentPortfolio/:id')
+  .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+ 
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
+
   .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
-  .get(/*authCtrl.isAuthenticated, */cohortNameCtrl.read);
+  .get(cohortNameCtrl.read);
 
 router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)

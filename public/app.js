@@ -1,66 +1,10 @@
-<<<<<<< HEAD
-var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table', 'ngMaterial', 'ngAnimate']);
-=======
+"use Strict";
 var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
   'ngMaterial', 'ngAnimate'
 ]);
->>>>>>> bac10b5fecf24eb8532cc47c672e916ecd0dc23e
-
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-<<<<<<< HEAD
-    // For any unmatched url, redirect to /homeView
-    $urlRouterProvider.otherwise("/homeView");
-
-    $stateProvider
-
-
-
-        .state('admin', {
-        url: "/admin",
-        templateUrl: "html-templates/admin.html",
-        controller: "adminCtrl"
-    })
-
-    .state("createAccount", {
-        url: "/createAccount",
-        templateUrl: "html-templates/createAccount.html",
-        controller: "loginCreateAccountCtrl"
-    })
-
-    .state('homeView', {
-        url: "/homeView",
-        templateUrl: "html-templates/homeView.html"
-    })
-
-    .state('login', {
-            url: "/login",
-            templateUrl: "html-templates/login.html",
-            controller: "loginCreateAccountCtrl"
-        })
-        .state('logout', {
-            url: "/homeView",
-            templateUrl: "html-templates/homeView.html"
-        })
-
-    .state("portfolios", {
-        url: "/portfolios",
-        templateUrl: "html-templates/publicPortfolios.html",
-        controller: "publicPortfoliosCtrl"
-    })
-
-    .state("profiles", {
-        url: "/profiles",
-        templateUrl: "html-templates/publicStudentProfile.html",
-        controller: "studentProfileCtrl"
-    })
-
-    // .state("adminAddSchool", {
-    //   url: "/adminAddSchool",
-    //   templateUrl: "html-templates/adminAddSchool.html"
-    // })
-=======
   // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView");
 
@@ -92,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('logout', {
       url: "/homeView",
       templateUrl: "html-templates/homeView.html",
-      controller: "homeViewCtrl" 
+      controller: "homeViewCtrl"
     })
 
   .state("portfolios", {
@@ -100,26 +44,44 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "html-templates/publicPortfolios.html",
     controller: "publicPortfoliosCtrl"
   })
-
-  .state("profiles", {
-    url: "/profiles",
+  .state("profile", {
+    url: "/profile",
     templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl"
   })
-
-  // .state("adminAddSchool", {
-  //   url: "/adminAddSchool",
-  //   templateUrl: "html-templates/adminAddSchool.html"
+  // .state("profile",{
+  //   url:"/profile/:loginId",
+  //   templateUrl: "html-templates/publicStudentProfile.html",
+  //   controller: "studentProfileCtrl"
   // })
->>>>>>> bac10b5fecf24eb8532cc47c672e916ecd0dc23e
+
 
 });
+app.directive("progressbar", function() {
+  return {
+    restrict: "A",
+    scope: {
+      total: "=",
+      current: "="
+    },
+    link: function(scope, element) {
 
-app.run(function(editableOptions) {
-<<<<<<< HEAD
-    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+      scope.$watch("current", function(value) {
+        element.css("width", scope.current / scope.total * 100 + "%");
+      });
+      scope.$watch("total", function(value) {
+        element.css("width", scope.current / scope.total * 100 + "%");
+      })
+    }
+  };
 });
-=======
+
+app.run(function(editableOptions, $state, $rootScope) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+  /*$rootScope.$on('$stateChangeStart',
+function(event, toState, toParams, fromState, fromParams){
+    event.preventDefault(); */
+  // transitionTo() promise will be rejected with
+  // a 'transition prevented' error
+  //});
 });
->>>>>>> bac10b5fecf24eb8532cc47c672e916ecd0dc23e

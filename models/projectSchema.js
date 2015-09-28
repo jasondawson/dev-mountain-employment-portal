@@ -2,14 +2,9 @@ var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
 var projectInfo = new Schema({
-    loginInfo: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
     picture: {
         type: String
-    }, // AMAZON S# string? or link?
+    }, 
     name: {
         type: String
     },
@@ -17,21 +12,17 @@ var projectInfo = new Schema({
         type: String
     },
     projectType: {
-        type: String,
-        enum: [
-            'personal',
-            'group'
-        ]
+            type: String
     },
-    codeSource: [{
+    codeSource: {
         name: {
             type: String,
-            uppercase: true
+            //uppercase: true
         },
         url: {
             type: String
         }
-    }],
+    },
     TechUsed: {
         type: String
     }
