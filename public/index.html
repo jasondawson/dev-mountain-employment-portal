@@ -39,10 +39,13 @@
 		<a ui-sref="portfolios">Porfolios</a>
 	</li>
 	<li>
-		<a ng-click="login()">Log-In</a>
+		<a class="btn btn-primary" ng-click="login('student')" ng-show="!$root.loggedIn">Student</a>
 	</li>
 	<li>
-		<a ui-sref="admin">Administrator</a>
+		<a class="btn btn-warning" ng-click="login('admin')" ng-show="!$root.loggedIn">Administrator</a>
+	</li>
+	<li>
+		<a class="btn btn-default" ng-click="logout()" ng-show="$root.loggedIn">Logout</a>
 	</li>
 </ul>
 

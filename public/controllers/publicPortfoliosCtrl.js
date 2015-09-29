@@ -1,4 +1,4 @@
-app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
+app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc, $state) {
 
 	$scope.portfoliosTest =
 		"This test is from the publicPortfoliosCtrl file from $scope";
@@ -40,8 +40,9 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 		className();
 	}
 
-	$scope.viewFullProfile = function(id) {
-		console.log(id);
+	$scope.viewFullProfile = function(studentPortfolio) {
+		console.debug(studentPortfolio);
+		$state.go('profiles', {id: studentPortfolio.loginInfo});
 	}
 
 })

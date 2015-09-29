@@ -155,9 +155,58 @@ var authenticationRedirectUrl = 'http://localhost:1337/login/?bounce=' + app_nam
 var authRoutes = express.Router();
 app.use('/auth', authRoutes);
 
+authRoutes.get('/getSessionUser', function(req, res) {
+  if (req.session.decoded) {
+    res.send(req.session.decoded);
+  } else {
+    res.send();
+  }
+})
+
 // allows app state or route to be passed here, saved in the session and redirected to after authentication
-authRoutes.get('/getUser', function(req, res) {
-  
+authRoutes.get('/getUser/:type', function(req, res) {
+
+// TODO remove hardcoded for testing
+
+if (req.params.type === 'admin') {
+  req.session.decoded =
+        {
+         "email": "test2@test.com",
+         "id": 94,
+         "roles": [
+           {
+             "role": "admin",
+             "id": 1
+           },
+           {
+             "role": "mentor",
+             "id": 2
+           },
+           {
+             "role": "lead_instructor",
+             "id": 3
+           }
+         ],
+         "iat": 1443128174,
+         "exp": 1443214574
+        }
+} else if (req.params.type === 'student') {
+   req.session.decoded =
+        {
+         "email": "test@test.com",
+         "id": 95,
+         "roles": [
+           {
+             "role": "student",
+             "id": 4
+           }
+         ],
+         _id: '55f8480baec60b07268b0f59',
+
+         "iat": 1443128174,
+         "exp": 1443214574
+        }
+}
 
   // if the decoded token is already on the session, just pass it back
   if (req.session.decoded) {
@@ -190,19 +239,25 @@ authRoutes.get('/ms/callback', function(req, res) {
 
         //token is valid
         req.session.decoded = decoded;
+        console.log(decoded);
 
-        var tmp = req.session.redirectState || null
-        delete req.session.redirectState;
+        if (req.session.redirectState) {
+          var tmp = req.session.redirectState || null
+          delete req.session.redirectState;
+        }
+        console.log('redirecting')
         res.redirect('/#/' + tmp);
       }
     })
+  } else {
+    //else there is no token
+    return (res.status(403).json({
+      success: false,
+      message: 'No token given'
+    }))
+
   }
 
-  //else there is no token
-  return (res.status(403).json({
-    success: false,
-    message: 'No token given'
-  }))
 })
 
 authRoutes.get('/logout', function(req, res) {
@@ -259,7 +314,7 @@ router.route('/api/studentPortfolio')
 
 router.route('/api/studentPortfolio/:id')
   .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
- 
+
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
 
