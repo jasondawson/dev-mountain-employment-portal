@@ -1,7 +1,4 @@
-app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
-
-	cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter,
-	$http, loggedInUser, $stateParams) {
+app.controller("studentProfileCtrl", function($scope, studentProfileSvc,cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter, $http, loggedInUser, $stateParams, loginSvc) {
 
   if (loggedInUser) {
 	 $scope.canEdit = $stateParams.id === loggedInUser._id
@@ -119,7 +116,9 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
     });
     return selected.length ? selected: "";
   };*/
-
+}
+})
+};
   $scope.showSkills();
 
 	//updateStudent($data) function from html
@@ -196,11 +195,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projectsArray
 
   */
-
-
-
-
-
 
 
 });

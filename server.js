@@ -311,18 +311,10 @@ router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
 router.route('/api/studentPortfolio/:id')
-<<<<<<< HEAD
-  .get(studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
-
-.post(authCtrl.isAuthenticated, studentPortfCtrl.create)
-=======
   .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
-
   .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
->>>>>>> randy
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
-
-.delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+  .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)

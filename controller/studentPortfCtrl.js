@@ -2,7 +2,7 @@ var StudentPortf = require('../models/studentPortf');
 var User = require('../models/userSchema');
 var cohortLoc = require('../models/cohortLocSche');
 var mongoose = require('mongoose');
-var ObjectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb-uri').ObjectID;
 
 
 CustomLogger = function() {

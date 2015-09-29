@@ -124,7 +124,7 @@ function(event, toState, toParams, fromState, fromParams){
 
 app.run(function($rootScope, $state, $window, authService, $location) {
 
-  var publicViews = ["homeView", "profiles", "portfolios"];
+  var publicViews = ["homeView", "profiles", "portfolios", "portfolioview"];
   authService.getLoginUser().then(function(loggedInUser) {
     if (loggedInUser) {
       $rootScope.loggedIn = true;

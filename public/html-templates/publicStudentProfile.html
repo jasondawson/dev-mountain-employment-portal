@@ -1,19 +1,19 @@
 
 <div class="container">
 
-<<<<<<< HEAD
-  <!-- <img src="{{s3url}}" style="width: 200px; height: 200px"> -->
+<!-- <<<<<<< HEAD
+  <img src="{{s3url}}" style="width: 200px; height: 200px">
   <img src="{{studentData.picture}}" style="width: 200px; height: 200px">
   <input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread />
 
   <button ng-click="saveProfilePic(studentData)">Save</button>
-=======
+======= -->
  <!-- <img src="{{s3url}}" style="width: 200px; height: 200px"> -->
  <img src="{{studentData.picture}}" style="width: 200px; height: 200px">
 	<input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread ng-show="canEdit" />
 
 <button ng-click="saveProfilePic(studentData)" ng-show="canEdit" >Save</button>
->>>>>>> randy
+<!-- >>>>>>> randy -->
 
 
     <form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
