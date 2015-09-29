@@ -3,9 +3,9 @@
 
  <!-- <img src="{{s3url}}" style="width: 200px; height: 200px"> -->
  <img src="{{studentData.picture}}" style="width: 200px; height: 200px">
-	<input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread />
+	<input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread ng-show="canEdit" />
 
-<button ng-click="saveProfilePic(studentData)">Save</button>
+<button ng-click="saveProfilePic(studentData)" ng-show="canEdit" >Save</button>
 
 	</div>
 <form editable-form name="editableProfileForm" onbeforesave="updateStudent($data)">
@@ -64,7 +64,7 @@
         {{studentData.cohort.cohortname.text || "Your Cohort e.g. DM1"}}
       </span>
       <br>
-     
+
     </div>
 
   <div class="BioBox">
@@ -93,7 +93,7 @@
     <span class="title">Skills</span>
     <!-- try editable-radiolist -->
     <span editable-checklist="studentData.studentPortf.skills" e-ng-options="s._id as s.title for s in skillsArray">
-     
+
       <ul>
       <li ng-repeat="s in showSkills() track by $index">
       {{s}}</li>
@@ -110,9 +110,9 @@
 		<span editable-text="studentData.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.currentLoc.city || 'City' }}</span>
 		<span editable-text="studentData.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.currentLoc.state || 'State' }}</span>
 	</div>
-      
+
     <div>
-	<div class="buttons" > <!-- ng-if='logged in' authentication problem -->
+	<div class="buttons" ng-show="canEdit" > <!-- ng-if='logged in' authentication problem -->
       <!-- button to show form -->
       <button type="button" class="btn btn-default" ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
         Edit
@@ -169,7 +169,7 @@
         {{source.name || 'e.g. GItHUB or JSFiddle' }}
       </a>
       </div>
-    </div>      
+    </div>
     <div>
       <span class="title">TechUsed </span>
       <span editable-text="project.TechUsed" e-name="TechUsed" e-form="editableProjectForm">{{ project.TechUsed || 'e.g. JavaScript, HTML' }}</span>
@@ -183,11 +183,11 @@
             </button>
       </form>
       <div class="buttons" ng-show="!editableProjectForm.$visible">
-            <button class="btn btn-primary" ng-click="editableProjectForm.$show()">edit</button>
-            <button class="btn btn-danger" ng-click="removeProject($index)">del</button>
+            <button class="btn btn-primary" ng-click="editableProjectForm.$show()" ng-show="canEdit" >edit</button>
+            <button class="btn btn-danger" ng-click="removeProject($index)" ng-show="canEdit" >del</button>
       </div>
   </div>
-   <button class="btn btn-default" ng-click="addProject()">Add Project</button>
+   <button class="btn btn-default" ng-click="addProject()" ng-show="canEdit" >Add Project</button>
 </div>
 
 </div>

@@ -16,14 +16,14 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return $http.post('/api/newimage', newImage)
 	}
 
-	this.getStudentProf = function() {
+	this.getStudentProf = function(id) {
 		var deferred = $q.defer();
 	 	var me = loginSvc.getCurrentUser();
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55f723dd5c39cb631af86f1a', 
+			url: 'http://localhost:3000/api/studentPortfolio/' + id,
 			//ID = LOGIN USER ID,
-			
+
 			method: 'GET',
 			//cache: false
 			// data: data
@@ -59,7 +59,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return deferred.promise;
 	};
 
-	
+
 
 
 });

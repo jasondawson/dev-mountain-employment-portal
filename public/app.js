@@ -97,23 +97,35 @@ function(event, toState, toParams, fromState, fromParams){
 app.run(function($rootScope, $state, $window, authService, $location) {
 
   var publicViews = ["homeView", "profiles", "portfolios"];
+  authService.getLoginUser().then(function(loggedInUser) {
+    if (loggedInUser) {
+      $rootScope.loggedIn = true;
+    } else {
+      $rootScope.loggedIn = false;
+    }
+  });
 
 $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-  
+
   if (publicViews.indexOf(toState.name) !== -1) return;
 
-  var user = authService.getLoginUser()    
-      if (user.id) {
-        return;
-      } else {
-        authService.getUser().then(function(data) {
-          if (data.redirect) {
-            $window.location.replace(data.location)
-          }
+  authService.getLoginUser().then(function(loggedInUser) {
+      console.log(loggedInUser);
+        if (loggedInUser.id) {
+          $rootScope.loggedIn = true;
           return;
+        } else {
+          $rootScope.loggedIn = false;
+          authService.getUser().then(function(data) {
+            if (data.redirect) {
+              $window.location.replace(data.location)
+            } else {
+             return;
+            }
 
-        })
-      }
+          })
+        }
+  })
     })
 })
 

@@ -1,15 +1,16 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, classNameServ, studentSkillsService, $filter,
-	$http, loggedInUser) {
+	$http, loggedInUser, $stateParams) {
 
-
-	$scope.canEdit = $stateParams.id === loggedInUser._id
+  if (loggedInUser) {
+	 $scope.canEdit = $stateParams.id === loggedInUser._id
+  }
 
 	$scope.studentProfilesTest =
 		"This test is from the studentProfileCtrl file from $scope";
 	$scope.studentData = {skills:[]}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
 	$scope.getStudentProf = function() {
-		studentProfileSvc.getStudentProf().then(function(response) {
+		studentProfileSvc.getStudentProf($stateParams.id).then(function(response) {
 			$scope.studentData = response.studentPortf;
 			console.log($scope.studentData);
 
@@ -75,7 +76,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
   $scope.showSkills= function(){
     var selected =[];
 /*    angular.forEach($scope.skillsArray, function(obj){
-    
+
       if($scope.studentSkills[obj._id] === $scope.skillsArray[obj._id]){
         selected.push(obj.title);
         console.log($scope.studentSkills[obj._id])
@@ -110,7 +111,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 			$scope.getStudentProf()
 		})
 	};
-	
+
 	$scope.projectTypes = [{
 		text: 'Personal'
 	}, {
