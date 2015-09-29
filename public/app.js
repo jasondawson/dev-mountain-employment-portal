@@ -39,12 +39,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: "homeViewCtrl"
     })
 
-  .state("portfolios", {
-      url: "/portfolios",
-      templateUrl: "html-templates/publicPortfolios.html",
-      controller: "publicPortfoliosCtrl"
-    })
-    .state("profile", {
+
+  .state("profile", {
       url: "/profile",
       templateUrl: "html-templates/publicStudentProfile.html",
       controller: "studentProfileCtrl"
@@ -55,17 +51,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     //   controller: "studentProfileCtrl"
     // })
 
-
-  // .state("portfolios", {
-  //   url: "/portfolios/:cohort",
-  //   templateUrl: "html-templates/publicPortfolios.html",
-  //   controller: "publicPortfoliosCtrl",
-  //   resolve: {
-  //     portfolioroutes: function(publicPortfoliosSvc) {
-  //       return publicPortfoliosSvc.getByCohort();
-  //     }
-  //   }
-  // })
 
   .state("profiles", {
     url: "/profiles",
@@ -80,6 +65,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
 
+  .state("portfolios", {
+    url: "/portfolios/:id",
+    templateUrl: "html-templates/publicPortfolios.html",
+    controller: "publicPortfoliosCtrl",
+    resolve: {
+      cohortroute: function($stateParams, publicPortfoliosSvc) {
+        return publicPortfoliosSvc.getByCohort($stateParams.id)
+      }
+    }
+  })
 
 });
 app.directive("progressbar", function() {

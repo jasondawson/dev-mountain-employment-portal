@@ -30,7 +30,8 @@ app.service("publicPortfoliosSvc", function($http, $q) {
   }
 
   this.getByCohort = function(data) {
-    var deferred = $q.defer(data);
+    console.log('this is data', data);
+    var deferred = $q.defer();
     $http({
       url: 'http://localhost:3000/api/getCohort/' + data,
       method: 'GET',

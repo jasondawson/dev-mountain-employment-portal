@@ -63,7 +63,7 @@ div
   </div>
   <!-- End of filter div   -->
   <div class="cohortProfileView">
-    <div ng-repeat="profile in cohort | filter:studentFilter">
+    <div ng-repeat="profile in cohort | filter:studentFilter" ng-click="goToCohort(profile.classId)">
       <div class="cohortHeading row">
 
         <div class="col-md-6">

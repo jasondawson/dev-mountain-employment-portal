@@ -1,7 +1,15 @@
-app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
+app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
+	cohortroute, $stateParams) {
 
-	$scope.portfoliosTest =
-		"This test is from the publicPortfoliosCtrl file from $scope";
+
+	$scope.getCohorts = cohortroute;
+
+	$scope.goToCohort = function(cohort) {
+		console.log('this is cohort', cohort);
+		$state.go('portfolios', {
+			cohort: cohort
+		})
+	};
 
 	//TODO: Take cohortID in state param -> Only get studetns for that cohort id
 	//$stateParams.cohortId  (route has portfolios/:cohortId)
@@ -12,14 +20,15 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 	     $location to route using student id (route: profile/:studentId)
 	*/
 
-	$scope.getStudentProf = function() {
-		publicPortfoliosSvc.getStudentProf().then(function(response) {
+	$scope.getByCohort = function() {
+		publicPortfoliosSvc.getByCohort($stateParams.id).then(function(
+			response) {
 			$scope.studentPortfolio = response;
 			console.log('this is $scope.studentPortfolio', $scope.studentPortfolio);
 		})
 	};
 
-	$scope.getStudentProf();
+	$scope.getByCohort();
 
 	$scope.getStudentProj = function(data) {
 		publicPortfoliosSvc.getStudentProj(data).then(function(response) {

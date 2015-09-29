@@ -14,66 +14,79 @@ format:
                objectOfPortfolios[groupKey] = final;
 }
 */
-app.controller('portfolioListCtrl', function($scope, publicPortfoliosSvc) {
-  $scope.porfolioObj = function() {
-    publicPortfoliosSvc.getStudentProf().then(function(response) {
-      var objectOfPortfolios = _.groupBy(response, function(response) {
-        return response.cohort.cohortname.text;
-      });
-      console.log(objectOfPortfolios);
-      $scope.cohortProfile = objectOfPortfolios;
+app.controller('portfolioListCtrl', ['$scope',
+  'publicPortfoliosSvc', '$state',
+  function($scope,
+    publicPortfoliosSvc, $state) {
 
-    })
-  };
-
-  $scope.porfolioObj();
-
-
-
-  // for loop over objectOfPortfolios
-  //     foreach groupKey ->
-  //            var one = _.filter(objectOfPortfolios[groupKey], function(port) { port.complete === 100});
-  //            var two = _.shuffle(one)
-  //            var final = _.first(two, 3)
-  //            objectOfPortfolios[groupKey] = final;
-
-  // $scope.cohorts = []
-  // cohort = {
-  //     name:
-  //     location:
-  //     cateogry:
-  //     profiles: [] (size of 3)
-  //     cohortId:
-  // }
-
-  $scope.portfolioPreview = function() {
-    publicPortfoliosSvc.getStudentProf().then(function(response) {
-      console.log('this is response', response);
-      var _map = {};
-      var byCohort = [];
-      _.each(response, function(element, index, list) {
-        var cohortObj = _map[element.cohort.cohortname._id];
-        if (!cohortObj) {
-          cohortObj = _map[element.cohort.cohortname._id] = {
-            "cohort": element.cohort.cohortname.text,
-            "classLocation": element.classLocation,
-            "classType": element.classType,
-            "classId": element.cohort.cohortname._id,
-            profiles: []
-          };
-          byCohort.push(cohortObj)
-        };
-        cohortObj.profiles.push({
-          "firstname": element.name.first,
-          "lastname": element.name.last,
-          "studentpic": element.picture
-        })
+    $scope.goToCohort = function(cohort) {
+      console.log('this is cohort', cohort);
+      $state.go('portfolios', {
+        id: cohort
       })
+    };
 
-      $scope.cohort = byCohort;
+    $scope.porfolioObj = function() {
+      publicPortfoliosSvc.getStudentProf().then(function(response) {
+        var objectOfPortfolios = _.groupBy(response, function(
+          response) {
+          return response.cohort.cohortname.text;
+        });
+        $scope.cohortProfile = objectOfPortfolios;
 
-    })
+      })
+    };
+
+    $scope.porfolioObj();
+
+
+
+    // for loop over objectOfPortfolios
+    //     foreach groupKey ->
+    //            var one = _.filter(objectOfPortfolios[groupKey], function(port) { port.complete === 100});
+    //            var two = _.shuffle(one)
+    //            var final = _.first(two, 3)
+    //            objectOfPortfolios[groupKey] = final;
+
+    // $scope.cohorts = []
+    // cohort = {
+    //     name:
+    //     location:
+    //     cateogry:
+    //     profiles: [] (size of 3)
+    //     cohortId:
+    // }
+
+    $scope.portfolioPreview = function() {
+      publicPortfoliosSvc.getStudentProf().then(function(response) {
+        console.log('this is response', response);
+        var _map = {};
+        var byCohort = [];
+        _.each(response, function(element, index, list) {
+          var cohortObj = _map[element.cohort.cohortname._id];
+          if (!cohortObj) {
+            cohortObj = _map[element.cohort.cohortname._id] = {
+              "cohort": element.cohort.cohortname.text,
+              "classLocation": element.classLocation,
+              "classType": element.classType,
+              "classId": element.cohort.cohortname._id,
+              profiles: []
+            };
+            byCohort.push(cohortObj)
+          };
+          cohortObj.profiles.push({
+            "firstname": element.name.first,
+            "lastname": element.name.last,
+            "studentpic": element.picture
+          })
+        })
+        $scope.cohort = byCohort;
+        console.log('this is scope.cohort', $scope.cohort);
+      })
+    }
+    $scope.portfolioPreview();
+
+
+    //end of controller
   }
-  $scope.portfolioPreview();
-  //end of controller
-})
+])
