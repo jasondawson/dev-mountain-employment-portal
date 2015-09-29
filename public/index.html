@@ -16,7 +16,7 @@
 <link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body ng-controller="authCtrl">
 
 <div>
 
@@ -41,10 +41,13 @@
 		<a ui-sref="portfolioview">Porfolios</a>
 	</li>
 	<li>
-		<a ui-sref="login">Student Log-In</a>
+		<a class="btn btn-primary" ng-click="login('student')" ng-show="!$root.loggedIn">Student</a>
 	</li>
 	<li>
-		<a ui-sref="admin">Administrator</a>
+		<a class="btn btn-warning" ng-click="login('admin')" ng-show="!$root.loggedIn">Administrator</a>
+	</li>
+	<li>
+		<a class="btn btn-default" ng-click="logout()" ng-show="$root.loggedIn">Logout</a>
 	</li>
 </ul>
 
@@ -97,9 +100,10 @@
   	<script src="directives/porfoliohover.js"></script>
   	<script src="directives/porjectPic.js"></script>
   	<script src="directives/newProjectpic.js"></script>
-
   	<script src="controllers/homeViewCtrl.js"></script>
-		<script src="controllers/portfolioListCtrl.js"></script>
+	<script src="controllers/portfolioListCtrl.js"></script>
+  	<script src="services/authService.js"></script>
+  	<script src="controllers/authCtrl.js"></script>
 
 </body>
 </html>

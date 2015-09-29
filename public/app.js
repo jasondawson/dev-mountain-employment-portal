@@ -16,11 +16,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "adminCtrl"
   })
 
-  .state("createAccount", {
-    url: "/createAccount",
-    templateUrl: "html-templates/createAccount.html",
-    controller: "loginCreateAccountCtrl"
-  })
+  // .state("createAccount", {
+  //   url: "/createAccount",
+  //   templateUrl: "html-templates/createAccount.html",
+  //   controller: "loginCreateAccountCtrl"
+  // })
 
   .state('homeView', {
     url: "/homeView",
@@ -28,22 +28,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "homeviewCtrl"
   })
 
-  .state('login', {
-      url: "/login",
-      templateUrl: "html-templates/login.html",
-      controller: "loginCreateAccountCtrl"
-    })
-    .state('logout', {
-      url: "/homeView",
-      templateUrl: "html-templates/homeView.html",
-      controller: "homeViewCtrl"
-    })
+  // .state('login', {
+  //     url: "/login",
+  //     templateUrl: "html-templates/login.html",
+  //     controller: "loginCreateAccountCtrl"
+  //   })
+    // .state('logout', {
+    //   url: "/homeView",
+    //   templateUrl: "html-templates/homeView.html",
+    //   controller: "homeViewCtrl"
+    // })
 
   .state("portfolios", {
       url: "/portfolios",
       templateUrl: "html-templates/publicPortfolios.html",
       controller: "publicPortfoliosCtrl"
     })
+    
     .state("profile", {
       url: "/profile",
       templateUrl: "html-templates/publicStudentProfile.html",
@@ -68,9 +69,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // })
 
   .state("profiles", {
-    url: "/profiles",
+    url: "/profiles/:id",
     templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
+    controller: "studentProfileCtrl",
+    resolve: {
+      loggedInUser: function(authService) {
+        return authService.getLoginUser();
+      }
+    }
   })
 
   .state("portfolioview", {
@@ -81,7 +87,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
+
+
 });
+
 app.directive("progressbar", function() {
   return {
     restrict: "A",
@@ -110,3 +119,50 @@ function(event, toState, toParams, fromState, fromParams){
   // a 'transition prevented' error
   //});
 });
+
+
+
+app.run(function($rootScope, $state, $window, authService, $location) {
+
+  var publicViews = ["homeView", "profiles", "portfolios"];
+  authService.getLoginUser().then(function(loggedInUser) {
+    if (loggedInUser) {
+      $rootScope.loggedIn = true;
+    } else {
+      $rootScope.loggedIn = false;
+    }
+  });
+
+$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+
+  if (publicViews.indexOf(toState.name) !== -1) return;
+
+  authService.getLoginUser().then(function(loggedInUser) {
+      console.log(loggedInUser);
+        if (loggedInUser.id) {
+          $rootScope.loggedIn = true;
+          return;
+        } else {
+          $rootScope.loggedIn = false;
+          authService.getUser().then(function(data) {
+            if (data.redirect) {
+              $window.location.replace(data.location)
+            } else {
+             return;
+            }
+
+          })
+        }
+  })
+    })
+})
+
+/*Listen for state changes,
+check for a user object that will be stored somewhere,
+if (user) { then continue },
+if (!user) { check for a user on the server },
+if the server sends us a user, then we will store that user.
+if the server does not send us a user, then we will redirect to Dev Mountain,
+
+
+*/

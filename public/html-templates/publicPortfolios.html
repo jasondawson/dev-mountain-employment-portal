@@ -1,9 +1,9 @@
 <h3>Student Porfolios</h3>
 
 <br>
-<div ng-repeat="student in studentPortfolio | filter:studentFilter">
-    <!--TODO ng-click="viewStudent(student)" -->
-    <portfolio-view student="student" ></portfolio-view>
+
+<div ng-repeat="student in studentPortfolio | filter:studentFilter" >
+	<portfolio-view student="student" button ng-click="viewFullProfile(student)"></portfolio-view>
 </div>
 
 <br>
