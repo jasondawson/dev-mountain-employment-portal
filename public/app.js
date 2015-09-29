@@ -40,34 +40,32 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
   .state("portfolios", {
-
-    url: "/portfolios",
-    templateUrl: "html-templates/publicPortfolios.html",
-    controller: "publicPortfoliosCtrl"
-  })
-  .state("profile", {
-    url: "/profile",
-    templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
-  })
-  // .state("profile",{
-  //   url:"/profile/:loginId",
-  //   templateUrl: "html-templates/publicStudentProfile.html",
-  //   controller: "studentProfileCtrl"
-  // })
-
-
-    //
-    // .state("portfolios", {
-    //   url: "/portfolios/:cohort",
-    //   templateUrl: "html-templates/publicPortfolios.html",
-    //   controller: "publicPortfoliosCtrl",
-    //   resolve: {
-    //     portfolioroutes: function(publicPortfoliosSvc) {
-    //       return publicPortfoliosSvc.getStudentProf();
-    //     }
-    //   }
+      url: "/portfolios",
+      templateUrl: "html-templates/publicPortfolios.html",
+      controller: "publicPortfoliosCtrl"
+    })
+    .state("profile", {
+      url: "/profile",
+      templateUrl: "html-templates/publicStudentProfile.html",
+      controller: "studentProfileCtrl"
+    })
+    // .state("profile",{
+    //   url:"/profile/:loginId",
+    //   templateUrl: "html-templates/publicStudentProfile.html",
+    //   controller: "studentProfileCtrl"
     // })
+
+
+  // .state("portfolios", {
+  //   url: "/portfolios/:cohort",
+  //   templateUrl: "html-templates/publicPortfolios.html",
+  //   controller: "publicPortfoliosCtrl",
+  //   resolve: {
+  //     portfolioroutes: function(publicPortfoliosSvc) {
+  //       return publicPortfoliosSvc.getByCohort();
+  //     }
+  //   }
+  // })
 
   .state("profiles", {
     url: "/profiles",

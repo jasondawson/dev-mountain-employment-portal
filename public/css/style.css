@@ -1,7 +1,7 @@
 body {
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  background-color: #EEEEEE;
 }
 .percentageDiv {
   width: 100px;
@@ -145,6 +145,12 @@ fade-font {
   color: #34ACE0;
   text-decoration: none;
 }
+
+.filteralign {
+  position: absolute;
+  top: 28%;
+  left: 28%;
+}
 .filterby {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6 */
@@ -165,6 +171,38 @@ fade-font {
   border: 1px solid gray;
 }
 
+.cohortProfileView{
+  margin-top: 200px;
+}
+#previewContainer {
+  width: 800px;
+  padding-left: 200px;
+}
+#studentsample {
+ list-style-type: none;
+}
+.cohortHeading {
+  width: 810px;
+  position: relative;
+  left: 17%;
+}
+.cohortHeading h3 {
+  color:#34ACE0;
+}
+.cohortHeading p {
+   text-align: right;
+  color:#34ACE0;
+  font-weight: bold;
+}
+
+.cohortheader  {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 70px;
+
+
+}
+
 .studentpreview {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6 */
@@ -174,8 +212,49 @@ fade-font {
   /* TWEENER - IE 10 */
   display: -webkit-flex;
   display: flex;
-  width: 600px;
+  width: 800px;
   justify-content: space-between;
    -webkit-justify-content: space-between;
    -moz-justify-content: space-between;
+}
+.polaroid {
+  position: relative;
+  width: 220px;
+}
+
+.polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow:  0 3px 6px rgba(0,0,0,.5);
+     -moz-box-shadow:  0 3px 6px rgba(0,0,0,.5);
+          box-shadow:  0 3px 6px rgba(0,0,0,.5);
+}
+
+.polaroid p {
+  position: absolute;
+  text-align: center;
+  width: 92%;
+  bottom: 0px;
+  font: 400 18px/1 'Varela Round', sans-serif;
+  color: #282C34;
+}
+
+hr.style8 {
+  text-align: center;
+  width: 775px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+hr.style8:after {
+    align: center;
+	content: '';
+	display: block;
+	margin-top: 2px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+
+.studentporfolioheading {
+  color: #404041;
+  font-family: 'Varela Round', sans-serif;
 }
