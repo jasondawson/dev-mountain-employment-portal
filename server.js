@@ -152,7 +152,7 @@ router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
 router.route('/api/updateProject/:id')
-  .put(/*authCtrl.isAuthenticated,*/ projectCtrl.update)
+  .put( /*authCtrl.isAuthenticated,*/ projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 router.route('/api/projects')
@@ -160,8 +160,6 @@ router.route('/api/projects')
 
 router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
-
-
 
 router.route('/api/studentPortfolio/:id')
   .get(studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
