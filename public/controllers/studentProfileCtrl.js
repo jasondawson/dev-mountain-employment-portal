@@ -33,7 +33,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getClassNames = function() {
 		classNameServ.getClassName().then(function(response) {
 			$scope.classNames = response.data;
-			console.log(response.data);
+			//console.log(response.data);
 		})
 	};
 	$scope.getClassNames();
@@ -50,7 +50,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.cohortNames = [];
 	$scope.getcohortnames = function() {
 		cohortNameServ.getCohortNames().then(function(response) {
-			console.log(response);
+			//console.log(response);
 			$scope.cohortNames = response.data;
 		})
 	};
@@ -109,7 +109,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
-		console.log("what $data i am getting?", studentInfo);
+		//console.log("what $data i am getting?", studentInfo);
 		studentProfileSvc.updateStudentInfo(studentInfo).then(function(response) {
 			$scope.getStudentProf()
 		})
@@ -118,7 +118,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 //saving Student Image
 	$scope.saveProfilePic = function(data) {
-		console.log('this is studentdata', data);
+		//console.log('this is studentdata', data);
 		studentProfileSvc.updateStudentInfo(data).then(function(response) {
 			$scope.getStudentProf()
 		})
@@ -148,12 +148,15 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 				}
   }
 
+
   	$scope.saveNewProject= function(newProject){
   		studentProfileSvc.addProject($scope.newProject).then(
-			function(response){
+			function (response){
 				console.log(response.data._id);
-				$scope.getStudentProf();
+				
 				$scope.newProject={};
+				 $scope.newProject.picture="//:0";
+				 $scope.getStudentProf();
 			})
 
   }
@@ -167,7 +170,11 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projectsArray
 
   */
-
+$scope.deleteProject=function(project){
+	studentProfileSvc.delProject(project).then(function(response){
+		$scope.getStudentProf();
+	})
+}
 
 
 

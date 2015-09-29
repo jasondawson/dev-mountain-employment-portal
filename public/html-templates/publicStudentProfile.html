@@ -205,6 +205,7 @@
             <input class="project-edit" ng-model="project.codeSource.url" ng-disabled="!isMyProfile()" placeholder=" used"></input>
           </div>          
         <button class="btn btn-primary" ng-click="saveProject(project)">Save</button>
+        <button class="btn btn-danger" ng-click="deleteProject(project)">Delete</button>
   <!--TODO
   NAME: Repeated projects
   <div>
@@ -249,6 +250,29 @@ add a save button
   <br>
   <b>This is the TechSkills</b>
   <br>
+    <div ng-hide= '!isMyProfile()' style="background-color: #C0ECFA">
+        <div>
+            <label>DevSkill Name</label>
+            <input class="project-edit" ng-model="newDevskill.name" ng-disabled="!isMyProfile()" placeholder="Type devskill Name"></input>
+          </div>
+
+          <div>
+            <label>devskill Description</label>
+            <input class="project-edit" ng-model="newDevskill.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></input>
+          </div>
+          <div>
+            <label>Link</label>
+            <input class="project-edit" ng-model="newDevskill.link.name" ng-disabled="!isMyProfile()" placeholder="link name"></input>
+          </div>
+          <div>
+            <label>link URL</label>
+            <input class="project-edit" ng-model="newDevskill.link.url" ng-disabled="!isMyProfile()" placeholder="url address"></input>
+          </div>
+         
+        <button class="btn btn-primary" ng-click="addNewDevSkill(newDevskill)">addNewDevSkill-need to work on this</button>
+    </div>
+
+
   <div class="skills" ng-repeat="devskill in studentData.DevSkills">
 
           <div>
@@ -270,6 +294,7 @@ add a save button
           </div>
          
         <button class="btn btn-primary" ng-click="saveDevSkill(devskill)">Save-need to work on this</button>
+        <button class="btn btn-danger" ng-click="deleteDevSkill(devskill)">Delete</button>
   </div>
 
 </div> <!-- END of div 'container' -->

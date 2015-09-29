@@ -9,7 +9,7 @@ app.service("cohortNameServ", function($http, $q) {
     }).then(function(response) {
 
       deferred.resolve(response);
-      console.log("service get cohort names", response);
+     // console.log("service get cohort names", response);
     })
     return deferred.promise;
   }

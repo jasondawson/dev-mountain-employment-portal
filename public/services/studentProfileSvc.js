@@ -111,7 +111,18 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		});
 		return deferred.promise;
 	};
+		this.delProject = function(project){
+			var deferred = $q.defer();
+		$http({
+			method: 'DELETE',
+			url: '/api/project/'+ project._id
+		}).then(function (response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
 
+
+		}
 	
 
 
