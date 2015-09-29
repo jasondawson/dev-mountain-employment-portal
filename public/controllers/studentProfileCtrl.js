@@ -1,8 +1,12 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
-	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService, $filter,
+	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
+	$filter,
 	$http, $stateParams) {
-    
-	$scope.studentData = {name:{},skills:[]}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
+
+	$scope.studentData = {
+		name: {},
+		skills: []
+	}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
 	$scope.getStudentProf = function() {
 		studentProfileSvc.getStudentProf().then(function(response) {
 			$scope.studentData = response.studentPortf;
@@ -11,24 +15,24 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		})
 	};
 	$scope.getStudentProf();
-	 /*
-        TODO: 
-        $stateParams.studentId 
-        
-     loggedInUser = of whoever is logged in 
+	/*
+        TODO:
+        $stateParams.studentId
+
+     loggedInUser = of whoever is logged in
             Make a new service to get logged in user
             Make a new node endpoint to return logged in user
     function isMyProfile(){
         return loggedInUser.id = $stateParams.studentId)
     }
-    
+
     */
-	$scope.isMyProfile = function(){
-	var loggedInUser= loginSvc.getLoggedInUser();
-	return loggedInUser.Id === $scope.studentData.loginInfo
-	//return loggedInUser.Id === $stateParams.loginId
+	$scope.isMyProfile = function() {
+		var loggedInUser = loginSvc.getLoggedInUser();
+		return loggedInUser.Id === $scope.studentData.loginInfo
+			//return loggedInUser.Id === $stateParams.loginId
 	};
-	
+
 	$scope.classNames = [];
 	$scope.getClassNames = function() {
 		classNameServ.getClassName().then(function(response) {
@@ -84,19 +88,19 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	};
 	$scope.getstudentSkills();
 
-  $scope.showSkills= function(){
-    var selected =[];
-    angular.forEach($scope.studentData.skills, function(obj){
-    
-      if($scope.skillsArray[obj._id] === $scope.studentData.skills[obj._id]){
-        selected.push(obj);
+	$scope.showSkills = function() {
+		var selected = [];
+		angular.forEach($scope.studentData.skills, function(obj) {
 
-      }
-    });
-    return selected;
-//return selected.length ? selected.join(', ') : "Not Set";
-  };
-   /* angular.forEach($scope.studentData.skills, function(obj){
+			if ($scope.skillsArray[obj._id] === $scope.studentData.skills[obj._id]) {
+				selected.push(obj);
+
+			}
+		});
+		return selected;
+		//return selected.length ? selected.join(', ') : "Not Set";
+	};
+	/* angular.forEach($scope.studentData.skills, function(obj){
     //console.log($scope.studentSkills[obj._id]);
       if($scope.studentData.skills[obj._id] === $scope.skillsArray[obj._id]){
         selected.push(obj);
@@ -105,7 +109,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
     return selected.length ? selected: "";
   };*/
 
-  $scope.showSkills();
+	$scope.showSkills();
 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
@@ -116,50 +120,50 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	};
 
-//saving Student Image
+	//saving Student Image
 	$scope.saveProfilePic = function(data) {
 		console.log('this is studentdata', data);
 		studentProfileSvc.updateStudentInfo(data).then(function(response) {
 			$scope.getStudentProf()
 		})
 	};
-	$scope.saveProject=function(project){
+	$scope.saveProject = function(project) {
 		studentProfileSvc.updateProject(project).then(
-			function(response){
+			function(response) {
 				$scope.getStudentProf()
 			})
 	}
 
-		$scope.saveProjectPic = function(data) {
+	$scope.saveProjectPic = function(data) {
 		studentProfileSvc.updateProject(data).then(function(response) {
 			$scope.getStudentProf()
 		})
 	};
 
-  $scope.newProject = {
-  				projectType:null,
-				name:null,
-				picture: null,
-				description:null,
-				TechUsed:null,
-				codeSource:{
-					name:null,
-					url:null
-				}
-  }
+	$scope.newProject = {
+		projectType: null,
+		name: null,
+		picture: null,
+		description: null,
+		TechUsed: null,
+		codeSource: {
+			name: null,
+			url: null
+		}
+	}
 
-  	$scope.saveNewProject= function(newProject){
-  		studentProfileSvc.addProject($scope.newProject).then(
-			function(response){
-				console.log(response.data._id);
-				$scope.getStudentProf();
-				$scope.newProject={};
-			})
+	$scope.saveNewProject = function(newProject) {
+			studentProfileSvc.addProject($scope.newProject).then(
+				function(response) {
+					console.log(response.data._id);
+					$scope.getStudentProf();
+					$scope.newProject = {};
+				})
 
-  }
-  /*
-  saveNewProject function 
-  takes $scope.newProject 
+		}
+		/*
+  saveNewProject function
+  takes $scope.newProject
   sends it to the database
   $scope.newProject = {}
   HOW DO I SAVE IT TO STUDENT PROFILE?
@@ -167,9 +171,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projectsArray
 
   */
-
-
-
 
 
 

@@ -114,10 +114,10 @@ module.exports = {
         var students = [];
         result.forEach(function(student) {
           var idWrapper = ObjectID.createFromHexString(cohortId);
-          if (student.cohort.cohortname._id.id === idWrapper.id) {
+          if (student.cohort.cohortname._id.id === idWrapper.id &&
+            student.showProfile === true) {
             students.push(student);
           }
-
         })
         if (err) return res.status(500).send(err);
         res.send(students);

@@ -53,9 +53,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
   .state("profiles", {
-    url: "/profiles",
+    url: "/profiles/:id",
     templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
+    controller: "studentProfileCtrl",
+    resolve: {
+      studentprofiles: function($stateParams, studentProfileSvc) {
+        return studentProfileSvc.getStudentPublicView($stateParams.id)
+      }
+    }
   })
 
   .state("portfolioview", {

@@ -26,20 +26,18 @@ app.controller('portfolioListCtrl', ['$scope',
       })
     };
 
-    $scope.porfolioObj = function() {
-      publicPortfoliosSvc.getStudentProf().then(function(response) {
-        var objectOfPortfolios = _.groupBy(response, function(
-          response) {
-          return response.cohort.cohortname.text;
-        });
-        $scope.cohortProfile = objectOfPortfolios;
-
-      })
-    };
-
-    $scope.porfolioObj();
-
-
+    // $scope.porfolioObj = function() {
+    //   publicPortfoliosSvc.getStudentProf().then(function(response) {
+    //     var objectOfPortfolios = _.groupBy(response, function(
+    //       response) {
+    //       return response.cohort.cohortname.text;
+    //     });
+    //     $scope.cohortProfile = objectOfPortfolios;
+    //
+    //   })
+    // };
+    //
+    // $scope.porfolioObj();
 
     // for loop over objectOfPortfolios
     //     foreach groupKey ->
@@ -80,8 +78,8 @@ app.controller('portfolioListCtrl', ['$scope',
             "studentpic": element.picture
           })
         })
+
         $scope.cohort = byCohort;
-        console.log('this is scope.cohort', $scope.cohort);
       })
     }
     $scope.portfolioPreview();
