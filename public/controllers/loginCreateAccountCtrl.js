@@ -1,9 +1,5 @@
 app.controller("loginCreateAccountCtrl", function($scope, $location, loginSvc) {
 
-  $scope.loginTest =
-    "This test is from the Login/CreateAccount Controller file from $scope";
-  $scope.createAccountTest =
-    "This test is from the Login/CreateAccount Controller file from $scope";
 
   $scope.login = function(data) {
     console.log('this is login data', data);

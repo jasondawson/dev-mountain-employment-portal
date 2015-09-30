@@ -12,12 +12,10 @@ body {
 .navbar-nav {
   padding-top: 11px;
 }
-
-.project-edit{
-border:0;
-width: 100%;
+.project-edit {
+  border: 0;
+  width: 100%;
 }
-
 a {
   box-sizing: border-box;
   text-decoration: none;
@@ -56,12 +54,12 @@ h2 {
 }
 .outer-box {
   display: block;
-  overflow: scroll;
+  overflow: hidden;
   border: 1px solid gray;
-  height: 400px;
+  height: 250px;
   width: 960px;
   padding: 3px;
-  margin: 3px
+  margin: 15px
 }
 .logo {
   margin-top: 5px;
@@ -145,7 +143,6 @@ fade-font {
   color: #34ACE0;
   text-decoration: none;
 }
-
 .filteralign {
   position: absolute;
   top: 28%;
@@ -162,16 +159,14 @@ fade-font {
   display: flex;
   width: 600px;
   justify-content: space-between;
-   -webkit-justify-content: space-between;
-   -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
 }
-
 .cohortHeader {
   background-color: #34ACE0;
   border: 1px solid gray;
 }
-
-.cohortProfileView{
+.cohortProfileView {
   margin-top: 200px;
 }
 #previewContainer {
@@ -179,7 +174,7 @@ fade-font {
   padding-left: 200px;
 }
 #studentsample {
- list-style-type: none;
+  list-style-type: none;
 }
 .cohortHeading {
   width: 810px;
@@ -187,22 +182,18 @@ fade-font {
   left: 17%;
 }
 .cohortHeading h3 {
-  color:#34ACE0;
+  color: #34ACE0;
 }
 .cohortHeading p {
-   text-align: right;
-  color:#34ACE0;
+  text-align: right;
+  color: #34ACE0;
   font-weight: bold;
 }
-
-.cohortheader  {
+.cohortheader {
   display: inline-block;
   vertical-align: middle;
   line-height: 70px;
-
-
 }
-
 .studentpreview {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6 */
@@ -214,22 +205,20 @@ fade-font {
   display: flex;
   width: 800px;
   justify-content: space-between;
-   -webkit-justify-content: space-between;
-   -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
 }
 .polaroid {
   position: relative;
   width: 220px;
 }
-
 .polaroid img {
   border: 10px solid #fff;
   border-bottom: 45px solid #fff;
-  -webkit-box-shadow:  0 3px 6px rgba(0,0,0,.5);
-     -moz-box-shadow:  0 3px 6px rgba(0,0,0,.5);
-          box-shadow:  0 3px 6px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
 }
-
 .polaroid p {
   position: absolute;
   text-align: center;
@@ -238,23 +227,94 @@ fade-font {
   font: 400 18px/1 'Varela Round', sans-serif;
   color: #282C34;
 }
-
 hr.style8 {
   text-align: center;
   width: 775px;
-	border-top: 1px solid #8c8b8b;
-	border-bottom: 1px solid #fff;
+  border-top: 1px solid #8c8b8b;
+  border-bottom: 1px solid #fff;
 }
 hr.style8:after {
-    align: center;
-	content: '';
-	display: block;
-	margin-top: 2px;
-	border-top: 1px solid #8c8b8b;
-	border-bottom: 1px solid #fff;
+  align: center;
+  content: '';
+  display: block;
+  margin-top: 2px;
+  border-top: 1px solid #8c8b8b;
+  border-bottom: 1px solid #fff;
 }
-
 .studentporfolioheading {
   color: #404041;
   font-family: 'Varela Round', sans-serif;
+}
+.portfoliosHeader {
+  padding-bottom: 10px;
+}
+.imagesize img {
+  margin: 10px;
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin-top: -25px;
+}
+.outer-box h2 {
+  color: #404041;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 25px;
+}
+.biopreview {
+  margin-top: 50px;
+}
+.projectContainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.projectContainer-flex {
+  display: flex;
+  align-items: center;
+  margin: 3px;
+  padding: 10px 0 0 10px;
+  height: 250px;
+  width: 470px;
+}
+.projectContainer img {
+  width: 200px;
+  height: 200px;
+}
+.projectdesc {
+  margin-left: 5px;
+}
+.loginpage {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /*background-color: #404040;*/
+}
+.loginwrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+.login-signin {
+  text-align: center;
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.login-signin h2 {
+  color: #404041;
+}
+.login-signin img {
+  width: 50px;
+  height: 50px;
+}
+
+.togglebar {
+  top-padding: 100px;
 }

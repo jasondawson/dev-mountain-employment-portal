@@ -30,4 +30,28 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 		})
 	};
 
+	$scope.portfolioPreview = function() {
+		publicPortfoliosSvc.getStudentProf().then(function(response) {
+			console.log('this is response', response);
+			var _map = {};
+			var byCohort = [];
+			_.each(response, function(element, index, list) {
+				var cohortObj = _map[element.cohort.cohortname._id];
+				if (!cohortObj) {
+					cohortObj = _map[element.cohort.cohortname._id] = {
+						"cohort": element.cohort.cohortname.text,
+						"classLocation": element.classLocation,
+						"classType": element.classType,
+					};
+					byCohort.push(cohortObj)
+				};
+			})
+
+			$scope.cohort = byCohort;
+		})
+	}
+	$scope.portfolioPreview();
+
+
+
 })

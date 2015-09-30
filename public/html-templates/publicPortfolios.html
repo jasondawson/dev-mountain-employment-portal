@@ -1,9 +1,14 @@
-<h3>Student Porfolios</h3>
+<div class="container">
 
-<br>
+<div class="portfoliosHeader" ng-repeat="classes in cohort | limitTo:1">
+<h3>[ {{classes.classType}} # {{classes.cohort}} ]</h3>
+</div>
+
+
 <div ng-repeat="student in studentPortfolio | filter:studentFilter">
+
     <!--TODO ng-click="viewStudent(student)" -->
     <portfolio-view student="student" ></portfolio-view>
 </div>
 
-<br>
+</div>

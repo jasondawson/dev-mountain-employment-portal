@@ -1,6 +1,6 @@
 "use Strict";
 var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
-  'ngMaterial', 'ngAnimate'
+  'ngMaterial', 'ngAnimate', 'truncate'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {

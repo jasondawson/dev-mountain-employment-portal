@@ -1,29 +1,29 @@
-<div>
-<h2>Administrator Page</h2>
+<div class="container">
+<h2 class="studentporfolioheading">Administrator Page</h2>
 
-<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-    <md-toolbar class="md-theme-indigo">
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" style="margin-top: 85px;">
+    <md-toolbar class="md-theme-blue">
         <h1 class="md-toolbar-tools">Add Locations, Cohorts, and Courses</h1>
       	</md-toolbar>
       		<md-content layout-padding>
-       	
+
        		<input class="form-control" type="text" placeholder="Add New Cohort Location - City, State" ng-model="newLoc.text" ng-keydown="$event.which === 13 && addNewLocation(newLoc)" />
        		<ul>
        			<li ng-repeat="cohortLocation in cohortLocations" >{{cohortLocation.text}}</li>
        		</ul>
        		<br/>
-       
+
        		<input class="form-control" type="text" placeholder="Add New Course Name" ng-model="newCourse.text" ng-keydown="$event.which === 13 && addNewCourseName(newCourse)" />
        		<ul>
        			<li ng-repeat="courseName in courseNames" ng-model="newCourse.text" >{{courseName.text}}</li>
        		</ul>
       		<br/>
-       
+
        		<input class="form-control" type="text" placeholder="Add New Cohort Name" ng-model="newCohort.text" ng-keydown="$event.which === 13 && addNewCohortName(newCohort)" />
        		<ul>
        			<li ng-repeat="cohortName in cohortNames" >{{cohortName.text}}</li>
        		</ul>
-        	
+
         	<p hide-md show-gt-md></p>
     </md-content>
 </md-sidenav>
@@ -47,8 +47,7 @@
 			<th>Show</th>
 		</tr>
 		<br/>
-   
-   
+
 		<!-- <button><a ui-sref="adminAddSchool">Add New Cohort or School</a></button> -->
 		<br/>
 		<br/>
@@ -72,7 +71,3 @@
 </tbody>
 </table>
 </div>
-
-{{students[0].showProfile}}
-
-

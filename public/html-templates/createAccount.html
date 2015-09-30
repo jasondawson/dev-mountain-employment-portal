@@ -1,12 +1,14 @@
-<h2>This is the Create Acount html page</h2>
-
-<div ng-model="user">
-E-mail:
-<input class="form-control" placeholder="enter email" ng-model="user.email">
-<br>
-Create Password: <input class="form-control" placeholder="enter password" ng-model="user.password">
-<br>
-<button class="button" ng-click="register(user)">Create Account</button>
+<div class="loginpage" ng-style="backgroundColor">
+  <div class="loginwrapper">
+    <form class="login-signin" ng-model="user">
+      <div class="login-header">
+        <img src="https://devmounta.in/img/logoonly.png"> </div>
+      <h2 class="login-signin-heading">SIGNUP</h2>
+    <br>
+      <input type="text" class="form-control" placeholder="E-mail address" ng-model="user.email">
+      <br>
+      <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="register(user)">Submit</button>
+  </div>
 </div>
-
-{{createAccountTest}}

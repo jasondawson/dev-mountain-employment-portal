@@ -114,7 +114,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 	//this gets student info for publicview
 
-	this.getStudentProf = function(id) {
+	this.getStudentPublicView = function(id) {
 		var deferred = $q.defer();
 		$http({
 			url: 'http://localhost:3000/api/studentPortfolio/' + id,

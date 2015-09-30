@@ -1,14 +1,16 @@
-<h2>This is the Login Page</h2>
-
-<div ng-model="user">
-E-mail:
-<input class="form-control" placeholder="enter email" ng-model="user.email">
-<br>
-Password: <input class="form-control" placeholder="enter password" ng-model="user.password">
-<br>
-<button class="button" ng-click="login(user)">Log In</button>
+<div class="loginpage">
+  <div class="loginwrapper">
+    <form class="login-signin" ng-model="user">
+      <div class="login-header">
+        <img src="https://devmounta.in/img/logoonly.png"> </div>
+      <h2 class="login-signin-heading">LOGIN</h2>
+      <a ui-sref="createAccount">Need an account?</a>
+    <br>
+    <br>
+      <input type="text" class="form-control" placeholder="E-mail address" ng-model="user.email">
+      <br>
+      <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="login(user)">Log In</button>
+  </div>
 </div>
-<br>
-<button ui-sref="createAccount" class="button">Create your new Account</button>
-
-{{loginTest}}
