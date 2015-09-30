@@ -19,7 +19,6 @@ var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
 var projectCtrl = require('./controller/projectCtrl');
-
 var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var classNameCtrl = require('./controller/classNameCtrl');
 var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
@@ -146,6 +145,8 @@ router.route('/api/devskills/:id')
 router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
+  router.route('/api/project/:id')
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 
 router.route('/api/studentPorftolio')

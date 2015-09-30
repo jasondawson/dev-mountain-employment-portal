@@ -10,9 +10,9 @@ var studentPortf = new Schema({
     ref: 'User'
   },
   email: {
-    type: String,
+    type: String //,
     // required: true,
-    unique: true
+    // unique: true
   },
   picture: {
     type: String
@@ -46,21 +46,16 @@ var studentPortf = new Schema({
   resume: {
     type: String
   }, // link or upload to amazon s3 that saves link to resume.
-  skills: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Skill'
-  }],
+  skills: {type: String},
   OrSkillString: {
     type: String
   },
   currentLoc: {
     city: {
-      type: String,
-      required: true
+      type: String
     },
     state: {
-      type: String,
-      required: true
+      type: String
     },
   },
   //ASK RANDY HOW HE DID HIS PROJECT !!

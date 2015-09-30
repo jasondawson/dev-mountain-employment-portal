@@ -1,6 +1,8 @@
 var StudentPortf = require('../models/studentPortf');
 var User = require('../models/userSchema');
 var cohortLoc = require('../models/cohortLocSche');
+var mongoose = require('mongoose');
+var ObjectID = require('mongodb').ObjectID;
 
 
 CustomLogger = function() {
@@ -41,7 +43,7 @@ module.exports = {
       )*/
 
     .populate(
-        'cohort.cohortname cohort.className cohort.cohortLocation projects skills'
+        'cohort.cohortname cohort.className cohort.cohortLocation projects '
       )
       //.populate("cohort.cohortName")
       .exec(function(err, result) {
@@ -50,8 +52,7 @@ module.exports = {
         res.send(result);
       });
   },
-
-  getStudentById: function(req, res) {
+/*getStudentById: function(req, res) {
     User.findById({
         _id: req.params.id
       })
@@ -70,6 +71,36 @@ module.exports = {
           .exec(function(err, result) {
             studentPortfolio.studentPortf = result;
             res.send(studentPortfolio);
+          })
+      })
+  },*/
+
+  getStudentById: function(req, res) {
+    myLog.log('\n\n\n\n\nthis is before! req.params ', req.params);
+    User.findOne( {_id:req.params.id ? req.params.id : null}, function(err, userFindResult) {
+        if (err) return res.status(500).send(err);
+        var studentPortfolio = {};
+        var userId = userFindResult._id;
+        myLog.log('this is userId MEOW! ', userId);
+
+        StudentPortf.findOne({loginInfo:userId})
+          .populate(
+            'cohort.cohortname cohort.cohortLocation cohort.className projects  loginInfo'
+          )
+          .exec(function(err, portfolioFindResult) {
+            if (err || portfolioFindResult === null){
+
+              studentPortfolio.studentPortf = new StudentPortf();
+              var newLoginId = ObjectID.createFromHexString(req.params.id);
+              studentPortfolio.studentPortf.loginInfo = newLoginId;
+              studentPortfolio.studentPortf.save(function(newPortfolioError){
+                console.log("error creating new portfolio",newPortfolioError);
+                res.send(studentPortfolio);
+              });
+            } else{
+              studentPortfolio.studentPortf = portfolioFindResult._doc;
+              res.send(studentPortfolio);
+            }
           })
       })
   },
@@ -95,16 +126,7 @@ module.exports = {
   },
 
 
-<<<<<<< HEAD
-            StudentPortf.findOne({
-                    loginInfo: userId
-                })
-                .populate('cohort.cohortname cohort.cohortLocation cohort.className projects skills DevSkills')
-                .exec(function(err, result) {
-                    studentPortfolio.studentPortf = result;
-                    res.send(studentPortfolio);
-                })
-=======
+
   delete: function(req, res) {
     StudentPortf.findByIdAndRemove(req.params.id, function(err, result) {
       if (err) return res.status(500).send(err);
@@ -113,26 +135,23 @@ module.exports = {
   },
 
   getCohorts: function(req, res) {
-
+    var cohortId = req.params.id;
     StudentPortf.find().populate(
-        'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
+        'cohort.cohortname cohort.cohortLocation cohort.className projects '
       )
-      .exec(function(err, result) {
+      .lean().exec(function(err, result) {
         var students = [];
-        var studentCohort = result.map(function(student) {
-          console.log('this is map', student.cohort.cohortname._id);
-          console.log('this is req.params.id ', req.params.id);
-          if (student.cohort.cohortname._id === req.params.id) {
-            return student;
+        result.forEach(function(student) {
+          var idWrapper = ObjectID.createFromHexString(cohortId);
+          if (student.cohort.cohortname._id.id === idWrapper.id) {
+            students.push(student);
           }
->>>>>>> 1c69cb3b5997517b6b9ba939758839a8c7afc7e4
+
         })
-        console.log('this is students', students);
         if (err) return res.status(500).send(err);
         res.send(students);
-      });
+      })
   }
-
 
 
   //end module.exports
