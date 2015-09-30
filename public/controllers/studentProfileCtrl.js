@@ -1,7 +1,7 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
 	$filter,
-	$http, $stateParams, studentProfileEdit, cohortroute) {
+	$http, $stateParams, cohortroute) {
 
 	$scope.thisStudent = cohortroute;
 
@@ -19,8 +19,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getStudentProf();
 
 	$scope.isMyProfile = function() {
-		var loggedInUser = loginSvc.getLoggedInUser();
-		return loggedInUser.Id === $scope.profileId;
+		return true;
 	};
 
 	$scope.classNames = [];
