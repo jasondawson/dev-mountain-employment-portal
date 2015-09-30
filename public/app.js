@@ -41,8 +41,8 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
 
   .state("profile", {
-    url: "/profile/:profileId",
-   templateUrl: "html-templates/publicStudentProfile.html",
+    url: "/profile/:id",
+    templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl",
     resolve: {
       cohortroute: function($stateParams, studentProfileSvc) {

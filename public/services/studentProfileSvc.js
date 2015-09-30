@@ -17,11 +17,10 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 	this.getStudentProf = function(profileId) {
-		console.log(profileId)
 		var deferred = $q.defer();
 		$http({
-			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 
-			url: 'http://localhost:3000/api/studentPortfolio/'+ profileId, 
+			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59',
+			url: 'http://localhost:3000/api/studentPortfolio/' + profileId,
 			//ID = LOGIN USER ID,
 
 			method: 'GET',
@@ -32,7 +31,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return deferred.promise;
 	};
 
-	this.updateStudentInfo = function (info, profileId) {
+	this.updateStudentInfo = function(info, profileId) {
 
 		var deferred = $q.defer();
 		$http({
@@ -72,7 +71,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 
-	this.addProject = function(newProject, porfileId){
+	this.addProject = function(newProject, porfileId) {
 
 		var deferred = $q.defer();
 		$http({
@@ -99,7 +98,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 
-	this.saveStudentInfo = function (info) {
+	this.saveStudentInfo = function(info) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
@@ -111,17 +110,17 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		});
 		return deferred.promise;
 	};
-		this.delProject = function(project){
-			var deferred = $q.defer();
+	this.delProject = function(project) {
+		var deferred = $q.defer();
 		$http({
 			method: 'DELETE',
-			url: '/api/project/'+ project._id
-		}).then(function (response) {
+			url: '/api/project/' + project._id
+		}).then(function(response) {
 			deferred.resolve(response);
 		});
 		return deferred.promise;
-		}
-	
+	}
+
 
 	//this gets student info for publicview
 
