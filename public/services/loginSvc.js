@@ -1,9 +1,10 @@
 app.service("loginSvc", function($http, $q) {
 
   var user = {
+    // Id:"55f8480baec60b07268b0f59",
     Id: null,
     roles: ['student', 'lead_instructor']
-  };
+  }
 
   this.getCurrentUser = function() {
     return user;
@@ -44,9 +45,27 @@ app.service("loginSvc", function($http, $q) {
     return deferred.promise;
   };
 
+
   this.getLoggedInUser = function() {
     return user;
   }
+
+
+  // TODO:
+  // this.getLoggedInUser = function() {
+  //   return user;
+
+
+  /*var deferred = $q.defer();
+  $http({
+      url: '/urltheygaveme',
+      method: 'GET'
+    })
+    .then(function(data) {
+      deferred.resolve(data.data);
+    })
+  return deferred.promise;
+        */
 
   //
 
