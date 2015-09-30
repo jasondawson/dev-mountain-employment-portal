@@ -43,7 +43,7 @@ module.exports = {
       )*/
 
     .populate(
-        'cohort.cohortname cohort.className cohort.cohortLocation projects skills'
+        'cohort.cohortname cohort.className cohort.cohortLocation projects'
       )
       //.populate("cohort.cohortName")
       .exec(function(err, result) {
@@ -67,7 +67,7 @@ module.exports = {
             loginInfo: userId
           })
           .populate(
-            'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
+            'cohort.cohortname cohort.cohortLocation cohort.className projects'
           )
           .exec(function(err, result) {
             studentPortfolio.studentPortf = result;
@@ -108,7 +108,7 @@ module.exports = {
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
     StudentPortf.find().populate(
-        'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
+        'cohort.cohortname cohort.cohortLocation cohort.className projects'
       )
       .lean().exec(function(err, result) {
         var students = [];

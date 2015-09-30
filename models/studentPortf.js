@@ -46,10 +46,9 @@ var studentPortf = new Schema({
   resume: {
     type: String
   }, // link or upload to amazon s3 that saves link to resume.
-  skills: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Skill'
-  }],
+  skills: {
+    type: String
+  },
   OrSkillString: {
     type: String
   },
