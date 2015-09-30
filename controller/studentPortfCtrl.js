@@ -43,7 +43,7 @@ module.exports = {
       )*/
 
     .populate(
-        'cohort.cohortname cohort.className cohort.cohortLocation projects skills'
+        'cohort.cohortname cohort.className cohort.cohortLocation projects '
       )
       //.populate("cohort.cohortName")
       .exec(function(err, result) {
@@ -52,8 +52,7 @@ module.exports = {
         res.send(result);
       });
   },
-
-  getStudentById: function(req, res) {
+/*getStudentById: function(req, res) {
     User.findById({
         _id: req.params.id
       })
@@ -72,6 +71,36 @@ module.exports = {
           .exec(function(err, result) {
             studentPortfolio.studentPortf = result;
             res.send(studentPortfolio);
+          })
+      })
+  },*/
+
+  getStudentById: function(req, res) {
+    myLog.log('\n\n\n\n\nthis is before! req.params ', req.params);
+    User.findOne( {_id:req.params.id ? req.params.id : null}, function(err, userFindResult) {
+        if (err) return res.status(500).send(err);
+        var studentPortfolio = {};
+        var userId = userFindResult._id;
+        myLog.log('this is userId MEOW! ', userId);
+
+        StudentPortf.findOne({loginInfo:userId})
+          .populate(
+            'cohort.cohortname cohort.cohortLocation cohort.className projects  loginInfo'
+          )
+          .exec(function(err, portfolioFindResult) {
+            if (err || portfolioFindResult === null){
+
+              studentPortfolio.studentPortf = new StudentPortf();
+              var newLoginId = ObjectID.createFromHexString(req.params.id);
+              studentPortfolio.studentPortf.loginInfo = newLoginId;
+              studentPortfolio.studentPortf.save(function(newPortfolioError){
+                console.log("error creating new portfolio",newPortfolioError);
+                res.send(studentPortfolio);
+              });
+            } else{
+              studentPortfolio.studentPortf = portfolioFindResult._doc;
+              res.send(studentPortfolio);
+            }
           })
       })
   },
@@ -108,7 +137,7 @@ module.exports = {
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
     StudentPortf.find().populate(
-        'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
+        'cohort.cohortname cohort.cohortLocation cohort.className projects '
       )
       .lean().exec(function(err, result) {
         var students = [];

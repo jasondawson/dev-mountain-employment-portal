@@ -46,7 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: "publicPortfoliosCtrl"
   })
   .state("profile", {
-    url: "/profile",
+    url: "/profile/:profileId",
     templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl"
   })

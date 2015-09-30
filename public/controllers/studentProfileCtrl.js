@@ -1,10 +1,23 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
-	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService, $filter,
+	cohortNameServ, cohortLocServ, loginSvc, classNameServ, $filter,
 	$http, $stateParams) {
+
+	//var loggedInUser = loginSvc.getLoggedInUser();
     
-	$scope.studentData = {name:{},skills:[]}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
-	$scope.getStudentProf = function() {
+	$scope.studentData = {name:{}};
+	$scope.profileId = $stateParams.profileId;
+	 /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
+/*	$scope.getStudentProf = function() {
 		studentProfileSvc.getStudentProf().then(function(response) {
+			if (Array.isArray(response.studentPortf) && response.studentPortf.length) {
+				$scope.studentData = response.studentPortf[0];
+				console.log('getting new portfolio?',$scope.studentData);
+			}
+		})
+	};
+	$scope.getStudentProf();*/
+	 $scope.getStudentProf = function() {
+		studentProfileSvc.getStudentProf($scope.profileId).then(function(response) {
 			$scope.studentData = response.studentPortf;
 			console.log($scope.studentData);
 
@@ -22,11 +35,25 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
         return loggedInUser.id = $stateParams.studentId)
     }
     
-    */
+    
 	$scope.isMyProfile = function(){
-	var loggedInUser= loginSvc.getLoggedInUser();
-	return loggedInUser.Id === $scope.studentData.loginInfo
-	//return loggedInUser.Id === $stateParams.loginId
+		var result = false;
+
+		if (
+				$scope.studentData 
+				&& $scope.studentData.loginInfo
+				&& $scope.studentData.loginInfo._id
+				&& loggedInUser.Id
+				&& loggedInUser.Id === $scope.studentData.loginInfo._id
+		) {
+			result=true;
+		}
+		return result;
+		//return loggedInUser.Id === $stateParams.loginId
+	};*/
+	$scope.isMyProfile = function(){
+		var loggedInUser = loginSvc.getLoggedInUser();
+		return loggedInUser.Id === $scope.profileId;
 	};
 	
 	$scope.classNames = [];
@@ -75,42 +102,15 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		text: "Interested in working remotely"
 	}];
 
-	$scope.skillsArray = [];
-	$scope.getstudentSkills = function() {
-		studentSkillsService.getStudentSkills().then(function(response) {
-			$scope.skillsArray = response;
-			//console.log(response);
-		})
-	};
-	$scope.getstudentSkills();
 
-  $scope.showSkills= function(){
-    var selected =[];
-    angular.forEach($scope.studentData.skills, function(obj){
-    
-      if($scope.skillsArray[obj._id] === $scope.studentData.skills[obj._id]){
-        selected.push(obj);
 
-      }
-    });
-    return selected;
-//return selected.length ? selected.join(', ') : "Not Set";
-  };
-   /* angular.forEach($scope.studentData.skills, function(obj){
-    //console.log($scope.studentSkills[obj._id]);
-      if($scope.studentData.skills[obj._id] === $scope.skillsArray[obj._id]){
-        selected.push(obj);
-      }
-    });
-    return selected.length ? selected: "";
-  };*/
 
-  $scope.showSkills();
 
+ 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
 		//console.log("what $data i am getting?", studentInfo);
-		studentProfileSvc.updateStudentInfo(studentInfo).then(function(response) {
+		studentProfileSvc.updateStudentInfo(studentInfo,$scope.studentData._id).then(function(response) {
 			$scope.getStudentProf()
 		})
 
@@ -119,7 +119,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 //saving Student Image
 	$scope.saveProfilePic = function(data) {
 		//console.log('this is studentdata', data);
-		studentProfileSvc.updateStudentInfo(data).then(function(response) {
+		studentProfileSvc.updateStudentInfo(data,$scope.studentData._id).then(function(response) {
 			$scope.getStudentProf()
 		})
 	};

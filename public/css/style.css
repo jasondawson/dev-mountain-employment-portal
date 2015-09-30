@@ -3,8 +3,58 @@ body {
   max-width: 1300px;
   margin: 0 auto;
 }
+.namePicPercent{
+float: left;
+width: 100%;
+display: inline-block;
+}
+.profilePic{
+  width: 30%;
+  display: inline-block;
+  float: left;
+}
+.profileName{
+  vertical-align:middle;
+width: 50%;
+display: inline-block;
+float: left;
+}
+.mainPercentDiv{
+width: 20%;
+display: inline-block;
+float: left;
+}
+.Profileform{
+  height: 30%;
+  display: inline-block;
+  width: 100%;
+}
+.sideA  {
+  width: 30%;
+  display: inline-block!important;
+  float: left;
+}
+ .sideB{
+  width: 60%;
+  display: inline-block;
+ float: left;
+ }
+ .buttons{
+  display: inline-block;
+  float: left;
+  height: 50px;
+  width: 100%;
+ }
+ .btn{
+  float: right;
+ }
 .percentageDiv {
   width: 100px;
+}
+.horizontalView {
+  display: inline-block;
+  float: left;
+  margin: 20px;
 }
 .navbar {
   height: 86px;
@@ -12,10 +62,33 @@ body {
 .navbar-nav {
   padding-top: 11px;
 }
-
+.projects{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray; 
+}
 .project-edit{
-border:0;
+border-top :0;
+border-right: 0;
+border-left: 0;
+float: left;
+
 width: 100%;
+}
+.editProjectSpace{
+  display: inline-block;
+  float: left;
+  width: 60%;
+margin-bottom: 20px;
+}
+.projectImgDiv{
+    display: inline-block;
+  float: left;
+  width: 30%;
+  height: 100%;
+
+
 }
 
 a {

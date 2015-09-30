@@ -16,15 +16,13 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return $http.post('/api/newimage', newImage)
 	}
 
-	this.getStudentProf = function() {
+	this.getStudentProf = function(profileId) {
 		var deferred = $q.defer();
-	 	var me = loginSvc.getCurrentUser();
-	 	console.log("getCurrentUser fucniton GET LOGINUSER ID",me)
 
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 
-			// url: 'http://localhost:3000/api/studentPortfolio/'+me.Id, 
+			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 
+			url: 'http://localhost:3000/api/studentPortfolio/'+ profileId, 
 			//ID = LOGIN USER ID,
 			
 			method: 'GET',
@@ -36,11 +34,11 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		})
 		return deferred.promise;
 	};
-		this.updateStudentInfo = function (info) {
+	this.updateStudentInfo = function (info, profileId) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/studentPortfolio/55f708cc4a368e270de0ecff',
+			url: 'http://localhost:3000/api/studentPortfolio/' + profileId,
 			//ID = STudent PORTFOLIO ID,
 			data: info
 		}).then(function (response) {
@@ -74,11 +72,11 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		
 	}
 
-	this.addProject = function(newProject, studentId){
+	this.addProject = function(newProject, porfileId){
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: '/api/project/55f708cc4a368e270de0ecff',
+			url: '/api/project/' + profileId,
 			//+ studentId,
 			
 			data: {
@@ -99,7 +97,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 	}
 
-		this.saveStudentInfo = function (info) {
+	this.saveStudentInfo = function (info) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
