@@ -1,13 +1,10 @@
 app.service("loginSvc", function($http, $q) {
   var user = {
-<<<<<<< HEAD
+
     // Id:"55f8480baec60b07268b0f59",
      Id:null,
      roles: ['student', 'lead_instructor']
-=======
-    Id: "55f8480baec60b07268b0f59",
-    roles: ['student', 'lead_instructor']
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
+
   };
 
 

@@ -62,7 +62,7 @@ float: left;
 .navbar-nav {
   padding-top: 11px;
 }
-<<<<<<< HEAD
+
 .projects{
   width: 100%;
   display: inline-block;
@@ -92,12 +92,12 @@ margin-bottom: 20px;
 
 }
 
-=======
+
 .project-edit {
   border: 0;
   width: 100%;
 }
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
+
 a {
   box-sizing: border-box;
   text-decoration: none;

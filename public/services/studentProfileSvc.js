@@ -16,41 +16,23 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return $http.post('/api/newimage', newImage)
 	}
 
-<<<<<<< HEAD
 	this.getStudentProf = function(profileId) {
 		var deferred = $q.defer();
-
-
 		$http({
 			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 
 			url: 'http://localhost:3000/api/studentPortfolio/'+ profileId, 
-=======
-	this.getStudentProf = function(id) {
-		var deferred = $q.defer();
-		var me = loginSvc.getCurrentUser();
-		console.log("getCurrentUser fucniton GET LOGINUSER ID", me)
-
-
-		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/' + me.Id,
-			// url: 'http://localhost:3000/api/studentPortfolio/'+me.Id,
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
 			//ID = LOGIN USER ID,
 
 			method: 'GET',
-			//cache: false
-			// data: data
 		}).then(function(response) {
 			//console.log('this is response.data in service', response.data);
 			deferred.resolve(response.data);
 		})
 		return deferred.promise;
 	};
-<<<<<<< HEAD
+
 	this.updateStudentInfo = function (info, profileId) {
-=======
-	this.updateStudentInfo = function(info) {
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
+
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
@@ -88,11 +70,9 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 	}
 
-<<<<<<< HEAD
+
 	this.addProject = function(newProject, porfileId){
-=======
-	this.addProject = function(newProject, studentId) {
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
+
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
@@ -117,11 +97,8 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 	}
 
-<<<<<<< HEAD
+
 	this.saveStudentInfo = function (info) {
-=======
-	this.saveStudentInfo = function(info) {
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
@@ -142,12 +119,9 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 			deferred.resolve(response);
 		});
 		return deferred.promise;
-
-
-<<<<<<< HEAD
 		}
 	
-=======
+
 	//this gets student info for publicview
 
 	this.getStudentPublicView = function(id) {
@@ -160,7 +134,5 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		})
 		return deferred.promise;
 	};
->>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
-
 
 });
