@@ -1,36 +1,17 @@
 app.service("loginSvc", function($http, $q) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
   var user = {
 
     // Id:"55f8480baec60b07268b0f59",
      Id:null,
      roles: ['student', 'lead_instructor']
->>>>>>> 28c33c9a540c593f0fe7f85dae00a63680e85ead
 
-  var user = {
-    Id: null,
-    roles: ['student', 'lead_instructor']
-  };
+}
 
-<<<<<<< HEAD
   this.getCurrentUser = function() {
     return user;
   }
-=======
-=======
-  // var user = {
-  //   Id: "55f8480baec60b07268b0f59",
-  //   roles: ['student', 'lead_instructor']
-  // };
->>>>>>> login
 
-  //
-  // this.getCurrentUser = function() {
-  //   return user;
-  // }
->>>>>>> 28c33c9a540c593f0fe7f85dae00a63680e85ead
 
 
   this.logInUser = function(data) {
@@ -66,11 +47,11 @@ app.service("loginSvc", function($http, $q) {
     return deferred.promise;
   };
 
-<<<<<<< HEAD
+
   this.getLoggedInUser = function() {
     return user;
   }
-=======
+
 
   // TODO:
   // this.getLoggedInUser = function() {
@@ -87,8 +68,8 @@ app.service("loginSvc", function($http, $q) {
     })
   return deferred.promise;
         */
-}
->>>>>>> 28c33c9a540c593f0fe7f85dae00a63680e85ead
+
+
 
 
 

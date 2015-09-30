@@ -1,13 +1,13 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
 	$filter,
-	$http, $stateParams, studentProfileEdit, cohortroute) {
+	$http, $stateParams, cohortroute) {
 
 	$scope.thisStudent = cohortroute;
 
 	$scope.studentData = {
 		name: {},
-		skills: []
+		
 	}; /// name the variables before hand bacuase scope will keep WATCH on this variables until the functions are done loading our data!!
 	$scope.getStudentProf = function() {
 		studentProfileSvc.getStudentProf($stateParams.id).then(function(response) {
@@ -19,8 +19,8 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getStudentProf();
 
 	$scope.isMyProfile = function() {
-		var loggedInUser = loginSvc.getLoggedInUser();
-		return loggedInUser.Id === $scope.profileId;
+		
+		return true;
 	};
 
 	$scope.classNames = [];
