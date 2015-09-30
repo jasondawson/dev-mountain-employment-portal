@@ -288,14 +288,16 @@ hr.style8:after {
   margin-left: 5px;
 }
 .loginpage {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  /*background-color: #404040;*/
+  margin-top: -80px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-image:  linear-gradient( rgba(7, 88, 90, 0.5), rgba(7, 88, 90, 0.5)), url(https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/11659245_872361029501432_6139527623432326623_n.jpg?oh=d532efd7129769d6e304fe942595ecb6&oe=5697FA1F);
+
 }
 .loginwrapper {
-  margin-top: 80px;
+  margin-top: -550px;
   margin-bottom: 80px;
 }
 .login-signin {
@@ -313,8 +315,4 @@ hr.style8:after {
 .login-signin img {
   width: 50px;
   height: 50px;
-}
-
-.togglebar {
-  top-padding: 100px;
 }

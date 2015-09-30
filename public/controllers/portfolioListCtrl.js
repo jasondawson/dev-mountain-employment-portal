@@ -20,7 +20,6 @@ app.controller('portfolioListCtrl', ['$scope',
     publicPortfoliosSvc, $state) {
 
     $scope.goToCohort = function(cohort) {
-      console.log('this is cohort', cohort);
       $state.go('portfolios', {
         id: cohort
       })

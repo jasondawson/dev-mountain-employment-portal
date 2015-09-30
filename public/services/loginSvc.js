@@ -1,11 +1,11 @@
 app.service("loginSvc", function($http, $q) {
   var user = {
-     Id:"55f8480baec60b07268b0f59",
-     roles: ['student', 'lead_instructor']
+    Id: "55f8480baec60b07268b0f59",
+    roles: ['student', 'lead_instructor']
   };
 
 
-  this.getCurrentUser=function(){
+  this.getCurrentUser = function() {
     return user;
   }
 
@@ -15,7 +15,7 @@ app.service("loginSvc", function($http, $q) {
 
     console.log('this is login', data);
 
-    /*$http({
+    $http({
         url: 'http://localhost:3000/login',
         method: 'POST',
         data: data
@@ -24,7 +24,7 @@ app.service("loginSvc", function($http, $q) {
         console.log('this is loginSvc', data);
         user.Id = data.data;
         deferred.resolve(data.data);
-      });*/
+      });
 
     return deferred.promise;
   };
@@ -44,13 +44,13 @@ app.service("loginSvc", function($http, $q) {
       })
     return deferred.promise;
   };
-    
-  
- // TODO:
-    this.getLoggedInUser = function(){
-        return user;
-        
-        
+
+
+  // TODO:
+  this.getLoggedInUser = function() {
+    return user;
+
+
     /*var deferred = $q.defer();
     $http({
         url: '/urltheygaveme',
@@ -61,9 +61,9 @@ app.service("loginSvc", function($http, $q) {
       })
     return deferred.promise;
           */
-    }
-  
-  
+  }
+
+
 
   // end of service
 });

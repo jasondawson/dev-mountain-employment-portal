@@ -3,7 +3,7 @@ var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
   'ngMaterial', 'ngAnimate', 'truncate'
 ]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView");
@@ -41,24 +41,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
   .state("profile", {
-      url: "/profile",
-      templateUrl: "html-templates/publicStudentProfile.html",
-      controller: "studentProfileCtrl"
-    })
-    // .state("profile",{
-    //   url:"/profile/:loginId",
-    //   templateUrl: "html-templates/publicStudentProfile.html",
-    //   controller: "studentProfileCtrl"
-    // })
-
-
-  .state("profiles", {
-    url: "/profiles/:id",
+    url: "/profile/:id",
     templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl",
     resolve: {
-      studentprofiles: function($stateParams, studentProfileSvc) {
-        return studentProfileSvc.getStudentPublicView($stateParams.id)
+      cohortroute: function($stateParams, studentProfileSvc) {
+        return studentProfileSvc.getStudentProf($stateParams.id)
+      }
+    }
+  })
+
+  .state("student", {
+    url: "/student/:id",
+    templateUrl: "html-templates/student.html",
+    controller: "studentCtrl",
+    resolve: {
+      student: function($stateParams, studentSvc) {
+        return studentSvc.getStudent($stateParams.id)
       }
     }
   })
@@ -81,32 +80,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-});
-app.directive("progressbar", function() {
-  return {
-    restrict: "A",
-    scope: {
-      total: "=",
-      current: "="
-    },
-    link: function(scope, element) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue');
 
-      scope.$watch("current", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      });
-      scope.$watch("total", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      })
-    }
-  };
-});
-
-app.run(function(editableOptions, $state, $rootScope) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-  /*$rootScope.$on('$stateChangeStart',
-function(event, toState, toParams, fromState, fromParams){
-    event.preventDefault(); */
-  // transitionTo() promise will be rejected with
-  // a 'transition prevented' error
-  //});
 });

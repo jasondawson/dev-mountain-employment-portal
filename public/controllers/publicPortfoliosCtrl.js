@@ -1,5 +1,5 @@
 app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
-	cohortroute, $stateParams) {
+	cohortroute, $stateParams, $state) {
 
 
 	$scope.getCohorts = cohortroute;
