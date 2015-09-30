@@ -7,8 +7,8 @@
       <b>Bio:</b> {{student.Bio | characters: 450}}
       <br>
       <br><b>Skills:</b>
-      <span ng-repeat="skill in student.skills">
-        {{skill.title}}{{$last ? '' : ', '}}
+      <span>
+        {{skill.skills}}{{$last ? '' : ', '}}
       </span>
     </div>
   </div>
