@@ -17,6 +17,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 	this.getStudentProf = function(profileId) {
+		console.log(profileId)
 		var deferred = $q.defer();
 		$http({
 			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59', 

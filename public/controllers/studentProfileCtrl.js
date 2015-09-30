@@ -18,6 +18,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	};
 	$scope.getStudentProf();*/
 	 $scope.getStudentProf = function() {
+	 	console.log($scope.profileId)
 		studentProfileSvc.getStudentProf($scope.profileId).then(function(response) {
 			$scope.studentData = response.studentPortf;
 			console.log('this is studenDAta', $scope.studentData);
