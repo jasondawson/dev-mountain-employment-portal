@@ -113,6 +113,8 @@ module.exports = {
       .lean().exec(function(err, result) {
         var students = [];
         result.forEach(function(student) {
+          console.log('**********this is student************',
+            student);
           var idWrapper = ObjectID.createFromHexString(cohortId);
           if (student.cohort.cohortname._id.id === idWrapper.id &&
             student.showProfile === true) {

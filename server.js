@@ -218,6 +218,11 @@ router.route('/api/fullPortfolio/:id')
 router.route('/api/getCohort/:id')
   .get(studentPortfCtrl.getCohorts);
 
+//this is the end point for getting student in public view
+
+router.route('/api/student/:id')
+  .get(studentPortfCtrl.getStudentById);
+
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
