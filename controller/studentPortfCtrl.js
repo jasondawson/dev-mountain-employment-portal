@@ -107,14 +107,13 @@ module.exports = {
 
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
+    console.log('this is cohortID', cohortId);
     StudentPortf.find().populate(
         'cohort.cohortname cohort.cohortLocation cohort.className projects'
       )
       .lean().exec(function(err, result) {
         var students = [];
         result.forEach(function(student) {
-          console.log('**********this is student************',
-            student);
           var idWrapper = ObjectID.createFromHexString(cohortId);
           if (student.cohort.cohortname._id.id === idWrapper.id &&
             student.showProfile === true) {
