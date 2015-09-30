@@ -1,4 +1,4 @@
-app.directive('portfolioView', function() {
+app.directive('portfolioView', function($state) {
   return {
     restrict: 'E',
     scope: {
@@ -13,6 +13,12 @@ app.directive('portfolioView', function() {
       $scope.hide = function(e) {
         $scope.hidden = false;
       }
+      $scope.goStudent = function(id) {
+        console.log('this is id', id);
+        $state.go('student', {
+          id: id
+        })
+      };
     }
   }
 });

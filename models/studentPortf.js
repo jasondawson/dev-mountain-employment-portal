@@ -46,7 +46,13 @@ var studentPortf = new Schema({
   resume: {
     type: String
   }, // link or upload to amazon s3 that saves link to resume.
+<<<<<<< HEAD
   skills: {type: String},
+=======
+  skills: {
+    type: String
+  },
+>>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
   OrSkillString: {
     type: String
   },

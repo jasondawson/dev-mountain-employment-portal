@@ -1,7 +1,9 @@
-app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
+app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
+	cohortroute, $stateParams, $state) {
 
-	$scope.portfoliosTest =
-		"This test is from the publicPortfoliosCtrl file from $scope";
+
+	$scope.getCohorts = cohortroute;
+
 
 	//TODO: Take cohortID in state param -> Only get studetns for that cohort id
 	//$stateParams.cohortId  (route has portfolios/:cohortId)
@@ -12,19 +14,44 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc) {
 	     $location to route using student id (route: profile/:studentId)
 	*/
 
-	$scope.getStudentProf = function() {
-		publicPortfoliosSvc.getStudentProf().then(function(response) {
+	$scope.getByCohort = function() {
+		publicPortfoliosSvc.getByCohort($stateParams.id).then(function(
+			response) {
 			$scope.studentPortfolio = response;
-			console.log('this is $scope.studentPortfolio', $scope.studentPortfolio);
+			console.log('this is getbycohort response', response);
 		})
 	};
 
-	$scope.getStudentProf();
+	$scope.getByCohort();
 
 	$scope.getStudentProj = function(data) {
 		publicPortfoliosSvc.getStudentProj(data).then(function(response) {
 			$scope.StudentProject = response;
 		})
 	};
+
+	$scope.portfolioPreview = function() {
+		publicPortfoliosSvc.getStudentProf().then(function(response) {
+			console.log('this is response', response);
+			var _map = {};
+			var byCohort = [];
+			_.each(response, function(element, index, list) {
+				var cohortObj = _map[element.cohort.cohortname._id];
+				if (!cohortObj) {
+					cohortObj = _map[element.cohort.cohortname._id] = {
+						"cohort": element.cohort.cohortname.text,
+						"classLocation": element.classLocation,
+						"classType": element.classType,
+					};
+					byCohort.push(cohortObj)
+				};
+			})
+
+			$scope.cohort = byCohort;
+		})
+	}
+	$scope.portfolioPreview();
+
+
 
 })

@@ -1,9 +1,9 @@
 "use Strict";
 var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
-  'ngMaterial', 'ngAnimate'
+  'ngMaterial', 'ngAnimate', 'truncate'
 ]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView");
@@ -39,40 +39,31 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: "homeViewCtrl"
     })
 
-  .state("portfolios", {
 
-    url: "/portfolios",
-    templateUrl: "html-templates/publicPortfolios.html",
-    controller: "publicPortfoliosCtrl"
-  })
   .state("profile", {
+<<<<<<< HEAD
     url: "/profile/:profileId",
+=======
+    url: "/profile/:id",
+>>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
     templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
+    controller: "studentProfileCtrl",
+    resolve: {
+      cohortroute: function($stateParams, studentProfileSvc) {
+        return studentProfileSvc.getStudentProf($stateParams.id)
+      }
+    }
   })
-  // .state("profile",{
-  //   url:"/profile/:loginId",
-  //   templateUrl: "html-templates/publicStudentProfile.html",
-  //   controller: "studentProfileCtrl"
-  // })
 
-
-    //
-    // .state("portfolios", {
-    //   url: "/portfolios/:cohort",
-    //   templateUrl: "html-templates/publicPortfolios.html",
-    //   controller: "publicPortfoliosCtrl",
-    //   resolve: {
-    //     portfolioroutes: function(publicPortfoliosSvc) {
-    //       return publicPortfoliosSvc.getStudentProf();
-    //     }
-    //   }
-    // })
-
-  .state("profiles", {
-    url: "/profiles",
-    templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
+  .state("student", {
+    url: "/student/:id",
+    templateUrl: "html-templates/student.html",
+    controller: "studentCtrl",
+    resolve: {
+      student: function($stateParams, studentSvc) {
+        return studentSvc.getStudent($stateParams.id)
+      }
+    }
   })
 
   .state("portfolioview", {
@@ -82,33 +73,65 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
 
-
-});
-app.directive("progressbar", function() {
-  return {
-    restrict: "A",
-    scope: {
-      total: "=",
-      current: "="
-    },
-    link: function(scope, element) {
-
-      scope.$watch("current", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      });
-      scope.$watch("total", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      })
+  .state("portfolios", {
+    url: "/portfolios/:id",
+    templateUrl: "html-templates/publicPortfolios.html",
+    controller: "publicPortfoliosCtrl",
+    resolve: {
+      cohortroute: function($stateParams, publicPortfoliosSvc) {
+        return publicPortfoliosSvc.getByCohort($stateParams.id)
+      }
     }
-  };
+  })
+
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue');
+
 });
 
-app.run(function(editableOptions, $state, $rootScope) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-  /*$rootScope.$on('$stateChangeStart',
-function(event, toState, toParams, fromState, fromParams){
-    event.preventDefault(); */
-  // transitionTo() promise will be rejected with
-  // a 'transition prevented' error
-  //});
-});
+
+
+// app.run(function($rootScope, $state, $window, authService, $location) {
+//
+//   var publicViews = ["homeView", "profiles", "portfolios", "portfolioview"];
+//   authService.getLoginUser().then(function(loggedInUser) {
+//     if (loggedInUser) {
+//       $rootScope.loggedIn = true;
+//     } else {
+//       $rootScope.loggedIn = false;
+//     }
+//   });
+//
+// $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+//
+//   if (publicViews.indexOf(toState.name) !== -1) return;
+//
+//   authService.getLoginUser().then(function(loggedInUser) {
+//       console.log(loggedInUser);
+//         if (loggedInUser.id) {
+//           $rootScope.loggedIn = true;
+//           return;
+//         } else {
+//           $rootScope.loggedIn = false;
+//           authService.getUser().then(function(data) {
+//             if (data.redirect) {
+//               $window.location.replace(data.location)
+//             } else {
+//              return;
+//             }
+//
+//           })
+//         }
+//   })
+//     })
+// })
+
+/*Listen for state changes,
+check for a user object that will be stored somewhere,
+if (user) { then continue },
+if (!user) { check for a user on the server },
+if the server sends us a user, then we will store that user.
+if the server does not send us a user, then we will redirect to Dev Mountain,
+
+
+*/

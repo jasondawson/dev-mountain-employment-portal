@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="portalsApp">
+
 <head>
 	<title>Employment Portal</title>
 	<meta charset="utf-8">
@@ -10,19 +11,21 @@
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css" rel="stylesheet">
 	<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 	<link href="bower_components/wow/css/libs/animate.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+
+<!-- <body ng-controller="authCtrl">
 
 <div>
 
 	<nav class ="navbar navbar-default">
 <div class="container-fluid">
-<!-- Devmtn Logo and Toggle Link Go here	 -->
-	<div class="navbar-header">
+<! Devmtn Logo and Toggle Link Go here	 -->
+	<!-- <div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 		 <span class="sr-only">Toggle navigation</span>
 		 <span class="icon-bar"></span>
@@ -32,37 +35,75 @@
 		<a ui-sref="homeView"class="navbar-brand">
 			<img  class="logo" alt="DevMoutain Employee Portal" src="https://devmounta.in/img/logowhiteblue.png">
 		</a>
-	</div>
+	</div> -->
 <!-- Links go here -->
-<div class="collapse navbar-collapse">
+<!-- <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav pull-right">
 	<li>
 		<a ui-sref="portfolioview">Porfolios</a>
 	</li>
 	<li>
-		<a ui-sref="login">Student Log-In</a>
+		<a class="btn btn-primary" ng-click="login('student')" ng-show="!$root.loggedIn">Student</a>
 	</li>
 	<li>
-		<a ui-sref="admin">Administrator</a>
+		<a class="btn btn-warning" ng-click="login('admin')" ng-show="!$root.loggedIn">Administrator</a>
 	</li>
-</ul>
-
-</div>
-
-</div>
-	</nav>
-
-	<div ui-view></div>
+	<li>
+		<a class="btn btn-default" ng-click="logout()" ng-show="$root.loggedIn">Logout</a>
+	</li>
+</ul> -->
+<!--
+</div>  -->
 
 
+<body>
 
-</div>
-       <!-- /////SCRIPTS/////// -->
+	<div>
 
-<!-- Jquery Script -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Devmtn Logo and Toggle Link Go here	 -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a ui-sref="homeView" class="navbar-brand">
+						<img class="logo" alt="DevMoutain Employee Portal" src="https://devmounta.in/img/logowhiteblue.png">
+					</a>
+				</div>
+				<!-- Links go here -->
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav pull-right">
+						<li>
+							<a ui-sref="portfolioview">Porfolios</a>
+						</li>
+						<li>
+							<a ui-sref="login">Student Log-In</a>
+						</li>
+						<li>
+							<a ui-sref="admin">Administrator</a>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+		</nav>
+
+		<div ui-view></div>
+
+
+
+	</div>
+	<!-- /////SCRIPTS/////// -->
+
+	<!-- Jquery Script -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 
-<!-- Angular Script -->
+	<!-- Angular Script -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
@@ -71,13 +112,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.js"></script>
 
 
-<!-- Bower Scripts	 -->
+	<!-- Bower Scripts	 -->
 	<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 	<script src="bower_components/checklist-model/checklist-model.js"></script>
 	<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-  <script src="bower_components/wow/dist/wow.min.js"></script>
-	  <script src="bower_components/underscore/underscore.js"></script>
-<!-- JS Files -->
+	<script src="bower_components/wow/dist/wow.min.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/angular-truncate/src/truncate.js"></script>
+
+	<!-- JS Files -->
 
 	<script src="app.js"></script>
 	<script src="controllers/adminCtrl.js"></script>
@@ -93,12 +136,18 @@
 	<script src="services/publicPortfoliosSvc.js"></script>
 	<script src="services/studentProfileSvc.js"></script>
 	<script src="directives/imageDirective.js"></script>
-  	<script src="directives/porfoliohover.js"></script>
-  	<script src="directives/porjectPic.js"></script>
-  	<script src="directives/newProjectpic.js"></script>
+	<script src="directives/porfoliohover.js"></script>
+	<script src="directives/porjectPic.js"></script>
+	<script src="directives/newProjectpic.js"></script>
+	<script src="controllers/homeViewCtrl.js"></script>
+	<script src="controllers/portfolioListCtrl.js"></script>
+		<script src="directives/progressbar.js"></script>
+	<script src="services/studentSvc.js"></script>
+		<script src="controllers/studentCtrl.js"></script>
+  	<script src="services/authService.js"></script>
+  	<script src="controllers/authCtrl.js"></script>
 
-  	<script src="controllers/homeViewCtrl.js"></script>
-		<script src="controllers/portfolioListCtrl.js"></script>
 
 </body>
+
 </html>

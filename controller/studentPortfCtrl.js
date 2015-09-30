@@ -43,7 +43,11 @@ module.exports = {
       )*/
 
     .populate(
+<<<<<<< HEAD
         'cohort.cohortname cohort.className cohort.cohortLocation projects '
+=======
+        'cohort.cohortname cohort.className cohort.cohortLocation projects'
+>>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
       )
       //.populate("cohort.cohortName")
       .exec(function(err, result) {
@@ -66,7 +70,7 @@ module.exports = {
             loginInfo: userId
           })
           .populate(
-            'cohort.cohortname cohort.cohortLocation cohort.className projects skills'
+            'cohort.cohortname cohort.cohortLocation cohort.className projects'
           )
           .exec(function(err, result) {
             studentPortfolio.studentPortf = result;
@@ -136,17 +140,22 @@ module.exports = {
 
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
+    console.log('this is cohortID', cohortId);
     StudentPortf.find().populate(
+<<<<<<< HEAD
         'cohort.cohortname cohort.cohortLocation cohort.className projects '
+=======
+        'cohort.cohortname cohort.cohortLocation cohort.className projects'
+>>>>>>> ea6c48493abc7aff1bc591ddc6b0eb239ab44659
       )
       .lean().exec(function(err, result) {
         var students = [];
         result.forEach(function(student) {
           var idWrapper = ObjectID.createFromHexString(cohortId);
-          if (student.cohort.cohortname._id.id === idWrapper.id) {
+          if (student.cohort.cohortname._id.id === idWrapper.id &&
+            student.showProfile === true) {
             students.push(student);
           }
-
         })
         if (err) return res.status(500).send(err);
         res.send(students);
