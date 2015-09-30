@@ -41,7 +41,7 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
 
   .state("profile", {
-    url: "/profile/:id",
+    url: "/profile/:profileid",
     templateUrl: "html-templates/publicStudentProfile.html",
     controller: "studentProfileCtrl",
     resolve: {

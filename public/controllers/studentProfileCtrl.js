@@ -1,7 +1,7 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
 	$filter,
-	$http, $stateParams, studentProfileEdit) {
+	$http, $stateParams, studentProfileEdit, cohortroute) {
 
 	$scope.thisStudent = cohortroute;
 
