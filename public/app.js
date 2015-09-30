@@ -1,9 +1,9 @@
 "use Strict";
 var app = angular.module("portalsApp", ['ui.router', 'xeditable', 'smart-table',
-  'ngMaterial', 'ngAnimate'
+  'ngMaterial', 'ngAnimate', 'truncate'
 ]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /homeView
   $urlRouterProvider.otherwise("/homeView");
@@ -39,46 +39,48 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: "homeViewCtrl"
     })
 
-  .state("portfolios", {
-    url: "/portfolios",
-    templateUrl: "html-templates/publicPortfolios.html",
-    controller: "publicPortfoliosCtrl"
-  })
 
-  .state("profiles", {
-    url: "/profiles",
+  .state("profile", {
+    url: "/profile/:id",
     templateUrl: "html-templates/publicStudentProfile.html",
-    controller: "studentProfileCtrl"
+    controller: "studentProfileCtrl",
+    resolve: {
+      cohortroute: function($stateParams, studentProfileSvc) {
+        return studentProfileSvc.getStudentProf($stateParams.id)
+      }
+    }
+  })
+
+  .state("student", {
+    url: "/student/:id",
+    templateUrl: "html-templates/student.html",
+    controller: "studentCtrl",
+    resolve: {
+      student: function($stateParams, studentSvc) {
+        return studentSvc.getStudent($stateParams.id)
+      }
+    }
+  })
+
+  .state("portfolioview", {
+    url: "/portfolioview",
+    templateUrl: "html-templates/portfolioList.html",
+    controller: "portfolioListCtrl"
   })
 
 
-
-});
-app.directive("progressbar", function() {
-  return {
-    restrict: "A",
-    scope: {
-      total: "=",
-      current: "="
-    },
-    link: function(scope, element) {
-
-      scope.$watch("current", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      });
-      scope.$watch("total", function(value) {
-        element.css("width", scope.current / scope.total * 100 + "%");
-      })
+  .state("portfolios", {
+    url: "/portfolios/:id",
+    templateUrl: "html-templates/publicPortfolios.html",
+    controller: "publicPortfoliosCtrl",
+    resolve: {
+      cohortroute: function($stateParams, publicPortfoliosSvc) {
+        return publicPortfoliosSvc.getByCohort($stateParams.id)
+      }
     }
-  };
-});
+  })
 
-app.run(function(editableOptions, $state, $rootScope) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-  /*$rootScope.$on('$stateChangeStart',
-function(event, toState, toParams, fromState, fromParams){
-    event.preventDefault(); */
-  // transitionTo() promise will be rejected with
-  // a 'transition prevented' error
-  //});
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue');
+
 });

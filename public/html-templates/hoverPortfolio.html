@@ -1,19 +1,32 @@
-<div class="outer-box" ng-mouseover="showHidden()" ng-mouseleave="hide()">
-  <div ng-show="!hidden">
+<div class="outer-box" ng-mouseover="showHidden()" ng-mouseleave="hide()"  ng-click="goStudent(student.loginInfo)">
+  <div class="imagesize" ng-show="!hidden">
 
-  <img src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}" style="width: 200px; height: 200px"> Name: {{student.name.first}} {{student.name.last}}
-  <br>Bio: {{student.Bio}}
-  <br> Skills:
-  <div ng-repeat="skill in student.skills">
-    {{skill.title}}
+    <img src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}">
+    <div class="biopreview">
+      <h2>{{student.name.first}} {{student.name.last}}</h2>
+      <b>Bio:</b> {{student.Bio | characters: 450}}
+      <br>
+      <br><b>Skills:</b>
+      <span ng-repeat="skill in student.skills">
+        {{skill.title}}{{$last ? '' : ', '}}
+      </span>
+    </div>
   </div>
-</div>
-<div ng-repeat="project in student.projects | limitTo:2" ng-show="hidden">
-  Project Name: {{project.name}}
-  <br>
-  Type: {{project.projectType}}
-  <br>
-  Description: {{project.description}}
-
-</div>
+  <div class="projectContainer">
+    <div class="projectContainer-flex" ng-repeat="project in student.projects | limitTo:2" ng-show="hidden">
+      <img src="{{project.picture}}">
+      <div class="projectdesc">
+        <ul id="studentsample">
+          <li>
+            <b>Project Name:</b> {{project.name}}</li>
+          <li>
+            <b>Type:</b> {{project.projectType}} </li>
+          <li>
+            <b>Description:</b> {{project.description | characters: 160}}</li>
+            <li>
+              <b>Tech Used:</b> {{project.TechUsed | characters: 70}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

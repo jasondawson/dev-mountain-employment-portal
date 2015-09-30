@@ -143,7 +143,7 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-router.route('/api/project')
+router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 
@@ -151,8 +151,8 @@ router.route('/api/project')
 router.route('/api/studentPorftolio')
   .post( /*authCtrl.isAuthenticated,*/ studentPortfCtrl.create);
 
-router.route('/api/project/:id')
-  .put(authCtrl.isAuthenticated, projectCtrl.update)
+router.route('/api/updateProject/:id')
+  .put( /*authCtrl.isAuthenticated,*/ projectCtrl.update)
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 router.route('/api/projects')
@@ -161,15 +161,13 @@ router.route('/api/projects')
 router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
-
-
 router.route('/api/studentPortfolio/:id')
-  .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
- 
-  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
+  .get(studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
+
+.post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
 
-  .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+.delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
@@ -215,6 +213,15 @@ router.route('/api/studentSkills/:id')
 
 router.route('/api/fullPortfolio/:id')
   .get(authCtrl.isAuthenticated, fullPortfolio.getPortfolio);
+
+//this the end point for getting students by Cohort
+router.route('/api/getCohort/:id')
+  .get(studentPortfCtrl.getCohorts);
+
+//this is the end point for getting student in public view
+
+router.route('/api/student/:id')
+  .get(studentPortfCtrl.getStudentById);
 
 //connections
 var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';

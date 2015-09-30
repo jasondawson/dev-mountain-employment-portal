@@ -16,14 +16,17 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return $http.post('/api/newimage', newImage)
 	}
 
-	this.getStudentProf = function() {
+	this.getStudentProf = function(id) {
 		var deferred = $q.defer();
-	 	var me = loginSvc.getCurrentUser();
+		var me = loginSvc.getCurrentUser();
+		console.log("getCurrentUser fucniton GET LOGINUSER ID", me)
+
 
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/55f723dd5c39cb631af86f1a', 
+			url: 'http://localhost:3000/api/studentPortfolio/' + me.Id,
+			// url: 'http://localhost:3000/api/studentPortfolio/'+me.Id,
 			//ID = LOGIN USER ID,
-			
+
 			method: 'GET',
 			//cache: false
 			// data: data
@@ -33,33 +36,94 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		})
 		return deferred.promise;
 	};
-		this.updateStudentInfo = function (info) {
+	this.updateStudentInfo = function(info) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
 			url: 'http://localhost:3000/api/studentPortfolio/55f708cc4a368e270de0ecff',
 			//ID = STudent PORTFOLIO ID,
 			data: info
-		}).then(function (response) {
+		}).then(function(response) {
 			deferred.resolve(response);
 		});
 		return deferred.promise;
 	};
 
-		this.saveStudentInfo = function (info) {
+	this.updateProject = function(project) {
+		console.log('what info im i gettign???', project)
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: '/api/updateProject/' + project._id,
+			data: {
+				projectType: project.projectType,
+				name: project.name,
+				picture: project.picture,
+				description: project.description,
+				TechUsed: project.TechUSed,
+				codeSource: {
+					name: project.codeSource.name,
+					url: project.codeSource.url
+				}
+			}
+			//data: project
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+
+	}
+
+	this.addProject = function(newProject, studentId) {
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: '/api/project/55f708cc4a368e270de0ecff',
+			//+ studentId,
+
+			data: {
+				projectType: newProject.projectType,
+				name: newProject.name,
+				picture: newProject.picture,
+				description: newProject.description,
+				TechUsed: newProject.TechUSed,
+				codeSource: {
+					name: newProject.codeSource.name,
+					url: newProject.codeSource.url
+				}
+			}
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+
+	}
+
+	this.saveStudentInfo = function(info) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
 			url: 'http://localhost:3000/api/studentPortfolio/',
 			//+ me.Id,
 			data: info
-		}).then(function (response) {
+		}).then(function(response) {
 			deferred.resolve(response);
 		});
 		return deferred.promise;
 	};
 
-	
+	//this gets student info for publicview
+
+	this.getStudentPublicView = function(id) {
+		var deferred = $q.defer();
+		$http({
+			url: 'http://localhost:3000/api/studentPortfolio/' + id,
+			method: 'GET',
+		}).then(function(response) { //console.log('this is response.data in service', response.data);
+			deferred.resolve(response.data);
+		})
+		return deferred.promise;
+	};
 
 
 });
