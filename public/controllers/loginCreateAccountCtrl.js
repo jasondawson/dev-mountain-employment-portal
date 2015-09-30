@@ -20,10 +20,13 @@ app.controller("loginCreateAccountCtrl", function($scope, $location, loginSvc,
 
   $scope.register = function(data) {
     console.log('this is register data', data);
+    data.role = "student";
     loginSvc.register(data).then(function(response) {
       console.log('this is register response', response);
       $scope.user = "";
-      $location.path("/profile" + response);
+      $state.go('profile', {
+        id: response._id
+      })
     })
   }
 
