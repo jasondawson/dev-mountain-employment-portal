@@ -84,3 +84,50 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     .primaryPalette('blue');
 
 });
+
+
+
+// app.run(function($rootScope, $state, $window, authService, $location) {
+//
+//   var publicViews = ["homeView", "profiles", "portfolios", "portfolioview"];
+//   authService.getLoginUser().then(function(loggedInUser) {
+//     if (loggedInUser) {
+//       $rootScope.loggedIn = true;
+//     } else {
+//       $rootScope.loggedIn = false;
+//     }
+//   });
+//
+// $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+//
+//   if (publicViews.indexOf(toState.name) !== -1) return;
+//
+//   authService.getLoginUser().then(function(loggedInUser) {
+//       console.log(loggedInUser);
+//         if (loggedInUser.id) {
+//           $rootScope.loggedIn = true;
+//           return;
+//         } else {
+//           $rootScope.loggedIn = false;
+//           authService.getUser().then(function(data) {
+//             if (data.redirect) {
+//               $window.location.replace(data.location)
+//             } else {
+//              return;
+//             }
+//
+//           })
+//         }
+//   })
+//     })
+// })
+
+/*Listen for state changes,
+check for a user object that will be stored somewhere,
+if (user) { then continue },
+if (!user) { check for a user on the server },
+if the server sends us a user, then we will store that user.
+if the server does not send us a user, then we will redirect to Dev Mountain,
+
+
+*/

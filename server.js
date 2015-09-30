@@ -9,12 +9,16 @@ var passport = require('passport');
 var LocalStrategy = require("passport-local").Strategy;
 var session = require('express-session');
 var multipart = require('connect-multiparty')
+var morgan = require('morgan');
+var axios = require('axios');
+
 
 var app = express();
 var router = express.Router();
 
 //controllers
 
+var config = require('./controller/config.js');
 var userCtrl = require('./controller/userCtrl');
 var skillsCtrl = require('./controller/skillsCtrl');
 var devSkillsCtrl = require('./controller/devSkillsCtrl');
@@ -32,15 +36,18 @@ var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
 
 //middleware
-app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({
   limit: '50mb'
 }));
 app.use(session({
-  secret: "devmtnempportal",
+  secret: config.sessionSecret,
   resave: true,
   saveUninitialized: true
 }));
+app.use(morgan("dev"));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
@@ -127,6 +134,148 @@ app.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+
+
+
+
+/////////////Biginning of Dev Mountain Auth//////////////
+//***********************************//
+//authentication specific stuff starts here
+//***********************************//
+
+var jwt = require('jsonwebtoken');
+// app name and client token should be given to you
+var app_name = 'dev-ep' // your app name here
+var client_token = 'something' // your client token here
+var authenticationRedirectUrl = 'http://localhost:1337/login/?bounce=' + app_name + '&token=' + client_token;
+
+
+// authentication endpoint will look like
+// /auth/getToken/:state
+var authRoutes = express.Router();
+app.use('/auth', authRoutes);
+
+authRoutes.get('/getSessionUser', function(req, res) {
+  if (req.session.decoded) {
+    res.send(req.session.decoded);
+  } else {
+    res.send();
+  }
+})
+
+// allows app state or route to be passed here, saved in the session and redirected to after authentication
+authRoutes.get('/getUser/:type', function(req, res) {
+
+// TODO remove hardcoded for testing
+
+if (req.params.type === 'admin') {
+  req.session.decoded =
+        {
+         "email": "test2@test.com",
+         "id": 94,
+         "roles": [
+           {
+             "role": "admin",
+             "id": 1
+           },
+           {
+             "role": "mentor",
+             "id": 2
+           },
+           {
+             "role": "lead_instructor",
+             "id": 3
+           }
+         ],
+         "iat": 1443128174,
+         "exp": 1443214574
+        }
+} else if (req.params.type === 'student') {
+   req.session.decoded =
+        {
+         "email": "test@test.com",
+         "id": 95,
+         "roles": [
+           {
+             "role": "student",
+             "id": 4
+           }
+         ],
+         _id: '55f8480baec60b07268b0f59',
+
+         "iat": 1443128174,
+         "exp": 1443214574
+        }
+}
+
+  // if the decoded token is already on the session, just pass it back
+  if (req.session.decoded) {
+    return res.status(200).json({
+      user: req.session.decoded
+    });
+  }
+
+  //else if no decoded token, pass redirect info back to app (cannot redirect in xhr request, must be handled by client)
+  else {
+    res.status(200).json({
+      redirect: true,
+      location: authenticationRedirectUrl
+    })
+
+  }
+});
+
+
+// this is where devmountain will redirect back to. Grabs the app state for redirection to that state or route (if passed in previous get)
+authRoutes.get('/ms/callback', function(req, res) {
+  var token = req.query.token;
+
+  // if passed a token, decoded it and place it on the session. The decoded object is the user that has now been authenticated.
+  if (token) {
+    jwt.verify(token, config.jwtSecret, function(err, decoded) {
+      if (err) {
+        return res.json({success: false, message: 'Failed to verify token'});
+      } else {
+
+        //token is valid
+        req.session.decoded = decoded;
+        console.log(decoded);
+
+        if (req.session.redirectState) {
+          var tmp = req.session.redirectState || null
+          delete req.session.redirectState;
+        }
+        console.log('redirecting')
+        res.redirect('/#/' + tmp);
+      }
+    })
+  } else {
+    //else there is no token
+    return (res.status(403).json({
+      success: false,
+      message: 'No token given'
+    }))
+
+  }
+
+})
+
+authRoutes.get('/logout', function(req, res) {
+  delete req.session.decoded;
+  res.status(200).send();
+})
+
+
+
+
+
+
+/////////////End of Dev Mountain Auth///////////////////
+
+
+
+
+
 router.route('/api/user')
   .post(userCtrl.create)
   .get(authCtrl.isAuthenticated, userCtrl.read);
@@ -162,12 +311,10 @@ router.route('/api/studentPortfolio')
   .get(studentPortfCtrl.read);
 
 router.route('/api/studentPortfolio/:id')
-  .get(studentPortfCtrl.getStudentById) // Using This one for editable forms on PublicStudentProfile.html
-
-.post(authCtrl.isAuthenticated, studentPortfCtrl.create)
+  .get(studentPortfCtrl.getStudentById)// Using This one for editable forms on PublicStudentProfile.html
+  .post(authCtrl.isAuthenticated, studentPortfCtrl.create)
   .put(authCtrl.isAuthenticated, studentPortfCtrl.update)
-
-.delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
+  .delete(authCtrl.isAuthenticated, studentPortfCtrl.delete);
 
 router.route('/api/cohortName')
   .post(authCtrl.isAuthenticated, cohortNameCtrl.create)
