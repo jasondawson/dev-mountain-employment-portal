@@ -16,11 +16,11 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return $http.post('/api/newimage', newImage)
 	}
 
-	this.getStudentProf = function(profileId) {
+	this.getStudentProf = function(id) {
 		var deferred = $q.defer();
 		$http({
 			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59',
-			url: 'http://localhost:3000/api/studentPortfolio/' + profileId,
+			url: 'http://localhost:3000/api/studentPortfolio/' + id,
 			//ID = LOGIN USER ID,
 
 			method: 'GET',
@@ -31,12 +31,12 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return deferred.promise;
 	};
 
-	this.updateStudentInfo = function(info, profileId) {
+	this.updateStudentInfo = function(info, id) {
 
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/studentPortfolio/' + profileId,
+			url: 'http://localhost:3000/api/studentPortfolio/' + id,
 			//ID = STudent PORTFOLIO ID,
 			data: info
 		}).then(function(response) {
@@ -71,12 +71,12 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 
-	this.addProject = function(newProject, porfileId) {
+	this.addProject = function(newProject, id) {
 
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: '/api/project/' + profileId,
+			url: '/api/project/' + id,
 			//+ studentId,
 
 			data: {
