@@ -1,11 +1,11 @@
 app.service("loginSvc", function($http, $q) {
 
   var user = {
-
     // Id:"55f8480baec60b07268b0f59",
      Id:null,
      roles: ['student', 'lead_instructor']
 }
+
 
 
   this.getCurrentUser = function() {
@@ -13,8 +13,8 @@ app.service("loginSvc", function($http, $q) {
   }
 
 
-
   this.logInUser = function(data) {
+    data.role = "student";
     var deferred = $q.defer();
     console.log('this is login', data);
     $http({
@@ -69,9 +69,7 @@ app.service("loginSvc", function($http, $q) {
   return deferred.promise;
         */
 
+  //
 
-
-
-
-// end of service
+  // end of service
 });

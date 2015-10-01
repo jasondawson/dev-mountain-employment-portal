@@ -43,8 +43,8 @@ module.exports = {
       )*/
 
     .populate(
+        'cohort.cohortname cohort.className cohort.cohortLocation projects DevSkills '
 
-        'cohort.cohortname cohort.className cohort.cohortLocation projects'
 
       )
       //.populate("cohort.cohortName")
@@ -54,31 +54,32 @@ module.exports = {
         res.send(result);
       });
   },
-/*getStudentById: function(req, res) {
-    User.findById({
-        _id: req.params.id
-      })
-      .exec(function(err, result) {
-        if (err) return res.status(500).send(err);
-        var studentPortfolio = {};
-        var userId = result._id;
-        myLog.log('this is userId', userId);
+  /*getStudentById: function(req, res) {
+      User.findById({
+          _id: req.params.id
+        })
+        .exec(function(err, result) {
+          if (err) return res.status(500).send(err);
+          var studentPortfolio = {};
+          var userId = result._id;
+          myLog.log('this is userId', userId);
 
-        StudentPortf.findOne({
-            loginInfo: userId
-          })
-          .populate(
-            'cohort.cohortname cohort.cohortLocation cohort.className projects'
-          )
-          .exec(function(err, result) {
-            studentPortfolio.studentPortf = result;
-            res.send(studentPortfolio);
-          })
-      })
-  },*/
+          StudentPortf.findOne({
+              loginInfo: userId
+            })
+            .populate(
+              'cohort.cohortname cohort.cohortLocation cohort.className projects'
+            )
+            .exec(function(err, result) {
+              studentPortfolio.studentPortf = result;
+              res.send(studentPortfolio);
+            })
+        })
+    },*/
 
   getStudentById: function(req, res) {
     myLog.log('\n\n\n\n\nthis is before! req.params ', req.params);
+
     User.findOne( {_id:req.params.id ? req.params.id : null}, function(err, userFindResult) {
         if (err) return res.status(500).send(err);
         var studentPortfolio = {};
@@ -101,10 +102,41 @@ module.exports = {
               });
             } else{
               studentPortfolio.studentPortf = portfolioFindResult._doc;
+
+/*    User.findOne({
+      _id: req.params.id ? req.params.id : null
+    }, function(err, userFindResult) {
+      if (err) return res.status(500).send(err);
+      var studentPortfolio = {};
+      var userId = userFindResult._id;
+      myLog.log('this is userId MEOW! ', userId);
+
+      StudentPortf.findOne({
+          loginInfo: userId
+        })
+        .populate(
+          'cohort.cohortname cohort.cohortLocation cohort.className projects loginInfo DevSkills'
+        )
+        .exec(function(err, portfolioFindResult) {
+          if (err || portfolioFindResult === null) {
+
+            studentPortfolio.studentPortf = new StudentPortf();
+            var newLoginId = ObjectID.createFromHexString(req.params.id);
+            studentPortfolio.studentPortf.loginInfo = newLoginId;
+            studentPortfolio.studentPortf.save(function(
+              newPortfolioError) {
+              console.log("error creating new portfolio",
+                newPortfolioError);
+
               res.send(studentPortfolio);
-            }
-          })
-      })
+            });
+          } else {
+            studentPortfolio.studentPortf = portfolioFindResult._doc;
+  */
+            res.send(studentPortfolio);
+          }
+        })
+    })
   },
   update: function(req, res) {
     console.log("this is req.body line 75 on StudentPortfCtrl", req.body);

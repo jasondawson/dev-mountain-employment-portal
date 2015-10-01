@@ -1,9 +1,11 @@
-<div class="loginpage" ng-style="backgroundColor">
-  <div class="loginwrapper">
-    <form class="login-signin" ng-model="user">
-      <div class="login-header">
+<div class="container-fluid>">
+  <div class="loginpage">
+    </div>
+    <div class="loginwrapper">
+    <form class="newuser-signin col-md-4 col-md-offset-4" ng-model="user">
+      <div class="newuser-header">
         <img src="https://devmounta.in/img/logoonly.png"> </div>
-      <h2 class="login-signin-heading">SIGNUP</h2>
+      <h2 class="newuser-signin-heading">SIGNUP</h2>
     <br>
       <input type="text" class="form-control" placeholder="E-mail address" ng-model="user.email">
       <br>
@@ -11,4 +13,4 @@
       <br>
       <button class="btn btn-lg btn-primary btn-block" ng-click="register(user)">Submit</button>
   </div>
-</div>
+  </div>

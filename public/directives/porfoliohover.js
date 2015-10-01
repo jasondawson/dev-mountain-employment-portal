@@ -14,9 +14,8 @@ app.directive('portfolioView', function($state) {
         $scope.hidden = false;
       }
       $scope.goStudent = function(id) {
-        console.log('this is id', id);
         $state.go('student', {
-          profileid: id
+          id: id
         })
       };
     }
