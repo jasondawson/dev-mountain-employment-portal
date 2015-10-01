@@ -422,13 +422,16 @@ hr.style8:after {
   top: 100px;
   text-align: center;
 }
+.studentdevskills {
+  margin-left: 410px;
+}
+
 .student-box {
   display: block;
   overflow: hidden;
   border: 1px solid gray;
   padding: 15px;
   margin: 15px;
-  width: 800px
 }
 
 .studentproject{
@@ -436,10 +439,12 @@ hr.style8:after {
   overflow: hidden;
   border: 1px solid gray;
   padding: 15px;
-  margin: 15px
+  margin: 15px;
 }
-
-
+.studentproject img {
+  width: 150px;
+  height: 150px;
+}
 
 .studentabout p {
   font-size: 16px;
@@ -448,7 +453,7 @@ hr.style8:after {
 
 .studentabout h3 {
   font-family: 'Open Sans', sans-serif;
-
+  padding-bottom: 5px;
 }
 
 .studentprojects {

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div ng-repeat="student in thisStudent">
   <div class="studentprofilepage">
-    <div class="studentcolumn column col-md-4">
+    <div class="studentcolumn col-md-4">
       <img src="{{student.picture}}" style="width: 260px; height: 260px;">
       <br>
       <h3>{{student.name.first}} {{student.name.last}}</h3>
@@ -36,31 +36,42 @@
     <p>
       <b>Willing to relocate?</b>  {{student.relocation.text}}
     </p>
+    <div>
+      <div class="studentproject" ng-repeat="project in student.projects">
+          <h3>Project </h3>
+        <img class="col-md-2" src="{{project.picture}}>
+        <p>
+          <b>Type: </b> {{project.projectType}}
+        </p>
+        <p>
+          <b>Name: </b> {{project.name}}
+        </p>
+        <p>
+          <b>Description: </b> {{project.description}}
+        </p>
+        <p>
+          <b>Tech Used: </b> {{project.TechUsed}}
+        </p>
+    <span><p>
+      URL: <a href="{{project.codeSource.url}}">{{project.codeSource.name}}</a></p> </span>
+      </div>
+    </div>
 
-  </div>
-<div class="studentshowcase col-md-12">
-  <h2>Showcase</h2>
-</div>
-  <div class="studentprojects col-md-7">
-    <h3>Projects</h3>
-    <div class="studentproject row" ng-repeat="project in student.projects">
-      <img class="col-md-2" src="{{project.picture}}" style="height:200px; width:200px;">
-      <br> Type:{{project.projectype}}
-      <br>Name: {{project.name}}
-      <br>Description: {{project.description}}
-      <br>Url: <a href="{{project.codeSource.url}}">{{project.codeSource.name}}</a>
+    <div>
+      <div class="student-box" ng-repeat="devskills in student.DevSkills">
+  <h3>Dev Skill</h3>
+        <p>
+
+        <b>Skill:</b> {{devskills.name}}</p>
+        <p>
+          <b>Description:</b> {{devskills.description}}
+        </p>
+        <br<b>URL:</b> <a href="{{devskills.link.url}}">{{devskills.link.name}}</a>
+
+      </div>
     </div>
   </div>
 
-  <div class="col-md-7">
 
-    <div class="student-box" ng-repeat="devskills in student.DevSkills">
-<h3>Dev Skills</h3>
-      Skill: {{devskills.name}}
-      <br> Description: {{devskills.description}}
-      <br>URL: <a href="{{devskills.link.url}}">{{devskills.link.name}}</a>
-
-    </div>
-  </div>
   </div>
 </div>
