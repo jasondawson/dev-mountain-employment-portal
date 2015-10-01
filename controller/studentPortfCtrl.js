@@ -44,7 +44,7 @@ module.exports = {
 
     .populate(
 
-        'cohort.cohortname cohort.className cohort.cohortLocation projects '
+        'cohort.cohortname cohort.className cohort.cohortLocation projects'
 
       )
       //.populate("cohort.cohortName")
@@ -87,7 +87,7 @@ module.exports = {
 
         StudentPortf.findOne({loginInfo:userId})
           .populate(
-            'cohort.cohortname cohort.cohortLocation cohort.className projects  loginInfo'
+            'cohort.cohortname cohort.cohortLocation cohort.className projects DevSkills loginInfo'
           )
           .exec(function(err, portfolioFindResult) {
             if (err || portfolioFindResult === null){

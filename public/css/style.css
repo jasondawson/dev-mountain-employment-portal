@@ -8,46 +8,6 @@ float: left;
 width: 100%;
 display: inline-block;
 }
-.profilePic{
-  width: 30%;
-  display: inline-block;
-  float: left;
-}
-.profileName{
-  vertical-align:middle;
-width: 50%;
-display: inline-block;
-float: left;
-}
-.mainPercentDiv{
-width: 20%;
-display: inline-block;
-float: left;
-}
-.Profileform{
-  height: 30%;
-  display: inline-block;
-  width: 100%;
-}
-.sideA  {
-  width: 30%;
-  display: inline-block!important;
-  float: left;
-}
- .sideB{
-  width: 60%;
-  display: inline-block;
- float: left;
- }
- .buttons{
-  display: inline-block;
-  float: left;
-  height: 50px;
-  width: 100%;
- }
- .btn{
-  float: right;
- }
 .percentageDiv {
   width: 100px;
 }
@@ -67,7 +27,7 @@ float: left;
   width: 100%;
   display: inline-block;
   margin-bottom: 20px;
-  border-bottom: 1px solid gray; 
+  border-bottom: 1px solid gray;
 }
 .project-edit{
 border-top :0;
@@ -398,3 +358,4 @@ hr.style8:after {
   width: 50px;
   height: 50px;
 }
+

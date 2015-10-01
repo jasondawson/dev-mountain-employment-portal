@@ -5,8 +5,8 @@ app.service("loginSvc", function($http, $q) {
     // Id:"55f8480baec60b07268b0f59",
      Id:null,
      roles: ['student', 'lead_instructor']
-
 }
+
 
   this.getCurrentUser = function() {
     return user;
