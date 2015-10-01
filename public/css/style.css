@@ -74,7 +74,6 @@ border-top :0;
 border-right: 0;
 border-left: 0;
 float: left;
-
 width: 100%;
 }
 .editProjectSpace{
@@ -84,14 +83,11 @@ width: 100%;
 margin-bottom: 20px;
 }
 .projectImgDiv{
-    display: inline-block;
+  display: inline-block;
   float: left;
   width: 30%;
   height: 100%;
-
-
 }
-
 
 .project-edit {
   border: 0;
@@ -113,13 +109,14 @@ a {
 .editable-empty {
   color: black!important;
 }
+
 .welcomelanding {
   margin-top: -20px;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/t31.0-8/s2048x2048/11174272_842916812445854_1885598337984820889_o.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
 }
 .logoArt {
   width: 510px;
@@ -148,20 +145,12 @@ h2 {
   width: 161px;
   height: 30px
 }
-.landing {
-  position: absolute;
-  top: 35%;
-  left: 20%;
+
+.loginwrapper {
   text-align: center;
-}
-.headline {
-  position: absolute;
-  text-align: center;
-  top: 55%;
-  left: 22%;
   color: white;
 }
-.headline h1 {
+.loginwrapper h1 {
   font-family: 'Josefin Sans', sans-serif;
 }
 .classes {
@@ -198,7 +187,7 @@ fade-font {
   box-decoration-break: clone;
 }
 .contact {
-  margin-top: -10px;
+  margin-top: 350px;
   background-color: grey;
   text-align: center;
   padding: 10px;
@@ -379,12 +368,12 @@ hr.style8:after {
 
 }
 .loginwrapper {
-  /*margin-top: -550px;*/
+  text-align: center;
+  margin-top: -550px;
   margin-bottom: 80px;
 }
 .login-signin {
   text-align: center;
-  max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #f7f7f7;
@@ -401,7 +390,6 @@ hr.style8:after {
 
 .newuser-signin {
   text-align: center;
-  max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #f7f7f7;
