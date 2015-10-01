@@ -25,8 +25,8 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div e-class='form-group'>
-					<div editable-text="studentData.name.first" e-name="name.first" e-required e-class="form-control form-group" e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }}</div>
-					<div editable-text="studentData.name.last" e-name="name.last" e-class="form-control form-group" e-required e-placeholder="Enter last name">{{ (studentData.name.last|| 'empty')|uppercase }}</div>
+					<div editable-text="studentData.name.first" e-name="name.first" e-required e-class="form-control form-group" e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }} {{ (studentData.name.last|| 'empty')|uppercase }}</div>
+					<div editable-text="studentData.name.last" e-name="name.last" e-class="form-control form-group" e-required e-placeholder="Enter last name"></div>
 				</div>
 				<div e-class='form-group'>
 					<div editable-text="studentData.email" e-name="email" e-class="form-control form-group" e-required e-placeholder="Enter email">{{ studentData.email || 'youremail@email.com' }}</div>
@@ -53,7 +53,7 @@
 				</div>
 				<div>
 					<!-- editable Class Name (select-local) -->
-					<span class="title">Class:</span>
+					<label >Class:</label>
 					<br>
 
 					<span editable-select="studentData.cohort.className._id" e-name="cohort.className" e-required e-class="form-control" e-ng-options="c._id as c.text for c in classNames">
@@ -64,7 +64,7 @@
 				</div>
 				<div>
 					<!-- editable Cohort Location (select-local) -->
-					<span class="title">Cohort Location: </span>
+					<label >Cohort Location: </label>
 					<br>
 					<span editable-select="studentData.cohort.cohortLocation._id" e-name="cohort.cohortLocation" e-required e-class="form-control" e-ng-options="c._id as c.text for c in cohortLocations">
 	{{ studentData.cohort.cohortLocation.text || "Cohort location e.g. Provo, UT" }}
@@ -72,7 +72,7 @@
 				</div>
 				<div>
 					<!-- editable Cohort Name (select-local) -->
-					<span class="title">Cohort:</span>
+					<label >Cohort:</label>
 					<br>
 					<span editable-select="studentData.cohort.cohortname._id" e-name="cohort.cohortname" e-required e-class="form-control" e-ng-options="c._id as c.text for c in cohortNames">
 					{{studentData.cohort.cohortname.text || "Your Cohort e.g. DM1"}}
