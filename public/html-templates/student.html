@@ -24,7 +24,7 @@
 
   </div>
   <div class="studentabout col-md-7">
-    <h3>Hi! I'm {{student.name.first}}</h3>
+    <h3>Hi! I'm {{student.name.first}}.</h3>
     <p>
       {{student.Bio}}
     </p>
@@ -39,7 +39,11 @@
     <div>
       <div class="studentproject" ng-repeat="project in student.projects">
           <h3>Project </h3>
+          <div>
         <img class="col-md-2" src="{{project.picture}}">
+          </div>
+          <div class="col-md-7">
+
         <p>
           <b>Type: </b> {{project.projectType}}
         </p>
@@ -52,8 +56,10 @@
         <p>
           <b>Tech Used: </b> {{project.TechUsed}}
         </p>
+
     <span><p>
-      URL: <a href="{{project.codeSource.url}}">{{project.codeSource.name}}</a></p> </span>
+      <b>URL:</b> <a href="{{project.codeSource.url}}">{{project.codeSource.name}}</a></p> </span>
+      </div>
       </div>
     </div>
 
