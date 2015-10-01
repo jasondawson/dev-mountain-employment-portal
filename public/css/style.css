@@ -415,3 +415,82 @@ hr.style8:after {
   width: 50px;
   height: 50px;
 }
+.studentcolumn {
+  text-align: center;
+}
+.studentshowcase {
+  top: 100px;
+  text-align: center;
+}
+.student-box {
+  display: block;
+  overflow: hidden;
+  border: 1px solid gray;
+  padding: 15px;
+  margin: 15px;
+  width: 800px
+}
+
+.studentproject{
+  display: block;
+  overflow: hidden;
+  border: 1px solid gray;
+  padding: 15px;
+  margin: 15px
+}
+
+
+
+.studentabout p {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.studentabout h3 {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.studentprojects {
+  top: 100px;
+}
+
+.spanspace {
+  margin-right: 10px;
+
+}
+.studentInfo {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.studentInfo p {
+  font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 90%;
+  }
+
+.studentcolumn {
+  text-align: center;
+  margin-bottom:   20px;
+}
+
+.studentcolumn h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+
+.studentcolumn p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.studentcolumn a {
+      font-family: 'Open Sans', sans-serif;
+}
+.studentcolumn a:link {
+      font-family: 'Open Sans', sans-serif;
+}
+.studentcolumn a:hover {
+      font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+}

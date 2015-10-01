@@ -1,14 +1,66 @@
-<div class="studentprofilepage" ng-repeat="student in thisStudent">
-<div class="personcolumn">
-<img src="{{student.picture}}" style="width: 260px; height: 260px;">
-<p>{{student.github}}</p>
-<p>
-  {{student.Bio}}
-</p>
-  {{student.skills}}
-</div>
-<
+<div class="container-fluid">
+  <div ng-repeat="student in thisStudent">
+  <div class="studentprofilepage">
+    <div class="studentcolumn column col-md-4">
+      <img src="{{student.picture}}" style="width: 260px; height: 260px;">
+      <br>
+      <h3>{{student.name.first}} {{student.name.last}}</h3>
 
-</div>
+      <p>Currently @ {{student.currentLoc.city}}, {{student.currentLoc.state}}</p>
+      <br>
+      <a href="mailto:{{student.email}}">{{student.email}}</a>
+      <br>
+      <a href="{{student.personalWebsite}}">{{student.personalWebsite}}</a>
+      <br><a href="{{student.github}}">{{student.github}}</a>
+      <div class="studentInfo">
+        <span><p>
+        {{student.cohort.className.text}} - {{student.cohort.cohortname.text}}</p> </span>
+        <p>
+          Percent Completed: {{student.percentCompleted}}%
+        </p>
+        </p>
+      </div>
+    </div>
 
-{{thisStudent}}
+  </div>
+  <div class="studentabout col-md-7">
+    <h3>Hi! I'm {{student.name.first}}</h3>
+    <p>
+      {{student.Bio}}
+    </p>
+    <p><b>
+      Skills:</b> {{student.skills}}
+    </p>
+    <p>
+      <b>Status:</b> {{student.status.text}}</p>
+    <p>
+      <b>Willing to relocate?</b>  {{student.relocation.text}}
+    </p>
+
+  </div>
+<div class="studentshowcase col-md-12">
+  <h2>Showcase</h2>
+</div>
+  <div class="studentprojects col-md-7">
+    <h3>Projects</h3>
+    <div class="studentproject row" ng-repeat="project in student.projects">
+      <img class="col-md-2" src="{{project.picture}}" style="height:200px; width:200px;">
+      <br> Type:{{project.projectype}}
+      <br>Name: {{project.name}}
+      <br>Description: {{project.description}}
+      <br>Url: <a href="{{project.codeSource.url}}">{{project.codeSource.name}}</a>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+
+    <div class="student-box" ng-repeat="devskills in student.DevSkills">
+<h3>Dev Skills</h3>
+      Skill: {{devskills.name}}
+      <br> Description: {{devskills.description}}
+      <br>URL: <a href="{{devskills.link.url}}">{{devskills.link.name}}</a>
+
+    </div>
+  </div>
+  </div>
+</div>
