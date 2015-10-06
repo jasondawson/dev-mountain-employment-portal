@@ -291,10 +291,14 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
+router.route('/api/devskill/:studentId')//Using this one to create new skill on PublicStudentProfile.html
+  .post(authCtrl.isAuthenticated, devSkillsCtrl.create)
+  //.get(authCtrl.isAuthenticated, devSkillsCtrl.read);
+
 router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
-  router.route('/api/project/:id')
+router.route('/api/project/:id')
   .delete(authCtrl.isAuthenticated, projectCtrl.delete)
 
 
