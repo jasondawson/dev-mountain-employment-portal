@@ -81,7 +81,7 @@
 				</div>
 
 				<div e-class="form-group">
-				<button type="button" ng-hide="!isMyProfile()" class="btn btn-info"  e-class="form-group"ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
+				<button type="button"  class="btn btn-info"  e-class="form-group"ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
 					Edit
 				</button>
 				<!-- buttons to submit / cancel form -->
@@ -149,7 +149,7 @@
 	<div class="showcase">
 		<h4 class="text-center">Showcase</h4>
 		<div class="row">
-			<div ng-hide='!isMyProfile()' class="panel panel-info" >
+			<div  class="panel panel-info" >
 				<div class="panel-heading">
 					<h4 class="panel-title text-center">Add New Project</h4>
 				</div>
@@ -162,27 +162,27 @@
 					<div class="col-md-9">
 						<div>
 							<label>Project Name</label>
-							<input class="project-edit" ng-model="newProject.name" ng-disabled="!isMyProfile()" placeholder="Type Project Name"></input>
+							<input class="project-edit" ng-model="newProject.name"  placeholder="Type Project Name"></input>
 						</div>
 						<div>
 							<label>Project Type</label>
-							<input class="project-edit" ng-model="newProject.projectType" ng-disabled="!isMyProfile()" placeholder="Group project or Personal project"></input>
+							<input class="project-edit" ng-model="newProject.projectType"  placeholder="Group project or Personal project"></input>
 						</div>
 						<div>
 							<label>Project Description</label>
-							<textarea class="project-edit" ng-model="newProject.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></textarea>
+							<textarea class="project-edit" ng-model="newProject.description" placeholder="Type a Description"></textarea>
 						</div>
 						<div>
 							<label>Tech Used</label>
-							<input class="project-edit" ng-model="newProject.TechUsed" ng-disabled="!isMyProfile()" placeholder="Technology used"></input>
+							<input class="project-edit" ng-model="newProject.TechUsed"  placeholder="Technology used"></input>
 						</div>
 						<div>
 							<label>Code Source</label>
-							<input class="project-edit" ng-model="newProject.codeSource.name" ng-disabled="!isMyProfile()" placeholder="used"></input>
+							<input class="project-edit" ng-model="newProject.codeSource.name"  placeholder="used"></input>
 						</div>
 						<div>
 							<label>Url</label>
-							<input class="project-edit" ng-model="newProject.codeSource.url" ng-disabled="!isMyProfile()" placeholder=" used"></input>
+							<input class="project-edit" ng-model="newProject.codeSource.url"  placeholder=" used"></input>
 						</div>
 					</div>
 				</div>
@@ -205,29 +205,29 @@
 						<div class="col-md-9">
 							<div>
 								<label>Project Name</label>
-								<input class="project-edit" ng-model="project.name" ng-disabled="!isMyProfile()" placeholder="Type Project Name"></input>
+								<input class="project-edit" ng-model="project.name"  placeholder="Type Project Name"></input>
 							</div>
 
 							<div>
 								<label>Project Type</label>
-								<input class="project-edit" ng-model="project.projectType" ng-disabled="!isMyProfile()" placeholder="Enter Project Type"></input>
+								<input class="project-edit" ng-model="project.projectType"  placeholder="Enter Project Type"></input>
 							</div>
 							<div>
 								<label>Project Description</label>
-								<textarea class="project-edit" ng-model="project.description" ng-disabled="!isMyProfile()" placeholder="Enter a Description"></textarea>
+								<textarea class="project-edit" ng-model="project.description" placeholder="Enter a Description"></textarea>
 							</div>
 							<div>
 								<label>Tech Used</label>
-								<input class="project-edit" ng-model="project.TechUsed" ng-disabled="!isMyProfile()" placeholder=""></input>
+								<input class="project-edit" ng-model="project.TechUsed"  placeholder=""></input>
 							</div>
 							<div>
 								<label>Code Source</label>
-								<input class="project-edit" ng-model="project.codeSource.name" ng-disabled="!isMyProfile()" placeholder=""></input>
+								<input class="project-edit" ng-model="project.codeSource.name"  placeholder=""></input>
 							</div>
 							<div>
 								<label>Url</label>
 								<br>
-								<input class="project-edit" ng-model="project.codeSource.url" ng-hide="!isMyProfile()" placeholder=""></input>
+								<input class="project-edit" ng-model="project.codeSource.url" placeholder=""></input>
 								<a href='http://{{project.codeSource.url}}'>
 								http://{{ project.codeSource.url}}
 								</a>
@@ -235,8 +235,8 @@
 						</div>
 					</div>
 					<div class="panel-footer">
-						<button class="btn btn-danger" ng-hide="!isMyProfile()" ng-click="deleteProject(project)">Delete Project</button>
-						<button class="btn btn-primary" ng-hide="!isMyProfile()" ng-click="saveProject(project)">Save Changes</button>
+						<button class="btn btn-danger"  ng-click="deleteProject(project)">Delete Project</button>
+						<button class="btn btn-primary"  ng-click="saveProject(project)">Save Changes</button>
 					</div>
 				</div>
 			</div>
@@ -253,19 +253,19 @@
 					<div class="col-md-12">
 						<div>
 							<label>Skill Name</label>
-							<input class="project-edit" ng-model="newDevskill.name" ng-disabled="!isMyProfile()" placeholder="Type devskill Name"></input>
+							<input class="project-edit" ng-model="newDevskill.name"  placeholder="Type devskill Name"></input>
 						</div>
 						<div>
 							<label>Description</label>
-							<textarea class="project-edit" ng-model="newDevskill.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></textarea>
+							<textarea class="project-edit" ng-model="newDevskill.description" placeholder="Type a Description"></textarea>
 						</div>
 						<div>
 							<label>Link</label>
-							<input class="project-edit" ng-model="newDevskill.link.name" ng-disabled="!isMyProfile()" placeholder="link name"></input>
+							<input class="project-edit" ng-model="newDevskill.link.name"  placeholder="link name"></input>
 						</div>
 						<div>
 							<label>link URL</label>
-							<input class="project-edit" ng-model="newDevskill.link.url" ng-disabled="!isMyProfile()" placeholder="url address"></input>
+							<input class="project-edit" ng-model="newDevskill.link.url"  placeholder="url address"></input>
 						</div>
 					</div>
 				</div><!-- panelBody -->
@@ -285,19 +285,19 @@
 						<div class="col-md-12">
 							<div>
 								<label>Skill Name</label>
-								<input class="project-edit" ng-model="devskill.name" ng-disabled="!isMyProfile()" placeholder="Type devskill Name"></input>
+								<input class="project-edit" ng-model="devskill.name" n placeholder="Type devskill Name"></input>
 							</div>
 							<div>
 								<label>Description</label>
-								<textarea class="project-edit" ng-model="devskill.description" ng-disabled="!isMyProfile()" placeholder="Type a Description"></textarea>
+								<textarea class="project-edit" ng-model="devskill.description"  placeholder="Type a Description"></textarea>
 							</div>
 							<div>
 								<label>Link</label>
-								<input class="project-edit" ng-model="devskill.link.name" ng-disabled="!isMyProfile()" placeholder="link name"></input>
+								<input class="project-edit" ng-model="devskill.link.name"  placeholder="link name"></input>
 							</div>
 							<div>
 								<label>Link URL</label>
-								<input class="project-edit" ng-model="devskill.link.url" ng-disabled="!isMyProfile()" placeholder="url address"></input>
+								<input class="project-edit" ng-model="devskill.link.url"  placeholder="url address"></input>
 							</div>
 						</div>
 					</div>

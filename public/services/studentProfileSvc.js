@@ -71,7 +71,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	}
 
 
-	this.addProject = function(newProject, porfileId) {
+	this.addProject = function(newProject, profileId) {
 
 		var deferred = $q.defer();
 		$http({

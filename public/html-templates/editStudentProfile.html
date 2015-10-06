@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>This is A test form</title>
 </head>
 
 <form editable-form name="editableForm" onaftersave="saveUser()">
@@ -9,7 +9,7 @@
       <!-- editable username (text with validation) -->
       <span class="title">User name: </span>
       <span editable-text="user.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span>
-    </div> 
+    </div>
 
     <div>
       <!-- editable status (select-local) -->
@@ -17,7 +17,7 @@
       <span editable-select="user.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
         {{ (statuses | filter:{value: user.status})[0].text || 'Not set' }}
       </span>
-    </div>  
+    </div>
 
     <div>
       <!-- editable group (select-remote) -->
@@ -42,9 +42,8 @@
         </button>
       </span>
     </div>
-  </form> 
+  </form>
 <body>
 <h1>IT WORKS</h1>
 </body>
 </html>
-  

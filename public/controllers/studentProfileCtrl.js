@@ -11,15 +11,13 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getStudentProf = function() {
 		studentProfileSvc.getStudentProf($stateParams.id).then(function(response) {
 			$scope.studentData = response.studentPortf;
+			var loginID = $scope.studentData.loginInfo._id;
 			console.log('this is studenDAta', $scope.studentData);
 
 		})
 	};
 	$scope.getStudentProf();
 
-	$scope.isMyProfile = function() {
-		return true;
-	};
 
 	$scope.classNames = [];
 	$scope.getClassNames = function() {
@@ -113,7 +111,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 
 	$scope.saveNewProject = function(newProject) {
-		studentProfileSvc.addProject($scope.newProject).then(
+		studentProfileSvc.addProject($scope.newProject, $scope.studentData._id).then(
 			function(response) {
 				console.log(response.data._id);
 
