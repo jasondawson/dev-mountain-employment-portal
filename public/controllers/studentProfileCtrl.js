@@ -60,9 +60,9 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	}];
 
 	$scope.relocationOptns = [{
-		text: 'YES'
+		text: 'Yes'
 	}, {
-		text: "NO"
+		text: "No"
 	}, {
 		text: "Interested in working remotely"
 	}];
