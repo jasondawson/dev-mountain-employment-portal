@@ -291,15 +291,19 @@ router.route('/api/devskills/:id')
   .put(authCtrl.isAuthenticated, devSkillsCtrl.update)
   .delete(authCtrl.isAuthenticated, devSkillsCtrl.delete);
 
-router.route('/api/devskill/:studentId')//Using this one to create new skill on PublicStudentProfile.html
-  .post(authCtrl.isAuthenticated, devSkillsCtrl.create)
-  //.get(authCtrl.isAuthenticated, devSkillsCtrl.read);
+//Using this one to create new skill on StudentProfileEdit.html//////
+router.route('/api/devskill/:studentId')
+  .post(authCtrl.isAuthenticated, devSkillsCtrl.create);
+router.route('api/devskill/:id')
+  .delete(devSkillsCtrl.delete)
+  .put(devSkillsCtrl.update);
+///////////////////////////////////////////////////////////////////////
 
 router.route('/api/project/:studentId')
   .post(authCtrl.isAuthenticated, projectCtrl.create)
   .get(authCtrl.isAuthenticated, projectCtrl.read);
 router.route('/api/project/:id')
-  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
 
 router.route('/api/studentPorftolio')
@@ -307,7 +311,7 @@ router.route('/api/studentPorftolio')
 
 router.route('/api/updateProject/:id')
   .put( /*authCtrl.isAuthenticated,*/ projectCtrl.update)
-  .delete(authCtrl.isAuthenticated, projectCtrl.delete)
+  .delete(authCtrl.isAuthenticated, projectCtrl.delete);
 
 router.route('/api/projects')
   .get(projectsCtrl.read);

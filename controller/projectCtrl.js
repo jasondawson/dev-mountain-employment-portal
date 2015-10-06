@@ -1,5 +1,5 @@
 var Project = require('../models/projectSchema');
-var studentPort = require('../models/studentPortf')
+var studentPort = require('../models/studentPortf');
 module.exports = {
 
     create: function(req, res) {
@@ -7,7 +7,7 @@ module.exports = {
         var newProject = new Project(req.body);
         newProject.save(function(err, result) {
             if (err) return res.status(500).send(err);
-            
+
             console.log("CTRL add Project result", result._id)
             studentPort.findByIdAndUpdate(req.params.studentId,
              {
@@ -21,7 +21,7 @@ module.exports = {
             }
 
             )
-            
+
         });
     },
     read: function(req, res) {

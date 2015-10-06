@@ -1,5 +1,5 @@
 var DevSkills = require('../models/DevSkills');
-
+var studentPort = require('../models/studentPortf');
 module.exports = {
 
     create: function(req, res) {
@@ -7,8 +7,16 @@ module.exports = {
         var newDevSkills = new DevSkills(req.body);
         newDevSkills.save(function(err, result) {
             if (err) return res.status(500).send(err);
-            res.send(result)
-            console.log('this is Skills send result', result);
+            studentPort.findByIdAndUpdate(req.params.studentId,{
+                $push:{
+                    "DevSkills":result._id
+                }
+            },
+            function(err, response){
+                if (err) return res.status(500).send(err);
+                res.send();
+            }
+            )
         });
     },
     read: function(req, res) {
