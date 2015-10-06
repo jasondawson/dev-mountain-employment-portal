@@ -24,8 +24,8 @@ $scope.students = [];
 
   /////CRUD FUNCTIONS//////
 
-  
-  $scope.adminReadStudents = function() { 
+
+  $scope.adminReadStudents = function() {
     adminSvc.adminReadStudents().then(function(response) {
       $scope.students = response.data;
       console.log("students from DB", $scope.students);
@@ -43,7 +43,7 @@ $scope.students = [];
     });
   };
 
-  $scope.adminUpdatePercent = function(percent, index, _id) { 
+  $scope.adminUpdatePercent = function(percent, index, _id) {
     $scope.students[index].percentCompleted = percent;
     if (percent < 0 || percent > 100) {
       alert(
@@ -62,11 +62,11 @@ $scope.students = [];
 
   /////GET AND POST FOR SIDE NAV//////
 
-  var getCohortLocations = function() { 
+  var getCohortLocations = function() {
     cohortLocServ.getCohortLoc().then(function(response) {
       if (response.status === 200) {
         $scope.cohortLocations = response.data;
-        console.log("getCohortLoacations", response.data);
+        console.log("getCohortLocations", response.data);
       }
     })
   }
@@ -100,7 +100,7 @@ $scope.students = [];
     //console.log("get the cohort names in controller")
     cohortNameServ.getCohortNames().then(function(response) {
       $scope.cohortNames = response.data;
-     console.log("getCohortNames response from DB", $scope.cohortNames);
+    // console.log("getCohortNames response from DB", $scope.cohortNames);
 
 
     })
@@ -115,8 +115,12 @@ $scope.students = [];
     })
   }
 
+$scope.deleteCohortLocation= function(cohortLocation){
+    cohortLocServ.deleteCohortLoc(cohortLocation).then(function(response) {
+      getCohortLocations();
+    })
+}
 
- 
 
 
 

@@ -329,14 +329,8 @@ router.route('/api/cohortName/:id')
   .put(authCtrl.isAuthenticated, cohortNameCtrl.update)
   .delete(authCtrl.isAuthenticated, cohortNameCtrl.delete);
 
-////temporary substitute api's because the real ones didn't work
-
-
 router.route('/cohortLocation')
   .get(cohortLocationCtrl.read);
-
-////////////////
-
 
 router.route('/api/cohortLocation')
   .post(authCtrl.isAuthenticated, cohortLocationCtrl.create)
