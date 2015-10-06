@@ -158,8 +158,18 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		return deferred.promise;
 
 	}
-	//this gets student info for publicview
+	this.deleteDevSkill = function(DevSkill) {
+		var deferred = $q.defer();
+		$http({
+			method: 'DELETE',
+			url: '/api/devskill/' + DevSkill._id
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+	}
 
+	//this gets student info for publicview
 	this.getStudentPublicView = function(id) {
 		var deferred = $q.defer();
 		$http({

@@ -143,6 +143,9 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 				$scope.getStudentProf()
 			})
 	}
+
+
+
 	/*
   saveNewProject function
   takes $scope.newProject
@@ -158,6 +161,10 @@ get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projec
 			$scope.getStudentProf();
 		})
 	}
-
+	$scope.deleteDevSkill = function(devskill) {
+		studentProfileSvc.deleteDevSkill(devskill).then(function(response) {
+			$scope.getStudentProf();
+		})
+	}
 
 });
