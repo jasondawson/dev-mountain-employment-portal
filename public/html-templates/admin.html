@@ -9,9 +9,17 @@
 
       <input class="form-control" type="text" placeholder="Add New Cohort Location - City, State" ng-model="newLoc.text" ng-keydown="$event.which === 13 && addNewLocation(newLoc)" />
       <br>
+      <div >
       <ul>
-        <li ng-repeat="cohortLocation in cohortLocations">{{cohortLocation.text}}</li>
+      <div class="list-group">
+        <li class= "list-group-item" ng-repeat="cohortLocation in cohortLocations">
+            <div class="btn-group"><button class="btn btn-default btn-xs" type="submit">x</button></div>
+            {{cohortLocation.text}}
+        </li>
+        </div>
+
       </ul>
+      </div>
       <br/>
 
       <input class="form-control" type="text" placeholder="Add New Course Name" ng-model="newCourse.text" ng-keydown="$event.which === 13 && addNewCourseName(newCourse)" />
