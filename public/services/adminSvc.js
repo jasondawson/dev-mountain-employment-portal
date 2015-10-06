@@ -9,7 +9,7 @@ this.adminReadStudents = function() {
 		method: "GET",
 		url: 'http://localhost:3000/api/studentPortfolio'
 	}).then(function(response) {
-		console.log(response.data)
+		//console.log(response.data)
 		deferred.resolve(response);
 	})
 	return deferred.promise;

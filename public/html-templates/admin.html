@@ -9,24 +9,45 @@
 
       <input class="form-control" type="text" placeholder="Add New Cohort Location - City, State" ng-model="newLoc.text" ng-keydown="$event.which === 13 && addNewLocation(newLoc)" />
       <br>
+      <div >
       <ul>
-        <li ng-repeat="cohortLocation in cohortLocations">{{cohortLocation.text}}</li>
+      <div class="list-group">
+        <li class= "list-group-item" ng-repeat="cohortLocation in cohortLocations">
+            <div class="btn-group" ng-click="deleteCohortLocation(cohortLocation)"><button class="btn btn-default btn-xs" type="submit">x</button></div>
+            {{cohortLocation.text}}
+        </li>
+        </div>
+
       </ul>
+      </div>
       <br/>
 
       <input class="form-control" type="text" placeholder="Add New Course Name" ng-model="newCourse.text" ng-keydown="$event.which === 13 && addNewCourseName(newCourse)" />
       <br>
+      <div>
       <ul>
-        <li ng-repeat="courseName in courseNames" ng-model="newCourse.text">{{courseName.text}}</li>
+      <div class="list-group">
+        <li class= "list-group-item" ng-repeat="courseName in courseNames">
+          <div class="btn-group" ng-click="deleteClassName(courseName)"><button class="btn btn-default btn-xs" type="submit">x</button></div>
+          {{courseName.text}}
+        </li>
+        </div>
       </ul>
+      </div>
       <br/>
 
       <input class="form-control" type="text" placeholder="Add New Cohort Name" ng-model="newCohort.text" ng-keydown="$event.which === 13 && addNewCohortName(newCohort)" />
       <br>
+      <div>
       <ul>
-        <li ng-repeat="cohortName in cohortNames">{{cohortName.text}}</li>
+      <div class="list-group">
+        <li class= "list-group-item"  ng-repeat="cohortName in cohortNames">
+          <div class="btn-group" ng-click="deleteCohortName(cohortName)"><button class="btn btn-default btn-xs" type="submit">x</button></div>
+          {{cohortName.text}}
+        </li>
+        </div>
       </ul>
-
+      </div>
       <p hide-md show-gt-md></p>
     </md-content>
   </md-sidenav>

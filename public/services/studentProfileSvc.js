@@ -72,7 +72,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 
 
 	this.addProject = function(newProject, id) {
-
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',

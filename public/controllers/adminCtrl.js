@@ -24,18 +24,18 @@ $scope.students = [];
 
   /////CRUD FUNCTIONS//////
 
-  
-  $scope.adminReadStudents = function() { 
+
+  $scope.adminReadStudents = function() {
     adminSvc.adminReadStudents().then(function(response) {
       $scope.students = response.data;
-      console.log("students from DB", $scope.students);
+     // console.log("students from DB", $scope.students);
     });
   };
   $scope.adminReadStudents();
 
 
   $scope.showProfile = function(student) { ////this function changes boolean in database for the checkboxes
-    console.log("showProfile result in controller", student)
+    //console.log("showProfile result in controller", student)
     adminSvc.adminUpdateShowStudent(student).then(function(response) {
       if (response.status === 200) {
         $scope.adminReadStudents();
@@ -43,7 +43,7 @@ $scope.students = [];
     });
   };
 
-  $scope.adminUpdatePercent = function(percent, index, _id) { 
+  $scope.adminUpdatePercent = function(percent, index, _id) {
     $scope.students[index].percentCompleted = percent;
     if (percent < 0 || percent > 100) {
       alert(
@@ -62,11 +62,11 @@ $scope.students = [];
 
   /////GET AND POST FOR SIDE NAV//////
 
-  var getCohortLocations = function() { 
+  var getCohortLocations = function() {
     cohortLocServ.getCohortLoc().then(function(response) {
       if (response.status === 200) {
         $scope.cohortLocations = response.data;
-        console.log("getCohortLoacations", response.data);
+       // console.log("getCohortLocations", response.data);
       }
     })
   }
@@ -83,7 +83,7 @@ $scope.students = [];
     classNameServ.getClassName().then(function(response) {
       if (response.status === 200) {
         $scope.courseNames = response.data;
-        console.log("getCourseNames", response.data);
+        //console.log("getCourseNames", response.data);
       }
     })
   }
@@ -100,7 +100,7 @@ $scope.students = [];
     //console.log("get the cohort names in controller")
     cohortNameServ.getCohortNames().then(function(response) {
       $scope.cohortNames = response.data;
-     console.log("getCohortNames response from DB", $scope.cohortNames);
+    // console.log("getCohortNames response from DB", $scope.cohortNames);
 
 
     })
@@ -115,9 +115,21 @@ $scope.students = [];
     })
   }
 
-
- 
-
+$scope.deleteCohortLocation= function(cohortLocation){
+    cohortLocServ.deleteCohortLoc(cohortLocation).then(function(response) {
+      getCohortLocations();
+    })
+}
+$scope.deleteCohortName= function(cohortName){
+    cohortNameServ.deleteCohortName(cohortName).then(function(response) {
+      getCohortNames();
+    })
+}
+$scope.deleteClassName= function(className){
+    classNameServ.deleteClassName(className).then(function(response) {
+      getCourseNames();
+    })
+}
 
 
 });
