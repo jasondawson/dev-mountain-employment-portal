@@ -294,9 +294,10 @@ router.route('/api/devskills/:id')
 //Using this one to create new skill on StudentProfileEdit.html//////
 router.route('/api/devskill/:studentId')
   .post(authCtrl.isAuthenticated, devSkillsCtrl.create);
-router.route('api/devskill/:id')
+router.route('/api/devskill/:id')
   .delete(devSkillsCtrl.delete)
   .put(devSkillsCtrl.update);
+
 ///////////////////////////////////////////////////////////////////////
 
 router.route('/api/project/:studentId')

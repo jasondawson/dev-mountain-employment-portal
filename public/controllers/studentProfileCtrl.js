@@ -129,7 +129,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 			url:null
 		}
 	}
-		$scope.addNewDevSkill = function(newDevskill) {
+	$scope.addNewDevSkill = function(newDevskill) {
 		studentProfileSvc.addDevSkill($scope.newDevskill, $scope.studentData._id).then(
 			function(response) {
 				$scope.newDevskill = {};
@@ -137,6 +137,12 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 			})
 	}
 
+	$scope.saveDevSkill = function(devSkill) {
+		studentProfileSvc.updateDevSkill(devSkill).then(
+			function(response) {
+				$scope.getStudentProf()
+			})
+	}
 	/*
   saveNewProject function
   takes $scope.newProject

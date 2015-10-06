@@ -138,7 +138,26 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		});
 		return deferred.promise;
 	}
+	this.updateDevSkill = function(DevSkill) {
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: '/api/devskill/' + DevSkill._id,
+			data: {
+				name: DevSkill.name,
+				description: DevSkill.description,
+				link: {
+					name: DevSkill.link.name,
+					url: DevSkill.link.url
+				}
+			}
+			//data: project
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
 
+	}
 	//this gets student info for publicview
 
 	this.getStudentPublicView = function(id) {
