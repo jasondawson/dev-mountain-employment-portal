@@ -121,6 +121,31 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 			})
 	}
 
+	$scope.newDevskill={
+		name:null,
+		description:null,
+		link:{
+			name:null,
+			url:null
+		}
+	}
+	$scope.addNewDevSkill = function(newDevskill) {
+		studentProfileSvc.addDevSkill($scope.newDevskill, $scope.studentData._id).then(
+			function(response) {
+				$scope.newDevskill = {};
+				$scope.getStudentProf();
+			})
+	}
+
+	$scope.saveDevSkill = function(devSkill) {
+		studentProfileSvc.updateDevSkill(devSkill).then(
+			function(response) {
+				$scope.getStudentProf()
+			})
+	}
+
+
+
 	/*
   saveNewProject function
   takes $scope.newProject
@@ -136,6 +161,10 @@ get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projec
 			$scope.getStudentProf();
 		})
 	}
-
+	$scope.deleteDevSkill = function(devskill) {
+		studentProfileSvc.deleteDevSkill(devskill).then(function(response) {
+			$scope.getStudentProf();
+		})
+	}
 
 });

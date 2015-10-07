@@ -119,10 +119,57 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		});
 		return deferred.promise;
 	}
+	this.addDevSkill=function(newDevskill, id){
+	var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: '/api/devskill/' + id,
+			//+ studentId,
+			data: {
+				name: newDevskill.name,
+				description: newDevskill.description,
+				link: {
+					name: newDevskill.link.name,
+					url: newDevskill.link.url
+				}
+			}
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+	}
+	this.updateDevSkill = function(DevSkill) {
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: '/api/devskill/' + DevSkill._id,
+			data: {
+				name: DevSkill.name,
+				description: DevSkill.description,
+				link: {
+					name: DevSkill.link.name,
+					url: DevSkill.link.url
+				}
+			}
+			//data: project
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
 
+	}
+	this.deleteDevSkill = function(DevSkill) {
+		var deferred = $q.defer();
+		$http({
+			method: 'DELETE',
+			url: '/api/devskill/' + DevSkill._id
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+	}
 
 	//this gets student info for publicview
-
 	this.getStudentPublicView = function(id) {
 		var deferred = $q.defer();
 		$http({
