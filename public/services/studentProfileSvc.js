@@ -56,7 +56,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 				name: project.name,
 				picture: project.picture,
 				description: project.description,
-				TechUsed: project.TechUSed,
+				techUsed: project.techUsed,
 				codeSource: {
 					name: project.codeSource.name,
 					url: project.codeSource.url

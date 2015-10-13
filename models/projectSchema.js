@@ -4,7 +4,7 @@ var Schema = Mongoose.Schema;
 var projectInfo = new Schema({
     picture: {
         type: String
-    }, 
+    },
     name: {
         type: String
     },
@@ -23,7 +23,7 @@ var projectInfo = new Schema({
             type: String
         }
     },
-    TechUsed: {
+    techUsed: {
         type: String
     }
 
