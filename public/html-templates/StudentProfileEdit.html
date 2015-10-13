@@ -1,4 +1,5 @@
 <div class="container">
+	<button class="btn btn-primary pull-right" ng-click="navToViewProfile()">View Profile</button>
 	<div class="row">
 		<div class="col-md-3">
 			<img src="{{studentData.picture}}" class="img-rounded" style="width: 200px; height: 200px">
@@ -6,6 +7,7 @@
 
 			<button ng-click="saveProfilePic(studentData)" class="btn btn-default">Save</button>
 		</div>
+		<div class="row">
 		<div class="col-md-6">
 			<h1 class="text-center">
 			{{ (studentData.name.first)|uppercase  }} {{ (studentData.name.last)|uppercase}}
@@ -34,22 +36,26 @@
 
 
 				<div e-class='form-group'>
-					<a href='http://{{studentData.github}}' editable-text="studentData.github"e-required e-class="form-control form-group" e-placeholder="Enter Github Account">
-	{{ studentData.github}}
-	</a>
+					<div e-name="github" editable-text="studentData.github" e-class="form-control form-group" e-placeholder="Enter Github Account">
+	<span ng-if="studentData.github"><a href='http://github.com/{{studentData.github}}'> github.com/{{ studentData.github }}</a></span>
+	<span ng-if="!studentData.github"> Your Github username</span>
+
+	</div>
 				</div>
 
 
 				<div>
-					<a href='http://{{studentData.personalWebsite}}' editable-text="studentData.personalWebsite" e-class="form-control" e-placeholder="Enter Website link">
-	http://{{ studentData.personalWebsite}}
-	</a>
+					<div href='http://{{studentData.personalWebsite}}' e-name="personalWebsite" editable-text="studentData.personalWebsite" e-class="form-control" e-placeholder="Enter Website link">
+					<span ng-if="studentData.personalWebsite"><a href='http://{{studentData.personalWebsite}}'> {{ studentData.personalWebsite }}</a></span>
+	<span ng-if="!studentData.personalWebsite"> Your personal website</span>
+	</div>
 				</div>
 
 				<div>
-					<a href='http://{{studentData.LinkdIn}}' editable-text="studentData.LinkdIn" e-class="form-control" e-placeholder="Enter LinkdIn">
-	{{ studentData.LinkdIn ||'Your LinkdIn Account' }}
-	</a>
+					<div e-name="linkdIn" editable-text="studentData.linkdIn" e-class="form-control" e-placeholder="Enter LinkdIn public profile URL">
+					<span ng-if="studentData.linkdIn"><a href='https://www.linkedin.com/in/{{studentData.linkdIn}}'> http://www.linkedin.com/in/{{ studentData.linkdIn }}</a></span>
+	<span ng-if="!studentData.linkdIn"> Your linkdIn public profile URL</span>
+	</div>
 				</div>
 				<div>
 					<!-- editable Class Name (select-local) -->
@@ -96,7 +102,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-9">
+			<div class="col-md-offset-6">
 				<div class="BioBox">
 					<span class="title">About you</span>
 					<br>
@@ -139,9 +145,10 @@
 				<div class="horizontalView">
 					<label>Location</label>
 					<br>
-					<span editable-text="studentData.currentLoc.city" e-name="currentLoc.city" e-required e-placeholder='City'>{{ studentData.currentLoc.city || 'City' }}</span>
-					<span editable-text="studentData.currentLoc.state" e-name="currentLoc.state" e-required e-placeholder='State'>{{ studentData.currentLoc.state || 'State' }}</span>
+					<span editable-text="studentData.currentLoc.city" e-name="currentLoc.city" e-class="form-control" e-required e-placeholder='City'>{{ studentData.currentLoc.city || 'City' }}</span>
+					<span editable-text="studentData.currentLoc.state" e-name="currentLoc.state" e-class="form-control" e-required e-placeholder='State'>{{ studentData.currentLoc.state || 'State' }}</span>
 				</div>
+			</div>
 			</div>
 		</div>
 	</form>
