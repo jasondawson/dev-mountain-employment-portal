@@ -1,5 +1,14 @@
 app.controller('studentCtrl', function(
-  $scope, studentSvc, $stateParams, student) {
+  $scope, studentSvc, $stateParams, student, loggedInUser, $state) {
+
+  if (loggedInUser._id) {
+    $scope.canEdit = $stateParams.id === loggedInUser._id;
+
+    $scope.navToEditProfile = function() {
+      $state.go('profile', {id: loggedInUser._id})
+    }
+  }
+
 
   $scope.theStudent = student;
 
@@ -10,4 +19,5 @@ app.controller('studentCtrl', function(
   }
 
   $scope.getStudent();
+
 })

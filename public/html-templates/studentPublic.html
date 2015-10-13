@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<div class="container">
+  <button ng-if="canEdit" class="btn btn-primary pull-right" ng-click="navToEditProfile()">Edit Profile</button>
   <div ng-repeat="student in thisStudent">
   <div class="studentprofilepage">
     <div class="studentcolumn col-md-4">
@@ -10,8 +11,9 @@
       <br>
       <a href="mailto:{{student.email}}">{{student.email}}</a>
       <br>
-      <a href="{{student.personalWebsite}}">{{student.personalWebsite}}</a>
-      <br><a href="{{student.github}}">{{student.github}}</a>
+      <a href="http://{{student.personalWebsite}}">{{student.personalWebsite}}</a>
+      <br><a href="http://github.com/{{student.github}}">{{student.github}} </a><i class="fa fa-github fa-lg"></i>
+      <br><a href="https://www.linkedin.com/in/{{student.linkdIn}}">{{student.linkdIn}} </a><i class="fa fa-linkedin fa-lg"></i>
       <div class="studentInfo">
         <span><p>
         {{student.cohort.className.text}} - {{student.cohort.cohortname.text}}</p> </span>

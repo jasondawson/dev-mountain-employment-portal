@@ -1,8 +1,16 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
-	$filter, $http, $stateParams, cohortroute) {
+	$filter, $http, $stateParams, cohortroute, profileUser, $state, authService) {
 
 	$scope.thisStudent = cohortroute;
+
+	$scope.navToViewProfile = function() {
+		authService.checkUser().then(function(user) {
+			console.log(user);
+			$state.go('student', {id: user._id})
+
+		})
+	}
 
 	$scope.studentData = {
 		name: {},
@@ -67,7 +75,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
-		//console.log("what $data i am getting?", studentInfo);
+		console.log("what $data i am getting?", studentInfo);
 		studentProfileSvc.updateStudentInfo(studentInfo, $scope.studentData._id).then(
 			function(response) {
 				$scope.getStudentProf()

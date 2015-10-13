@@ -47,6 +47,9 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     resolve: {
       cohortroute: function($stateParams, studentProfileSvc) {
         return studentProfileSvc.getStudentProf($stateParams.id)
+      },
+      profileUser: function(authService) {
+        return authService.getLoginUser();
       }
     }
   })
@@ -58,6 +61,9 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     resolve: {
       student: function($stateParams, studentSvc) {
         return studentSvc.getStudent($stateParams.id)
+      },
+      loggedInUser: function(authService) {
+        return authService.getLoginUser();
       }
     }
   })
@@ -85,7 +91,39 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
 });
 
+app.run(function($rootScope, authService, $state) {
 
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams, fromState, fromStateParams) {
+    console.log(toState.name);
+    authService.checkUser().then(function(user) {
+    console.log(user);
+    if (toState.name === 'profile') {
+      if (toStateParams.id && (toStateParams.id !== user._id)) {
+        console.log('not this user. Cannot edit this profile, view instead')
+        $state.go('student', {id: toStateParams.id})
+      }
+    }
+    if (toState.name === 'admin') {
+      if (!user.lead_instructor) {
+        console.log('not an admin...')
+        $state.go('homeView');
+      }
+    }
+    })
+    // if(toState.name === 'admin') {
+    //   authService.checkUser().then(function(user) {
+    //     if (!user.lead_instructor) {
+    //       $state.go('homeView');
+    //     }
+    //   })
+    //   .catch(function(){
+    //     // no user logged in
+    //     $state.go('homeView');
+    //   })
+    // }
+  })
+})
 
 // app.run(function($rootScope, $state, $window, authService, $location) {
 //

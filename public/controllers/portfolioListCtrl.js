@@ -56,10 +56,12 @@ app.controller('portfolioListCtrl', ['$scope',
 
     $scope.portfolioPreview = function() {
       publicPortfoliosSvc.getStudentProf().then(function(response) {
-        console.log('this is response', response);
+        var onlyShow = _.filter(response, function(i) {return i.showProfile});
+        console.log('this is response', onlyShow);
+
         var _map = {};
         var byCohort = [];
-        _.each(response, function(element, index, list) {
+        _.each(onlyShow, function(element, index, list) {
           var cohortObj = _map[element.cohort.cohortname._id];
           if (!cohortObj) {
             cohortObj = _map[element.cohort.cohortname._id] = {
