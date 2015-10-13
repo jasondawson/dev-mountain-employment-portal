@@ -7,20 +7,23 @@ app.service("publicPortfoliosSvc", function($http, $q) {
       method: 'GET',
     }).then(function(response) {
       angular.forEach(response.data, function(student) {
-        if (student.cohort.cohortLocation.text ===
-          "Provo, UT" || "Salt Lake City, UT") {
-          student.classLocation = "UT";
-        }
-        if (student.cohort.cohortLocation.text ===
-          "Dallas, TX") {
-          student.classLocation = "TX";
-        }
-        if (student.cohort.className.text ===
-          "Web Development") {
-          student.classType = "Web Development"
-        }
-        if (student.cohort.className.text === "IOS") {
-          student.classType = "IOS";
+        if (student.cohort) {
+          if (student.cohort.cohortLocation.text ===
+            "Provo, UT" || "Salt Lake City, UT") {
+            student.classLocation = "UT";
+          }
+          if (student.cohort.cohortLocation.text ===
+            "Dallas, TX") {
+            student.classLocation = "TX";
+          }
+          if (student.cohort.className.text ===
+            "Web Development") {
+            student.classType = "Web Development"
+          }
+          if (student.cohort.className.text === "IOS") {
+            student.classType = "IOS";
+          }
+
         }
       })
 
