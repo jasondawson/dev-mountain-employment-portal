@@ -1,48 +1,42 @@
 app.service("authService", function($q, $http, $rootScope) {
 
-var loginUser = {};
+	var loginUser = {};
 
-this.checkRoles = function(user, checkRole) {
-	hasRole = false;
-	user.roles.forEach(function(role) {
-		if (role.role === checkRole) hasRole = true;
-	})
-	return hasRole;
-}
+	this.getLoginUser = function() {
+		return loginUser;
+	}
 
-this.getLoginUser = function() {
-	var dfd = $q.defer();
-	$http.get('/auth/getSessionUser').then(function(response) {
-		loginUser = response.data;
-		dfd.resolve(loginUser);
-	})
-	return dfd.promise;
-  // TODO if there is a user, send some sort of refresh flag
-}
+	this.checkUser = function() {
+		var deferred = $q.defer();
 
-this.getUser = function(type) {
-	var deferred = $q.defer();
- 	$http.get("/auth/getUser/" + type).then(function(response) {
- 		if (response.data.user) {
- 			$rootScope.loggedIn = true;
- 			loginUser = response.data.user;
-      console.log(loginUser)
- 		}
- 		deferred.resolve(response.data);
- 	})
 
-	return deferred.promise;
-}
+		$http.get('/auth/currentUser').then(function(data) {
+			loginUser = data.data.user ? data.data.user : {};
+			if (data.data.student) {
+				loginUser.student = true;
+				$rootScope.isAdmin = false;
+				$rootScope.studentLoggedIn = true;
+				$rootScope.currentUserId = data.data.user._id;
+			}
+			if (data.data.lead_instructor) {
+				loginUser.lead_instructor = true;
+				$rootScope.isAdmin = true;
+				$rootScope.studentLoggedIn = false;
+			}
+			// console.log(loginUser)
+			if (loginUser._id) {
+				$rootScope.loggedIn = true;
+				deferred.resolve(loginUser)
+			} else {
+				//no user - loginUser = {}
+				$rootScope.loggedIn = false;
+				$rootScope.isAdmin = false;
+				$rootScope.studentLoggedIn = false;
+				deferred.resolve(loginUser);
+			}
 
-this.logout = function() {
-		var dfd = $q.defer();
-	$http.get('/auth/logout').then(function() {
-		$rootScope.loggedIn = false;
-		loginUser = {};
-		dfd.resolve();
-
-	})
-		return dfd.promise;
-}
+		})
+		return deferred.promise;
+	}
 
 });
