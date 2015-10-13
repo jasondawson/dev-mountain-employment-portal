@@ -113,7 +113,7 @@
 					<!-- editable status (select-local) -->
 					<label>Status</label>
 					<br>
-					<span editable-select="studentData.status" e-name="status"  e-class="form-control" e-ng-options="status.text for status in statuses">
+					<span editable-select="studentData.status.text" e-name="status.text"  e-class="form-control" e-ng-options="status.text for status in statuses">
 	{{ studentData.status.text || "Your Status" }}
 	</span>
 				</div>
@@ -183,7 +183,7 @@
 						</div>
 						<div>
 							<label>Tech Used</label>
-							<input class="project-edit" ng-model="newProject.TechUsed"  placeholder="Technology used"></input>
+							<input class="project-edit" ng-model="newProject.techUsed"  placeholder="Technology used"></input>
 						</div>
 						<div>
 							<label>Code Source</label>
@@ -227,7 +227,7 @@
 							</div>
 							<div>
 								<label>Tech Used</label>
-								<input class="project-edit" ng-model="project.TechUsed"  placeholder=""></input>
+								<input class="project-edit" ng-model="project.techUsed"  placeholder=""></input>
 							</div>
 							<div>
 								<label>Code Source</label>
