@@ -13,7 +13,7 @@ module.exports = {
     },
     read: function(req, res) {
         cohortLoc.find(req.query).exec(function(err, result) {
-            console.log(result);
+            // console.log(result);
             if (err) return res.status(500).send(err);
             res.send(result);
         });

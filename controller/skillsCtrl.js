@@ -2,12 +2,12 @@ var Skills = require('../models/skill');
 
 module.exports = {
     create: function(req, res) {
-        console.log('this is Skills req', req.body);
+        // console.log('this is Skills req', req.body);
         var newSkill = new Skills(req.body);
         newSkill.save(function(err, result) {
             if (err) return res.status(500).send(err);
             res.send(result)
-            console.log('this is Skills send result', result);
+            // console.log('this is Skills send result', result);
         });
     },
     read: function(req, res) {

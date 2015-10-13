@@ -18,7 +18,7 @@ CustomLogger.prototype.activate = function() {
 }
 CustomLogger.prototype.log = function() {
   if (this.active) {
-    console.log(arguments[0], arguments[1]);
+    // console.log(arguments[0], arguments[1]);
   }
 }
 var myLog = new CustomLogger();
@@ -26,16 +26,16 @@ var myLog = new CustomLogger();
 // myLog.deactivate();
 module.exports = {
   create: function(req, res) {
-    console.log('this is studentPortf req', req.body);
+    // console.log('this is studentPortf req', req.body);
     var newstudentPortf = new StudentPortf(req.body);
     newstudentPortf.save(function(err, result) {
       if (err) return res.status(500).send(err);
       res.send(result)
-      console.log('this is studentPortf send result', result);
+      // console.log('this is studentPortf send result', result);
     });
   },
   read: function(req, res) {
-    console.log('looking for students');
+    // console.log('looking for students');
     StudentPortf.find(req.query)
 
     /*  .populate(
@@ -49,7 +49,7 @@ module.exports = {
       )
       //.populate("cohort.cohortName")
       .exec(function(err, result) {
-        console.log('this is studentPortf read result STCRtl', result);
+        // console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
         res.send(result);
       });
@@ -139,7 +139,7 @@ module.exports = {
     })
   },
   update: function(req, res) {
-    console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
+    // console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
     StudentPortf.findOneAndUpdate({
         _id: req.params.id
       }, {
@@ -170,7 +170,7 @@ module.exports = {
 
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
-    console.log('this is cohortID', cohortId);
+    // console.log('this is cohortID', cohortId);
     StudentPortf.find().populate(
 
         'cohort.cohortname cohort.cohortLocation cohort.className projects '
