@@ -175,9 +175,9 @@ fade-font {
   text-decoration: none;
 }
 .filteralign {
-  position: absolute;
+/*  position: absolute;
   top: 28%;
-  left: 28%;
+  left: 28%;*/
 }
 .filterby {
   display: -webkit-box;
@@ -377,7 +377,6 @@ hr.style8:after {
 .student-box {
   display: block;
   overflow: hidden;
-  border: 1px solid gray;
   padding: 15px;
   margin: 15px;
 }
@@ -385,7 +384,6 @@ hr.style8:after {
 .studentproject{
   display: block;
   overflow: hidden;
-  border: 1px solid gray;
   padding: 15px;
   margin: 15px;
 }
@@ -447,4 +445,22 @@ hr.style8:after {
       font-family: 'Open Sans', sans-serif;
   text-decoration: none;
 }
->>>>>>> 1a7d596f7e0b8f3867c6c00a0c3b6f2ca1b6db23
+
+.banner {
+  background: #ddd;
+  height: 40px;
+  width: 100%;
+  font-size: 20px;
+  color: #000;
+  font-weight: bold;
+  padding: 5px;
+}
+
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.clear {
+  clear: both !important;
+}
