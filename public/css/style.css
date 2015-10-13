@@ -175,34 +175,19 @@ fade-font {
   text-decoration: none;
 }
 .filteralign {
-  position: absolute;
-  top: 28%;
-  left: 28%;
+  top: 100px;
+  text-align: center;
 }
-.filterby {
-  display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;
-  /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  display: flex;
-  width: 600px;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  -moz-justify-content: space-between;
-}
+
 .cohortHeader {
   background-color: #34ACE0;
   border: 1px solid gray;
 }
-.cohortProfileView {
+/*.cohortProfileView {
   margin-top: 200px;
-}
+}*/
 #previewContainer {
-  width: 800px;
-  padding-left: 200px;
+  text-align: center;
 }
 #studentsample {
   list-style-type: none;
