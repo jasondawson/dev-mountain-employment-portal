@@ -192,17 +192,19 @@ fade-font {
   justify-content: space-between;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
+  top: 100px;
+  text-align: center;
 }
+
 .cohortHeader {
   background-color: #34ACE0;
   border: 1px solid gray;
 }
-.cohortProfileView {
+/*.cohortProfileView {
   margin-top: 200px;
-}
+}*/
 #previewContainer {
-  width: 800px;
-  padding-left: 200px;
+  text-align: center;
 }
 #studentsample {
   list-style-type: none;
