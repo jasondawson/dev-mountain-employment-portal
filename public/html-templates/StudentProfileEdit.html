@@ -1,33 +1,55 @@
 <div class="container">
-	<button class="btn btn-primary pull-right" ng-click="navToViewProfile()">View Profile</button>
 	<div class="row">
+	<form editable-form name="editableProfileForm" e-class='form-control' onbeforesave="updateStudent($data)">
+			<div class="row padding10px">
+			<button class="btn btn-primary pull-right" ng-click="navToViewProfile()">View Profile</button>
+		<div class="col-md-6">
+
+
+
+			<div class="padding10px" e-class="form-group">
+				<button type="button"  class="btn btn-info"  e-class="form-group"ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
+					Engage Edit Mode
+				</button>
+				<!-- buttons to submit / cancel form -->
+				<span ng-show="editableProfileForm.$visible">
+					<button type="submit" class="btn btn-primary" ng-disabled="editableProfileForm.$waiting">
+					Save
+					</button>
+					<button type="button" class="btn btn-default" ng-disabled="editableProfileForm.$waiting" ng-click="editableProfileForm.$cancel()">
+					Cancel
+					</button>
+				</span>
+				</div>
+
+					<p class="h1">{{ (studentData.name.first)|uppercase  }} {{ (studentData.name.last)|uppercase}}</p>
+
+		</div>
+
+	</div>
 		<div class="col-md-3">
 			<img src="{{studentData.picture}}" class="img-rounded" style="width: 200px; height: 200px">
-			<input type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread />
-
-			<button ng-click="saveProfilePic(studentData)" class="btn btn-default">Save</button>
-		</div>
-		<div class="row">
-		<div class="col-md-6">
-			<h1 class="text-center">
-			{{ (studentData.name.first)|uppercase  }} {{ (studentData.name.last)|uppercase}}
-			</h1>
-		</div>
-		<div class="col-md-3">
+			<input ng-show="editableProfileForm.$visible" type="file" images="images" accept="image/pdf*" ng-model="studentData.picture" fileread />
+		<div class="percentageDiv">
 			<p>Percentage Completed</p>
-			<div class="percentageDiv">
+			<div>
 				<div class="progress">
-					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" progressbar total="100" current="studentData.percentCompleted">{{ studentData.percentCompleted}}% <div class="sr-only">10% Complete (warning)</div>
+					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="studentData.percentCompleted" aria-valuemin="0" aria-valuemax="100" progressbar total="100" current="studentData.percentCompleted">{{ studentData.percentCompleted}}%
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<form editable-form name="editableProfileForm" e-class='form-control' onbeforesave="updateStudent($data)">
+
+<!-- 			<button ng-click="saveProfilePic(studentData)" class="btn btn-default">Save</button> -->
+		</div>
+
+
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<div e-class='form-group'>
-					<div editable-text="studentData.name.first" e-name="name.first" e-required e-class="form-control form-group" e-placeholder="Enter name">{{  (studentData.name.first || 'Enter Name')|uppercase }} {{ (studentData.name.last|| 'empty')|uppercase }}</div>
+					<span class="title">About you</span>
+					<br>
+					<div editable-text="studentData.name.first" e-name="name.first" e-required e-class="form-control form-group" e-placeholder="Enter first name">{{  (studentData.name.first || 'Enter Name')|uppercase }} {{ (studentData.name.last|| 'empty')|uppercase }}</div>
 					<div editable-text="studentData.name.last" e-name="name.last" e-class="form-control form-group" e-required e-placeholder="Enter last name"></div>
 				</div>
 				<div e-class='form-group'>
@@ -38,7 +60,7 @@
 				<div e-class='form-group'>
 					<div e-name="github" editable-text="studentData.github" e-class="form-control form-group" e-placeholder="Enter Github Account">
 	<span ng-if="studentData.github"><a href='http://github.com/{{studentData.github}}'> github.com/{{ studentData.github }}</a></span>
-	<span ng-if="!studentData.github"> Your Github username</span>
+	<span ng-if="!studentData.github" class="redText"> Your Github username</span>
 
 	</div>
 				</div>
@@ -47,14 +69,14 @@
 				<div>
 					<div href='http://{{studentData.personalWebsite}}' e-name="personalWebsite" editable-text="studentData.personalWebsite" e-class="form-control" e-placeholder="Enter Website link">
 					<span ng-if="studentData.personalWebsite"><a href='http://{{studentData.personalWebsite}}'> {{ studentData.personalWebsite }}</a></span>
-	<span ng-if="!studentData.personalWebsite"> Your personal website</span>
+	<span ng-if="!studentData.personalWebsite" class="redText"> Your personal website</span>
 	</div>
 				</div>
 
 				<div>
 					<div e-name="linkdIn" editable-text="studentData.linkdIn" e-class="form-control" e-placeholder="Enter LinkdIn public profile URL">
 					<span ng-if="studentData.linkdIn"><a href='https://www.linkedin.com/in/{{studentData.linkdIn}}'> http://www.linkedin.com/in/{{ studentData.linkdIn }}</a></span>
-	<span ng-if="!studentData.linkdIn"> Your linkdIn public profile URL</span>
+	<span ng-if="!studentData.linkdIn" class="redText"> Your linkdIn public profile URL</span>
 	</div>
 				</div>
 				<div>
@@ -83,28 +105,28 @@
 					<span editable-select="studentData.cohort.cohortname._id" e-name="cohort.cohortname" e-required e-class="form-control" e-ng-options="c._id as c.text for c in cohortNames">
 					{{studentData.cohort.cohortname.text || "Your Cohort e.g. DM1"}}
 					</span>
-					<br>
+				</div>
+				<div class="horizontalView">
+
+					<div>
+						<label>Skills:</label>
+						<br>
+						<div editable-textarea="studentData.skills" e-rows="2"  e-class="form-control" e-cols="30" e-name="skills" e-placeholder="List skills here">
+						<span ng-if="!studentData.skills" class="redText">
+							List your skills here
+						</span>
+						<span ng-if="studentData.skills">
+							{{studentData.skills}}
+						</span>
+						</div>
+					</div>
 				</div>
 
-				<div e-class="form-group">
-				<button type="button"  class="btn btn-info"  e-class="form-group"ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
-					Edit
-				</button>
-				<!-- buttons to submit / cancel form -->
-				<span ng-show="editableProfileForm.$visible">
-					<button type="submit" class="btn btn-primary" ng-disabled="editableProfileForm.$waiting">
-					Save
-					</button>
-					<button type="button" class="btn btn-default" ng-disabled="editableProfileForm.$waiting" ng-click="editableProfileForm.$cancel()">
-					Cancel
-					</button>
-				</span>
-				</div>
 			</div>
 
-			<div class="col-md-offset-6">
+			<div class="col-md-4">
 				<div class="BioBox">
-					<span class="title">About you</span>
+					<label>Bio</label>
 					<br>
 					<span editable-textarea="studentData.Bio" e-rows="7" e-cols="70" e-name="Bio" e-class="form-control" e-required e-placeholder="Tell us about you">{{ studentData.Bio || 'About you' }}</span>
 
@@ -113,7 +135,7 @@
 					<!-- editable status (select-local) -->
 					<label>Status</label>
 					<br>
-					<span editable-select="studentData.status.text" e-name="status.text"  e-class="form-control" e-ng-options="status.text for status in statuses">
+					<span editable-select="studentData.status" e-name="status"  e-class="form-control" e-ng-options="status.text for status in statuses" ng-class="{redText: !studentData.status.text}">
 	{{ studentData.status.text || "Your Status" }}
 	</span>
 				</div>
@@ -125,20 +147,13 @@
 	</div>
 	<p>this is skills: {{studenData.skills | uppercase}}</p>
 	<span editable-text="studentData.email" e-name="email" e-placeholder="Enter email">{{ studentData.email || 'youremail@email.com' }}</span> -->
-				<div class="horizontalView">
 
-					<div>
-						<label>Skills</label>
-						<p editable-textarea="studentData.skills" e-rows="2"  e-class="form-control" e-cols="30" e-name="skills">
-							{{studentData.skills || ""}}
-						</p>
-					</div>
-				</div>
 				<div class="horizontalView">
 					<!-- editable relocation (select-local) -->
 					<label>Relocation Options</label>
 					<br>
-					<span editable-select="studentData.relocation" e-name="relocation" e-class="form-control" e-ng-options="option.text for option in relocationOptns">
+					<span editable-select="studentData.relocation" ng-model="studentData.relocation.text" e-name="relocation" e-class="form-control" e-ng-options="option.text for option in relocationOptns track by option.id" ng-class="{redText: !studentData.relocation.text}">
+					<option ng-if="false"></option>
 	{{ studentData.relocation.text || "Relocation Options" }}
 	</span>
 				</div>
@@ -150,8 +165,8 @@
 				</div>
 			</div>
 			</div>
-		</div>
 	</form>
+	</div>
 
 	<div>
 		<div>
@@ -315,10 +330,11 @@
 						<button class="btn btn-primary" ng-click="saveDevSkill(devskill)">Save Changes</button>
 						<button class="btn btn-danger" ng-click="deleteDevSkill(devskill)">Delete Skill</button>
 						</div>
-					</div>
+
 				</div><!-- PANEL ENDS -->
 			</div><!-- clas row of devSkills ends -->
 		</div><!-- ng repeat devskills ends -->
 	</div><!--DevSkills ends -->
 </div>
+
 <!-- END of div 'container' -->

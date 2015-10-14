@@ -1,95 +1,59 @@
-<!--
-OWNER: Janice
-BACKING CONTROLLER: porfolioListController
-
-    $scope.cohorts = []
-    cohort = {
-        name:
-        location:
-        cateogry:
-        profiles: [] (size of 3)
-        cohortId:
-    }
-
-TODO:
-- Make the route - DONE
-- Update porfolio link to point to this page - DONE
-- Move filters to this page from the other page - DONE
-- Organize Data (Controller work)
-- Make thep page layout
-- Add click functionality to route to publicPortfolios
-
-HTML PseudoCode:
-
-div
-    div .filters
-        category filter
-        location filter
-
-    div repeat portfolio in objectOfPortfolios
-         on click - Change route
-        div header
-            name (portfolio), location (objectOfPortfolios[portfolio][0].location), (objectOfPortfolios[portfolio][0].category)
-        div objectOfPortfolios[portfolio][0]
-            student picture
-            name
-         div objectOfPortfolios[portfolio][1]
-                    student picture
-                    name
-         div objectOfPortfolios[portfolio][2]
-                    student picture
-                    name
--->
-<div class="container">
-  <div class="col-md-4 col-md-offset-1">
-    <h2 class="studentporfolioheading">Student Porfolios</h2>
-  </div>
-  <div class="filteralign filterby">
-    <div class="cohortLocation">
-      <p><b>School Location:</b></p>
-      <button type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'UT'}">Utah</button>
-      <button type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'TX'}">Texas</button>
-    </div>
-    <div class="classClassification">
-      <p><b>Class:</b></p>
-      <button type="button" class="btn btn-default" ng-click="studentFilter={classType:'Web Development'}">Web Development</button>
-      <button type="button" class="btn btn-default" ng-click="studentFilter={classType:'IOS'}">iOS Development</button>
-    </div>
+<div class="container-fluid">
+  <!-- <div class="row"> -->
+      <div class="col-md-12 col-md-offset-1">
+        <h2 class="studentporfolioheading">Student Porfolios</h2>
+      </div>
     <div>
-      <p><b>Reset:</b></p>
-
-      <button type="button" class="btn btn-default" ng-click="studentFilter=undefined">Reset Filters</button>
+      <div class="filteralign">
+      <div class="col-md-3 col-md-offset-1">
+        <p><b>School Location</b></p>
+        <button type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'UT'}">Utah</button>
+        <button type="button" class="btn btn-default" ng-click="studentFilter={classLocation:'TX'}">Texas</button>
+      </div>
+      <div class="col-md-3">
+        <p><b>Class Type</b></p>
+        <button type="button" class="btn btn-default" ng-click="studentFilter={classType:'Web Development'}">Web Development</button>
+        <button type="button" class="btn btn-default" ng-click="studentFilter={classType:'IOS'}">iOS Development</button>
+      </div>
+      <div class="col-md-3">
+        <p><b>Reset Filters</b></p>
+        <button type="button" class="btn btn-default" ng-click="studentFilter=undefined">Reset Filters</button>
+      </div>
     </div>
-  </div>
-  <!-- End of filter div   -->
-  <div class="cohortProfileView">
-    <div ng-repeat="profile in cohort | filter:studentFilter" ng-click="goToCohort(profile.classId)">
-      <div class="cohortHeading row">
+      </div>
+    <!-- End of filter div   -->
+    <div class="cohortProfileView clear col-md-12">
+      <div class="clear" ng-repeat="profile in cohort | filter:studentFilter" ng-click="goToCohort(profile.classId)">
+        <div class="cohortHeading row">
 
-        <div class="col-md-6">
+          <div class="col-md-6">
             <h3>#{{profile.cohort}}</h3>
-        </div>
-        <div class="cohortheader col-md-6">
-          <span>
-            <p>{{profile.classType}} Class | Location: {{profile.classLocation}}</p>
-        </span>
-
-        </div>
-      </div>
-      <div id="previewContainer">
-        <ul class="studentpreview" id="studentsample">
-          <li class="polaroid" ng-repeat="student in profile.profiles | limitTo:3">
-            <img src="{{student.studentpic}}" style="width: 190px; height: 198px" /> &nbsp
+          </div>
+          <div class="cohortheader col-md-6">
             <span>
-              <p>
-                {{student.firstname}} {{student.lastname}} </p>
+              <p>{{profile.classType}} Class | Location: {{profile.classLocation}}</p>
             </span>
-          </li>
-        </ul>
-        &nbsp
-        <hr class="style8">
+
+          </div>
+        </div>
+        <div class="container">
+        <div id="previewContainer">
+          <div class="studentPreviewFlexContainer">
+          <ul class="studentpreview" id="studentsample">
+            <li class="polaroid" ng-repeat="student in profile.profiles | limitTo:3">
+              <img ng-src="{{student.studentpic}}" style="width: 190px; height: 198px" />
+              <span>
+                <p>
+                  {{student.firstname}} {{student.lastname}} </p>
+              </span>
+            </li>
+          </ul>
+          </div>
+          <hr class="style8">
+        </div>
+        </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
   <!-- End of Container div   -->
 </div>

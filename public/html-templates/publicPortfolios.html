@@ -1,17 +1,8 @@
 <div class="container">
-
-<div class="portfoliosHeader" ng-repeat="classes in cohort | limitTo:1">
-<h3>[ {{classes.classType}} # {{classes.cohort}} ]</h3>
+<div class="portfoliosHeader">
+<h3>[ {{cohort.className.text}} # {{cohort.cohortname.text}} ]</h3>
 </div>
-
-
 <div ng-repeat="student in studentPortfolio | filter:studentFilter">
-    <!--TODO ng-click="viewStudent(student)" -->
     <portfolio-view student="student" ></portfolio-view>
 <br>
 </div>
-
-<!-- <div ng-repeat="student in studentPortfolio | filter:studentFilter" >
-	<portfolio-view student="student" button ng-click="viewFullProfile(student)"></portfolio-view>
-
-</div> -->

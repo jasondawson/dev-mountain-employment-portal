@@ -48,7 +48,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.cohortNames = [];
 	$scope.getcohortnames = function() {
 		cohortNameServ.getCohortNames().then(function(response) {
-			//console.log(response);
+			console.log(response);
 			$scope.cohortNames = response.data;
 		})
 	};
@@ -56,26 +56,41 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 
 	$scope.statuses = [{
+		id: 1,
 		text: 'Student'
 	}, {
+		id: 2,
 		text: 'Unemployed'
 	}, {
+		id: 3,
 		text: 'Employed'
 	}, {
+		id: 4,
 		text: 'Freelance'
 	}];
 
 	$scope.relocationOptns = [{
+		id: 1,
 		text: 'Yes'
 	}, {
+		id: 2,
 		text: "No"
 	}, {
+		id: 3,
 		text: "Interested in working remotely"
 	}];
 
 	//updateStudent($data) function from html
 	$scope.updateStudent = function(studentInfo) {
+		if ($scope.studentData.picture) {
+			studentInfo.picture = $scope.studentData.picture;
+		}
 		console.log("what $data i am getting?", studentInfo);
+		if (!studentInfo['cohort.className'] || !studentInfo['cohort.cohortLocation'] || !studentInfo['cohort.cohortname']) {
+			var errorMessage = 'Class, Cohort, and Cohort Location are all required';
+			alert(errorMessage)
+			return errorMessage;
+		}
 		studentProfileSvc.updateStudentInfo(studentInfo, $scope.studentData._id).then(
 			function(response) {
 				$scope.getStudentProf()
@@ -110,7 +125,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		name: null,
 		picture: null,
 		description: null,
-		TechUsed: null,
+		techUsed: null,
 		codeSource: {
 			name: null,
 			url: null
@@ -119,6 +134,10 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 
 	$scope.saveNewProject = function(newProject) {
+		if (!(_.every(newProject) && _.every(newProject.codeSource))) {
+			alert('All values and a picture are required');
+			return false;
+		}
 		studentProfileSvc.addProject($scope.newProject, $scope.studentData._id).then(
 			function(response) {
 				console.log(response.data._id);
@@ -138,6 +157,10 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		}
 	}
 	$scope.addNewDevSkill = function(newDevskill) {
+		if (!(_.every(newDevskill) && _.every(newDevskill.link))) {
+			alert('All values are required.');
+			return false;
+		}
 		studentProfileSvc.addDevSkill($scope.newDevskill, $scope.studentData._id).then(
 			function(response) {
 				$scope.newDevskill = {};
@@ -146,6 +169,7 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	}
 
 	$scope.saveDevSkill = function(devSkill) {
+		console.log(devSkill);
 		studentProfileSvc.updateDevSkill(devSkill).then(
 			function(response) {
 				$scope.getStudentProf()
@@ -173,6 +197,13 @@ get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projec
 		studentProfileSvc.deleteDevSkill(devskill).then(function(response) {
 			$scope.getStudentProf();
 		})
+	}
+
+	$scope.checkValues = function(property, data) {
+		console.log(data)
+		console.log(!!data[property])
+		if (!!!data[property]) { return true; }
+		return false
 	}
 
 });

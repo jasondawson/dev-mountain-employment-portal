@@ -1,7 +1,7 @@
 <div class="outer-box" ng-mouseover="showHidden()" ng-mouseleave="hide()"  ng-click="goStudent(student.loginInfo)">
   <div class="imagesize" ng-show="!hidden">
 
-    <img src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}">
+    <img ng-src="{{student.picture}}" alt="{{student.name.first}} {{student.name.last}}">
     <div class="biopreview">
       <h2>{{student.name.first}} {{student.name.last}}</h2>
       <b>Bio:</b> {{student.Bio | characters: 450}}
@@ -14,7 +14,7 @@
   </div>
   <div class="projectContainer">
     <div class="projectContainer-flex" ng-repeat="project in student.projects | limitTo:2" ng-show="hidden">
-      <img src="{{project.picture}}">
+      <img ng-src="{{project.picture}}">
       <div class="projectdesc">
         <ul id="studentsample">
           <li>
