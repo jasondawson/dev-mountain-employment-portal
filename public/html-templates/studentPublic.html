@@ -4,7 +4,7 @@
     <div class="row">
     <div class="studentprofilepage">
       <div class="studentcolumn col-md-4">
-        <img src="{{student.picture}}" style="width: 260px; height: 260px;">
+        <img ng-src="{{student.picture}}" style="width: 260px; height: 260px;">
         <br>
         <h3>{{student.name.first}} {{student.name.last}}</h3>
         <p>Currently @ {{student.currentLoc.city}}, {{student.currentLoc.state}}</p>
@@ -42,11 +42,11 @@
     </div>
     <br />
     <div class="row">
-      <div class="banner"> PROJECTS </div>
+      <div ng-if="student.projects.length" class="banner"> PROJECTS </div>
       <div class="studentproject" ng-repeat="project in student.projects">
         <div class="container">
         <h3 class="">{{project.name}}</h3>
-          <img class="col-md-2 no-padding-left" src="{{project.picture}}" />
+          <img class="col-md-2 no-padding-left" ng-src="{{project.picture}}" />
 
         <div class="col-md-7">
           <p>
@@ -69,7 +69,7 @@
       </div>
 
     <div class="row">
-    <div class="banner"> Skills </div>
+    <div ng-if="student.DevSkills.length" class="banner"> Skills </div>
       <div class="student-box" ng-repeat="devskills in student.DevSkills">
         <h3>{{devskills.name}}</h3>
        <!--  <p>

@@ -22,8 +22,8 @@
     </div>
       </div>
     <!-- End of filter div   -->
-    <div class="cohortProfileView col-md-12">
-      <div ng-repeat="profile in cohort | filter:studentFilter" ng-click="goToCohort(profile.classId)">
+    <div class="cohortProfileView clear col-md-12">
+      <div class="clear" ng-repeat="profile in cohort | filter:studentFilter" ng-click="goToCohort(profile.classId)">
         <div class="cohortHeading row">
 
           <div class="col-md-6">
@@ -36,18 +36,21 @@
 
           </div>
         </div>
-        <div id="previewContainer col-md-12">
+        <div class="container">
+        <div id="previewContainer">
+          <div class="studentPreviewFlexContainer">
           <ul class="studentpreview" id="studentsample">
             <li class="polaroid" ng-repeat="student in profile.profiles | limitTo:3">
-              <img src="{{student.studentpic}}" style="width: 190px; height: 198px" /> &nbsp
+              <img ng-src="{{student.studentpic}}" style="width: 190px; height: 198px" />
               <span>
                 <p>
                   {{student.firstname}} {{student.lastname}} </p>
               </span>
             </li>
           </ul>
-          &nbsp
+          </div>
           <hr class="style8">
+        </div>
         </div>
       </div>
     </div>

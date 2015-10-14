@@ -47,7 +47,10 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 				};
 			})
 
-			$scope.cohort = byCohort;
+			var thisCohort = _.find(response, function(i) { return i.cohort.cohortname._id === $stateParams.id}).cohort
+
+			$scope.cohort = thisCohort;
+			console.log($scope.cohort)
 		})
 	}
 	$scope.portfolioPreview();
