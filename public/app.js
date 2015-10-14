@@ -95,9 +95,7 @@ app.run(function($rootScope, authService, $state) {
 
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams, fromState, fromStateParams) {
-    console.log(toState.name);
     authService.checkUser().then(function(user) {
-    console.log(user);
     if (toState.name === 'profile') {
       if (toStateParams.id && (toStateParams.id !== user._id)) {
         console.log('not this user. Cannot edit this profile, view instead')
@@ -111,61 +109,9 @@ app.run(function($rootScope, authService, $state) {
       }
     }
     })
-    // if(toState.name === 'admin') {
-    //   authService.checkUser().then(function(user) {
-    //     if (!user.lead_instructor) {
-    //       $state.go('homeView');
-    //     }
-    //   })
-    //   .catch(function(){
-    //     // no user logged in
-    //     $state.go('homeView');
-    //   })
-    // }
+
   })
 })
 
-// app.run(function($rootScope, $state, $window, authService, $location) {
-//
-//   var publicViews = ["homeView", "profiles", "portfolios", "portfolioview"];
-//   authService.getLoginUser().then(function(loggedInUser) {
-//     if (loggedInUser) {
-//       $rootScope.loggedIn = true;
-//     } else {
-//       $rootScope.loggedIn = false;
-//     }
-//   });
-//
-// $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-//
-//   if (publicViews.indexOf(toState.name) !== -1) return;
-//
-//   authService.getLoginUser().then(function(loggedInUser) {
-//       console.log(loggedInUser);
-//         if (loggedInUser.id) {
-//           $rootScope.loggedIn = true;
-//           return;
-//         } else {
-//           $rootScope.loggedIn = false;
-//           authService.getUser().then(function(data) {
-//             if (data.redirect) {
-//               $window.location.replace(data.location)
-//             } else {
-//              return;
-//             }
-//
-//           })
-//         }
-//   })
-//     })
-// })
-
-/*Listen for state changes,
-check for a user object that will be stored somewhere,
-if (user) { then continue },
-if (!user) { check for a user on the server },
-if the server sends us a user, then we will store that user.
-if the server does not send us a user, then we will redirect to Dev Mountain,
 
 
-*/
