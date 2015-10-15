@@ -5,8 +5,6 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
 var passport = require('passport');
-// var bcrypt = require('bcrypt-nodejs');
-// var LocalStrategy = require("passport-local").Strategy;
 var Devmtn = require('devmtn-auth');
 var DevmtnStrategy = Devmtn.Strategy;
 var devmtnAuthConfig = require('./devmtnAuthConfig.js')
@@ -49,7 +47,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
@@ -265,8 +263,8 @@ mongoose.connection.once('open', function() {
 
 
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 
-var server = app.listen(process.env.PORT || port, function() {
+var server = app.listen(port, function() {
   console.log('Server up and running at', server.address().port);
 });
