@@ -28,14 +28,12 @@ $scope.students = [];
   $scope.adminReadStudents = function() {
     adminSvc.adminReadStudents().then(function(response) {
       $scope.students = response.data;
-     // console.log("students from DB", $scope.students);
     });
   };
   $scope.adminReadStudents();
 
 
   $scope.showProfile = function(student) { ////this function changes boolean in database for the checkboxes
-    //console.log("showProfile result in controller", student)
     adminSvc.adminUpdateShowStudent(student).then(function(response) {
       if (response.status === 200) {
         $scope.adminReadStudents();
@@ -66,7 +64,6 @@ $scope.students = [];
     cohortLocServ.getCohortLoc().then(function(response) {
       if (response.status === 200) {
         $scope.cohortLocations = response.data;
-       // console.log("getCohortLocations", response.data);
       }
     })
   }
@@ -83,7 +80,6 @@ $scope.students = [];
     classNameServ.getClassName().then(function(response) {
       if (response.status === 200) {
         $scope.courseNames = response.data;
-        //console.log("getCourseNames", response.data);
       }
     })
   }
@@ -97,19 +93,14 @@ $scope.students = [];
   }
 
   var getCohortNames = function() {
-    //console.log("get the cohort names in controller")
     cohortNameServ.getCohortNames().then(function(response) {
       $scope.cohortNames = response.data;
-    // console.log("getCohortNames response from DB", $scope.cohortNames);
-
-
     })
   }
   getCohortNames();
 
   $scope.addNewCohortName = function(newCohort) {
     cohortNameServ.addCohortName(newCohort).then(function(response) {
-     // console.log("new cohort name added", response);
       getCohortNames();
       $scope.newCohort = "";
     })

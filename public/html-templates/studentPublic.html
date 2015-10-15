@@ -9,13 +9,23 @@
         <h3>{{student.name.first}} {{student.name.last}}</h3>
         <p>Currently @ {{student.currentLoc.city}}, {{student.currentLoc.state}}</p>
         <br />
-        <a href="mailto:{{student.email}}">{{student.email}}</a>
-        <br />
-        <a href="http://{{student.personalWebsite}}">{{student.personalWebsite}}</a>
-        <br />
-        <a href="http://github.com/{{student.github}}">{{student.github}} </a><i class="fa fa-github fa-lg"></i>
-        <br />
-        <a href="https://www.linkedin.com/in/{{student.linkdIn}}">{{student.linkdIn}} </a><i class="fa fa-linkedin fa-lg"></i>
+        <div class="contactDetailsContainer">
+          <div class="contactDetailsItem" ng-if="student.email">
+            <i class="fa fa-envelope-o fa-lg"></i><a href="mailto:{{student.email}}"> {{student.email}} </a>
+            <br />
+          </div>
+          <div class="contactDetailsItem" ng-if="student.personalWebsite">
+          <i class="fa fa-laptop fa-lg"></i><a href="http://{{student.personalWebsite}}"> {{student.personalWebsite}}</a>
+          <br />
+          </div>
+          <div class="contactDetailsItem" ng-if="student.github">
+          <i class="fa fa-github fa-lg"></i><a href="http://github.com/{{student.github}}"> {{student.github}} </a>
+          <br />
+          </div>
+          <div class="contactDetailsItem" ng-if="student.linkdIn">
+          <i class="fa fa-linkedin fa-lg"></i><a href="https://www.linkedin.com/in/{{student.linkdIn}}"> {{student.linkdIn}} </a>
+          </div>
+        </div>
         <div class="studentInfo">
           <span><p>
         {{student.cohort.className.text}} - {{student.cohort.cohortname.text}}</p> </span>

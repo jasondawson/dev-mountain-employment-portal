@@ -366,6 +366,34 @@ hr.style8:after {
 .studentcolumn {
   text-align: center;
 }
+
+.contactDetailsContainer {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contactDetailsItem {
+  display: flex;
+  align-items: center;
+}
+
+.contactDetailsItem > i {
+  order: 2;
+  flex: 1 1 0;
+}
+
+.contactDetailsItem > a {
+  order: 1;
+  flex: 2 2 0;
+}
+
+.outline {
+  outline: 1px solid red;
+}
+
 .studentshowcase {
   top: 100px;
   text-align: center;

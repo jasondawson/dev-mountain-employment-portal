@@ -3,7 +3,7 @@ app.service("publicPortfoliosSvc", function($http, $q) {
   this.getStudentProf = function() {
     var deferred = $q.defer();
     $http({
-      url: 'http://localhost:3000/api/studentPortfolio',
+      url: '/api/studentPortfolio',
       method: 'GET',
     }).then(function(response) {
       angular.forEach(response.data, function(student) {
@@ -35,10 +35,9 @@ app.service("publicPortfoliosSvc", function($http, $q) {
   this.getByCohort = function(data) {
     var deferred = $q.defer();
     $http({
-      url: 'http://localhost:3000/api/getCohort/' + data,
+      url: '/api/getCohort/' + data,
       method: 'GET',
     }).then(function(response) {
-      console.log('this is data response', response);
       deferred.resolve(response.data);
     })
     return deferred.promise;
@@ -47,7 +46,7 @@ app.service("publicPortfoliosSvc", function($http, $q) {
   this.getStudentProj = function(data) {
       var deferred = $q.defer();
       $http({
-        url: 'http://localhost:3000/api/projects/',
+        url: '/api/projects/',
         method: 'GET',
         params: {
           id: data

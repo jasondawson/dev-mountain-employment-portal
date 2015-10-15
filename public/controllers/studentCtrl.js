@@ -5,6 +5,7 @@ app.controller('studentCtrl', function(
     $scope.canEdit = $stateParams.id === loggedInUser._id;
 
     $scope.navToEditProfile = function() {
+      console.log('click');
       $state.go('profile', {id: loggedInUser._id})
     }
   }

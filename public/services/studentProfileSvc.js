@@ -1,10 +1,9 @@
-app.service("studentProfileSvc", function($http, $q, loginSvc) {
+app.service("studentProfileSvc", function($http, $q) {
 
 
 	this.storeImage = function(imageData, filename) {
 		var imageExtension = imageData.split(';')[0].split('/');
 		imageExtension = imageExtension[imageExtension.length - 1];
-		//console.log(imageExtension);
 
 		var newImage = {
 			imageName: filename,
@@ -19,13 +18,9 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	this.getStudentProf = function(id) {
 		var deferred = $q.defer();
 		$http({
-			//url: 'http://localhost:3000/api/studentPortfolio/55f8480baec60b07268b0f59',
-			url: 'http://localhost:3000/api/studentPortfolio/' + id,
-			//ID = LOGIN USER ID,
-
+			url: '/api/studentPortfolio/' + id,
 			method: 'GET',
 		}).then(function(response) {
-			//console.log('this is response.data in service', response.data);
 			deferred.resolve(response.data);
 		})
 		return deferred.promise;
@@ -36,8 +31,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/studentPortfolio/' + id,
-			//ID = STudent PORTFOLIO ID,
+			url: '/api/studentPortfolio/' + id,
 			data: info
 		}).then(function(response) {
 			deferred.resolve(response);
@@ -46,7 +40,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	};
 
 	this.updateProject = function(project) {
-		console.log('what info im i gettign???', project)
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
@@ -62,7 +55,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 					url: project.codeSource.url
 				}
 			}
-			//data: project
 		}).then(function(response) {
 			deferred.resolve(response);
 		});
@@ -76,8 +68,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		$http({
 			method: 'POST',
 			url: '/api/project/' + id,
-			//+ studentId,
-
 			data: {
 				projectType: newProject.projectType,
 				name: newProject.name,
@@ -101,8 +91,7 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: 'http://localhost:3000/api/studentPortfolio/',
-			//+ me.Id,
+			url: '/api/studentPortfolio/',
 			data: info
 		}).then(function(response) {
 			deferred.resolve(response);
@@ -124,7 +113,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 		$http({
 			method: 'POST',
 			url: '/api/devskill/' + id,
-			//+ studentId,
 			data: {
 				name: newDevskill.name,
 				description: newDevskill.description,
@@ -151,7 +139,6 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 					url: DevSkill.link.url
 				}
 			}
-			//data: project
 		}).then(function(response) {
 			deferred.resolve(response);
 		});
@@ -173,10 +160,10 @@ app.service("studentProfileSvc", function($http, $q, loginSvc) {
 	this.getStudentPublicView = function(id) {
 		var deferred = $q.defer();
 		$http({
-			url: 'http://localhost:3000/api/studentPortfolio/' + id,
+			url: '/api/studentPortfolio/' + id,
 			method: 'GET',
-		}).then(function(response) { //console.log('this is response.data in service', response.data);
-			deferred.resolve(response.data);
+		}).then(function(response) {
+					deferred.resolve(response.data);
 		})
 		return deferred.promise;
 	};

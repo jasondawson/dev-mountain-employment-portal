@@ -9,12 +9,10 @@ module.exports = {
         newCohortName.save(function(err, result) {
             if (err) return res.status(500).send(err);
             res.send(result)
-            // console.log('this is cohortName send result', result);
         });
     },
     read: function(req, res) {
         cohortName.find(req.query).exec(function(err, result) {
-            // console.log(result);
             if (err) return res.status(500).send(err);
             res.send(result);
         });

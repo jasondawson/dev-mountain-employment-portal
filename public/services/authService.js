@@ -23,7 +23,6 @@ app.service("authService", function($q, $http, $rootScope) {
 				$rootScope.isAdmin = true;
 				$rootScope.studentLoggedIn = false;
 			}
-			// console.log(loginUser)
 			if (loginUser._id) {
 				$rootScope.loggedIn = true;
 				deferred.resolve(loginUser)
