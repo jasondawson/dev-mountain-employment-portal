@@ -113,17 +113,21 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	};
 
 
-	$scope.newProject = {
-		projectType: null,
-		name: null,
-		picture: null,
-		description: null,
-		techUsed: null,
-		codeSource: {
+	$scope.initializeNewProject = function() {
+		$scope.newProject = {
+			projectType: null,
 			name: null,
-			url: null
+			picture: null,
+			description: null,
+			techUsed: null,
+			codeSource: {
+				name: null,
+				url: null
+			}
 		}
 	}
+
+	$scope.initializeNewProject();
 
 
 	$scope.saveNewProject = function(newProject) {
@@ -134,20 +138,34 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		studentProfileSvc.addProject($scope.newProject, $scope.studentData._id).then(
 			function(response) {
 
-				$scope.newProject = {};
-				$scope.newProject.picture = "//:0";
+				$scope.initializeNewProject();
+				$scope.addingNewProject = false;
 				$scope.getStudentProf();
 			})
 	}
 
-	$scope.newDevskill={
-		name:null,
-		description:null,
-		link:{
+	$scope.toggleAddProject = function() {
+		$scope.addingNewProject = true;
+	}
+
+	$scope.cancelNewProject = function() {
+		$scope.initializeNewProject();
+		$scope.addingNewProject = false;
+	}
+
+	$scope.initializeNewSkill = function() {
+		$scope.newDevskill={
 			name:null,
-			url:null
+			description:null,
+			link:{
+				name:null,
+				url:null
+			}
 		}
 	}
+
+	$scope.initializeNewSkill();
+
 	$scope.addNewDevSkill = function(newDevskill) {
 		if (!(_.every(newDevskill) && _.every(newDevskill.link))) {
 			alert('All values are required.');
@@ -155,9 +173,19 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		}
 		studentProfileSvc.addDevSkill($scope.newDevskill, $scope.studentData._id).then(
 			function(response) {
-				$scope.newDevskill = {};
+				$scope.initializeNewSkill();
+				$scope.addingNewSkill = false;
 				$scope.getStudentProf();
 			})
+	}
+
+	$scope.toggleAddSkill = function() {
+		$scope.addingNewSkill = true;
+	}
+
+	$scope.cancelNewSkill = function() {
+		$scope.initializeNewSkill();
+		$scope.addingNewSkill = false;
 	}
 
 	$scope.saveDevSkill = function(devSkill) {
@@ -178,9 +206,10 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		})
 	}
 
-	$scope.checkValues = function(property, data) {
-		if (!!!data[property]) { return true; }
-		return false
-	}
+	// $scope.checkValues = function(property, data) {
+	// 	if (!!!data[property]) { return true; }
+	// 	return false
+	// }
+
 
 });

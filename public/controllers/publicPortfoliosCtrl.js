@@ -43,5 +43,4 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 	$scope.portfolioPreview();
 
 
-
 })
