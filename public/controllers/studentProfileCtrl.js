@@ -1,12 +1,11 @@
 app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
-	cohortNameServ, cohortLocServ, loginSvc, classNameServ, studentSkillsService,
+	cohortNameServ, cohortLocServ, classNameServ, studentSkillsService,
 	$filter, $http, $stateParams, cohortroute, profileUser, $state, authService) {
 
 	$scope.thisStudent = cohortroute;
 
 	$scope.navToViewProfile = function() {
 		authService.checkUser().then(function(user) {
-			console.log(user);
 			$state.go('student', {id: user._id})
 
 		})
@@ -20,7 +19,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		studentProfileSvc.getStudentProf($stateParams.id).then(function(response) {
 			$scope.studentData = response.studentPortf;
 			var loginID = $scope.studentData.loginInfo._id;
-			console.log('this is studenDAta', $scope.studentData);
 
 		})
 	};
@@ -31,7 +29,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.getClassNames = function() {
 		classNameServ.getClassName().then(function(response) {
 			$scope.classNames = response.data;
-			//console.log(response.data);
 		})
 	};
 	$scope.getClassNames();
@@ -39,7 +36,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.cohortLocations = [];
 	$scope.getcohortLocations = function() {
 		cohortLocServ.getCohortLoc().then(function(response) {
-			//$scope.response.push(cohortLocations);
 			$scope.cohortLocations = response.data;
 		})
 	};
@@ -48,7 +44,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	$scope.cohortNames = [];
 	$scope.getcohortnames = function() {
 		cohortNameServ.getCohortNames().then(function(response) {
-			console.log(response);
 			$scope.cohortNames = response.data;
 		})
 	};
@@ -85,7 +80,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		if ($scope.studentData.picture) {
 			studentInfo.picture = $scope.studentData.picture;
 		}
-		console.log("what $data i am getting?", studentInfo);
 		if (!studentInfo['cohort.className'] || !studentInfo['cohort.cohortLocation'] || !studentInfo['cohort.cohortname']) {
 			var errorMessage = 'Class, Cohort, and Cohort Location are all required';
 			alert(errorMessage)
@@ -100,7 +94,6 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 
 	//saving Student Image
 	$scope.saveProfilePic = function(data) {
-		//console.log('this is studentdata', data);
 		studentProfileSvc.updateStudentInfo(data, $scope.studentData._id).then(
 			function(response) {
 				$scope.getStudentProf()
@@ -120,17 +113,21 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 	};
 
 
-	$scope.newProject = {
-		projectType: null,
-		name: null,
-		picture: null,
-		description: null,
-		techUsed: null,
-		codeSource: {
+	$scope.initializeNewProject = function() {
+		$scope.newProject = {
+			projectType: null,
 			name: null,
-			url: null
+			picture: null,
+			description: null,
+			techUsed: null,
+			codeSource: {
+				name: null,
+				url: null
+			}
 		}
 	}
+
+	$scope.initializeNewProject();
 
 
 	$scope.saveNewProject = function(newProject) {
@@ -140,22 +137,35 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		}
 		studentProfileSvc.addProject($scope.newProject, $scope.studentData._id).then(
 			function(response) {
-				console.log(response.data._id);
 
-				$scope.newProject = {};
-				$scope.newProject.picture = "//:0";
+				$scope.initializeNewProject();
+				$scope.addingNewProject = false;
 				$scope.getStudentProf();
 			})
 	}
 
-	$scope.newDevskill={
-		name:null,
-		description:null,
-		link:{
+	$scope.toggleAddProject = function() {
+		$scope.addingNewProject = true;
+	}
+
+	$scope.cancelNewProject = function() {
+		$scope.initializeNewProject();
+		$scope.addingNewProject = false;
+	}
+
+	$scope.initializeNewSkill = function() {
+		$scope.newDevskill={
 			name:null,
-			url:null
+			description:null,
+			link:{
+				name:null,
+				url:null
+			}
 		}
 	}
+
+	$scope.initializeNewSkill();
+
 	$scope.addNewDevSkill = function(newDevskill) {
 		if (!(_.every(newDevskill) && _.every(newDevskill.link))) {
 			alert('All values are required.');
@@ -163,31 +173,28 @@ app.controller("studentProfileCtrl", function($scope, studentProfileSvc,
 		}
 		studentProfileSvc.addDevSkill($scope.newDevskill, $scope.studentData._id).then(
 			function(response) {
-				$scope.newDevskill = {};
+				$scope.initializeNewSkill();
+				$scope.addingNewSkill = false;
 				$scope.getStudentProf();
 			})
 	}
 
+	$scope.toggleAddSkill = function() {
+		$scope.addingNewSkill = true;
+	}
+
+	$scope.cancelNewSkill = function() {
+		$scope.initializeNewSkill();
+		$scope.addingNewSkill = false;
+	}
+
 	$scope.saveDevSkill = function(devSkill) {
-		console.log(devSkill);
 		studentProfileSvc.updateDevSkill(devSkill).then(
 			function(response) {
 				$scope.getStudentProf()
 			})
 	}
 
-
-
-	/*
-  saveNewProject function
-  takes $scope.newProject
-  sends it to the database
-  $scope.newProject = {}
-  HOW DO I SAVE IT TO STUDENT PROFILE?
-
-get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projectsArray
-
-  */
 	$scope.deleteProject = function(project) {
 		studentProfileSvc.delProject(project).then(function(response) {
 			$scope.getStudentProf();
@@ -199,11 +206,10 @@ get project id after.THEN and $push it (angularJS DOCS) to studentProfile.projec
 		})
 	}
 
-	$scope.checkValues = function(property, data) {
-		console.log(data)
-		console.log(!!data[property])
-		if (!!!data[property]) { return true; }
-		return false
-	}
+	// $scope.checkValues = function(property, data) {
+	// 	if (!!!data[property]) { return true; }
+	// 	return false
+	// }
+
 
 });

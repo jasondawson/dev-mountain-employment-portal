@@ -9,7 +9,7 @@
 
 			<div class="padding10px" e-class="form-group">
 				<button type="button"  class="btn btn-info"  e-class="form-group"ng-click="editableProfileForm.$show()" ng-show="!editableProfileForm.$visible">
-					Engage Edit Mode
+					Update My Info
 				</button>
 				<!-- buttons to submit / cancel form -->
 				<span ng-show="editableProfileForm.$visible">
@@ -169,49 +169,54 @@
 	</div>
 
 	<div>
-		<div>
-			<h1 class="text-center">Showcase</h1>
+		<div class="row project-title">
+			<button class="btn btn-success pull-left btn-add-new" ng-if="!addingNewProject" ng-click="toggleAddProject()"> Add New Project </button>
+			<div class="text-center h1">Showcase</div>
 		</div>
 		<div class="row">
-			<div  class="panel panel-default" >
-				<div class="panel-heading">
-					<h4 class="panel-title text-center">Add New Project</h4>
-				</div>
-				<div class="panel-body">
-					<div class="col-md-3">
 
-						<img ng-src="{{newProject.picture}}" style="width: 200px; height: 200px">
-						<input type="file" images="images" accept="image/pdf*" ng-model="newProject.picture" newproject-fileread />
+			<div ng-if="addingNewProject">
+				<div  class="panel panel-default" >
+					<div class="panel-heading">
+						<h4 class="panel-title text-center">Add New Project</h4>
 					</div>
-					<div class="col-md-9">
-						<div>
-							<label>Project Name</label>
-							<input class="project-edit" ng-model="newProject.name"  placeholder="Type Project Name"></input>
+					<div class="panel-body">
+						<div class="col-md-3">
+
+							<img ng-src="{{newProject.picture}}" style="width: 200px; height: 200px">
+							<input type="file" images="images" accept="image/pdf*" ng-model="newProject.picture" newproject-fileread />
 						</div>
-						<div>
-							<label>Project Type</label>
-							<input class="project-edit" ng-model="newProject.projectType"  placeholder="Group project or Personal project"></input>
-						</div>
-						<div>
-							<label>Project Description</label>
-							<textarea class="project-edit" ng-model="newProject.description" placeholder="Type a Description"></textarea>
-						</div>
-						<div>
-							<label>Tech Used</label>
-							<input class="project-edit" ng-model="newProject.techUsed"  placeholder="Technology used"></input>
-						</div>
-						<div>
-							<label>Code Source</label>
-							<input class="project-edit" ng-model="newProject.codeSource.name"  placeholder="used"></input>
-						</div>
-						<div>
-							<label>Url</label>
-							<input class="project-edit" ng-model="newProject.codeSource.url"  placeholder=" used"></input>
+						<div class="col-md-9">
+							<div>
+								<label>Project Name</label>
+								<input class="project-edit" ng-model="newProject.name"  placeholder="Type Project Name"></input>
+							</div>
+							<div>
+								<label>Project Type</label>
+								<input class="project-edit" ng-model="newProject.projectType"  placeholder="Group project or Personal project"></input>
+							</div>
+							<div>
+								<label>Project Description</label>
+								<textarea class="project-edit" ng-model="newProject.description" placeholder="Type a Description"></textarea>
+							</div>
+							<div>
+								<label>Tech Used</label>
+								<input class="project-edit" ng-model="newProject.techUsed"  placeholder="Technology used"></input>
+							</div>
+							<div>
+								<label>Code Source</label>
+								<input class="project-edit" ng-model="newProject.codeSource.name"  placeholder="used"></input>
+							</div>
+							<div>
+								<label>Url</label>
+								<input class="project-edit" ng-model="newProject.codeSource.url"  placeholder=" used"></input>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="panel-footer">
-					<button class="btn btn-primary" ng-click="saveNewProject(newProject)">Add new project</button>
+					<div class="panel-footer">
+						<button class="btn btn-primary" ng-click="saveNewProject(newProject)">Save project</button>
+						<button class="btn btn-danger" ng-click="cancelNewProject()">Cancel</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -268,8 +273,12 @@
 	</div><!--showcase ends -->
 
 	<div>
-		<h1 class="text-center">Developer Skills</h1>
+			<div class="row project-title">
+			<button class="btn btn-success pull-left btn-add-new" ng-if="!addingNewSkill" ng-click="toggleAddSkill()"> Add New Skill </button>
+			<div class="text-center h1">Developer Skills</div>
+		</div>
 		<div class="row">
+		<div ng-if="addingNewSkill">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 				<h4 class="panel-title text-center">Add New Developer Skill</h4>
@@ -295,9 +304,12 @@
 					</div>
 				</div><!-- panelBody -->
 				<div class="panel-footer">
-					<button class="btn btn-primary" ng-click="addNewDevSkill(newDevskill)">Add New</button>
+					<button class="btn btn-primary" ng-click="addNewDevSkill(newDevskill)">Add New Skill</button>
+					<button class="btn btn-danger" ng-click="cancelNewSkill()">Cancel</button>
+
 				</div>
 			</div><!-- panel closes -->
+			</div>
 		</div><!-- class row of new Dev Skill ends -->
 
 		<div class="skills" ng-repeat="devskill in studentData.DevSkills">

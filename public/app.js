@@ -16,23 +16,12 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     controller: "adminCtrl"
   })
 
-  .state("createAccount", {
-    url: "/createAccount",
-    templateUrl: "html-templates/createAccount.html",
-    controller: "loginCreateAccountCtrl"
-  })
-
   .state('homeView', {
     url: "/homeView",
     templateUrl: "html-templates/homeView.html",
     controller: "homeviewCtrl"
   })
 
-  .state('login', {
-      url: "/login",
-      templateUrl: "html-templates/login.html",
-      controller: "loginCreateAccountCtrl"
-    })
     .state('logout', {
       url: "/homeView",
       templateUrl: "html-templates/homeView.html",
@@ -93,7 +82,6 @@ app.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
 app.run(function($rootScope, authService, $state) {
 
-
   $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams, fromState, fromStateParams) {
     authService.checkUser().then(function(user) {
     if (toState.name === 'profile') {
@@ -112,6 +100,3 @@ app.run(function($rootScope, authService, $state) {
 
   })
 })
-
-
-

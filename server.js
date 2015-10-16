@@ -5,8 +5,6 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
 var passport = require('passport');
-// var bcrypt = require('bcrypt-nodejs');
-// var LocalStrategy = require("passport-local").Strategy;
 var Devmtn = require('devmtn-auth');
 var DevmtnStrategy = Devmtn.Strategy;
 var devmtnAuthConfig = require('./devmtnAuthConfig.js')
@@ -29,10 +27,8 @@ var cohortNameCtrl = require('./controller/cohortNameCtrl');
 var classNameCtrl = require('./controller/classNameCtrl');
 var cohortLocationCtrl = require('./controller/cohortLocationCtrl');
 var studentSkillsCtrl = require('./controller/studentSkillsCtrl');
-
 var studentPortfCtrl = require('./controller/studentPortfCtrl');
 var fullPortfolio = require('./controller/fullportfolio');
-var authCtrl = require('./controller/authCtrl');
 var projectsCtrl = require('./controller/projectsCtrl')
 var imageController = require("./controller/imageController.js");
 
@@ -51,7 +47,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
@@ -78,7 +74,6 @@ passport.use('devmtn', new DevmtnStrategy(devmtnAuthConfig, function(user, done)
       var local_user = results;
     local_user.lead_instructor = Devmtn.checkRoles(local_user, 'lead_instructor');
     local_user.student = Devmtn.checkRoles(local_user, 'student');
-    console.log('local_user', local_user)
     return done(null, local_user)
   })
 
@@ -88,12 +83,10 @@ passport.use('devmtn', new DevmtnStrategy(devmtnAuthConfig, function(user, done)
 //Serializing
 
 passport.serializeUser(function(user, done) {
-  // console.log("userfound", done);
   done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
-  // console.log("deserializeUser");
   User.findById(id, function(err, user) {
     if (err) {
       return done(err)
@@ -113,8 +106,6 @@ app.post('/api/newimage', imageController.saveImage);
 app.get('/auth/devmtn', passport.authenticate('devmtn'));
 
 app.get('/auth/devmtn/callback', passport.authenticate('devmtn'), function(req, res) {
-  console.log('student?', req.user.student);
-  console.log('lead_instructor?', req.user.lead_instructor);
   if (req.user.lead_instructor) {
     res.redirect('/#/admin');
   } else if (req.user.student) {
@@ -217,8 +208,8 @@ router.route('/api/cohortName/:id')
   .put(ensureAuthenticated, cohortNameCtrl.update)
   .delete(ensureAuthenticated, cohortNameCtrl.delete);
 
-router.route('/cohortLocation')
-  .get(cohortLocationCtrl.read);
+// router.route('/cohortLocation')
+//   .get(cohortLocationCtrl.read);
 
 router.route('/api/cohortLocation')
   .post(ensureAuthenticated, cohortLocationCtrl.create)
@@ -258,31 +249,6 @@ router.route('/api/student/:id')
   .get(studentPortfCtrl.getStudentById);
 
 
-// testing/debugging endpoints
-// TODO delete these
-app.get('/jason/alltheusers', function(req, res) {
-  User.find().exec(function(err, users) {
-    res.json(users);
-  })
-})
-
-app.get('/jason/alltheusers/:id', function(req, res) {
-  User.findById(req.params.id).remove().exec(function(err, user) {
-    res.json({removed: user});
-  })
-  // User.findById(req.params.id).remove.exec()
-})
-
-app.get('/jason/profile', function(req, res) {
-  Portfolios.findById("561c17f692b080f008cd293a").exec(function(err, results) {
-    results.github = 'asdfasdflkjsdf';
-    results.save();
-    res.json(results);
-  })
-})
-
-
-// end testing/debugging endpoints
 
 //connections
 // var mongodbUri = 'mongodb://adriana:group@ds033317.mongolab.com:33317/devmtn';
@@ -297,8 +263,8 @@ mongoose.connection.once('open', function() {
 
 
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 
-var server = app.listen(process.env.PORT || port, function() {
+var server = app.listen(port, function() {
   console.log('Server up and running at', server.address().port);
 });

@@ -4,21 +4,10 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 
 	$scope.getCohorts = cohortroute;
 
-
-	//TODO: Take cohortID in state param -> Only get studetns for that cohort id
-	//$stateParams.cohortId  (route has portfolios/:cohortId)
-	//Move filter to other page
-	//Add click to open
-	/*
-	     add viewStudent function to scope, recieves student as paramter
-	     $location to route using student id (route: profile/:studentId)
-	*/
-
 	$scope.getByCohort = function() {
 		publicPortfoliosSvc.getByCohort($stateParams.id).then(function(
 			response) {
 			$scope.studentPortfolio = response;
-			console.log('this is getbycohort response', response);
 		})
 	};
 
@@ -32,7 +21,6 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 
 	$scope.portfolioPreview = function() {
 		publicPortfoliosSvc.getStudentProf().then(function(response) {
-			console.log('this is response', response);
 			var _map = {};
 			var byCohort = [];
 			_.each(response, function(element, index, list) {
@@ -50,11 +38,9 @@ app.controller("publicPortfoliosCtrl", function($scope, publicPortfoliosSvc,
 			var thisCohort = _.find(response, function(i) { return i.cohort.cohortname._id === $stateParams.id}).cohort
 
 			$scope.cohort = thisCohort;
-			console.log($scope.cohort)
 		})
 	}
 	$scope.portfolioPreview();
-
 
 
 })

@@ -18,7 +18,6 @@ CustomLogger.prototype.activate = function() {
 }
 CustomLogger.prototype.log = function() {
   if (this.active) {
-    // console.log(arguments[0], arguments[1]);
   }
 }
 var myLog = new CustomLogger();
@@ -26,56 +25,24 @@ var myLog = new CustomLogger();
 // myLog.deactivate();
 module.exports = {
   create: function(req, res) {
-    // console.log('this is studentPortf req', req.body);
     var newstudentPortf = new StudentPortf(req.body);
     newstudentPortf.save(function(err, result) {
       if (err) return res.status(500).send(err);
       res.send(result)
-      // console.log('this is studentPortf send result', result);
     });
   },
   read: function(req, res) {
-    // console.log('looking for students');
     StudentPortf.find(req.query)
-
-    /*  .populate(
-        'cohort.cohortName cohortName cohort.cohortLocation cohort.className projects skills'
-      )*/
-
     .populate(
         'cohort.cohortname cohort.className cohort.cohortLocation projects DevSkills '
 
 
       )
-      //.populate("cohort.cohortName")
       .exec(function(err, result) {
-        // console.log('this is studentPortf read result STCRtl', result);
         if (err) return res.status(500).send(err);
         res.send(result);
       });
   },
-  /*getStudentById: function(req, res) {
-      User.findById({
-          _id: req.params.id
-        })
-        .exec(function(err, result) {
-          if (err) return res.status(500).send(err);
-          var studentPortfolio = {};
-          var userId = result._id;
-          myLog.log('this is userId', userId);
-
-          StudentPortf.findOne({
-              loginInfo: userId
-            })
-            .populate(
-              'cohort.cohortname cohort.cohortLocation cohort.className projects'
-            )
-            .exec(function(err, result) {
-              studentPortfolio.studentPortf = result;
-              res.send(studentPortfolio);
-            })
-        })
-    },*/
 
   getStudentById: function(req, res) {
     myLog.log('\n\n\n\n\nthis is before! req.params ', req.params);
@@ -103,43 +70,12 @@ module.exports = {
             } else{
               studentPortfolio.studentPortf = portfolioFindResult._doc;
 
-/*    User.findOne({
-      _id: req.params.id ? req.params.id : null
-    }, function(err, userFindResult) {
-      if (err) return res.status(500).send(err);
-      var studentPortfolio = {};
-      var userId = userFindResult._id;
-      myLog.log('this is userId MEOW! ', userId);
-
-      StudentPortf.findOne({
-          loginInfo: userId
-        })
-        .populate(
-          'cohort.cohortname cohort.cohortLocation cohort.className projects loginInfo DevSkills'
-        )
-        .exec(function(err, portfolioFindResult) {
-          if (err || portfolioFindResult === null) {
-
-            studentPortfolio.studentPortf = new StudentPortf();
-            var newLoginId = ObjectID.createFromHexString(req.params.id);
-            studentPortfolio.studentPortf.loginInfo = newLoginId;
-            studentPortfolio.studentPortf.save(function(
-              newPortfolioError) {
-              console.log("error creating new portfolio",
-                newPortfolioError);
-
-              res.send(studentPortfolio);
-            });
-          } else {
-            studentPortfolio.studentPortf = portfolioFindResult._doc;
-  */
             res.send(studentPortfolio);
           }
         })
     })
   },
   update: function(req, res) {
-    // console.log("this is req.body line 75 on StudentPortfCtrl", req.body);
     StudentPortf.findOneAndUpdate({
         _id: req.params.id
       }, {
@@ -170,7 +106,6 @@ module.exports = {
 
   getCohorts: function(req, res) {
     var cohortId = req.params.id;
-    // console.log('this is cohortID', cohortId);
     StudentPortf.find().populate(
 
         'cohort.cohortname cohort.cohortLocation cohort.className projects '
